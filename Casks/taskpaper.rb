@@ -1,12 +1,13 @@
-cask :v1 => 'taskpaper' do
-  version '2.3.2'
-  sha256 'faaaef9c9b6398aa7beb6782b1704ccc74b11e251f428d6b921248235afc3a06'
+cask "taskpaper" do
+  version "3.8.10"
+  sha256 "18b6d7e248ed88ff1d1a3db06de7110284967f277ad2732be90cc500c7a11663"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "http://taskpaper.s3.amazonaws.com/TaskPaper-#{version}.dmg"
-  appcast 'http://www.hogbaysoftware.com/products/taskpaper/releases.rss'
-  homepage 'http://www.hogbaysoftware.com/products/taskpaper'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.taskpaper.com/assets/app/TaskPaper-#{version}.dmg"
+  appcast "https://www.taskpaper.com/assets/app/TaskPaper.rss"
+  name "TaskPaper"
+  homepage "https://www.taskpaper.com/"
 
-  app 'TaskPaper.app'
+  auto_updates true
+
+  app "TaskPaper.app"
 end

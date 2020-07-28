@@ -1,13 +1,17 @@
-cask :v1 => 'keepassx' do
-  version '2.0-alpha6'
-  sha256 '55aeaba8257d728b62ba173ba56df27897552737a556dc1e4e4ed6dcd3d6dd8a'
+cask "keepassx" do
+  version "2.0.3"
+  sha256 "44271fef18fd07a29241e5324be407fa8edce77fb0b55c5646cd238092cdf823"
 
-  url "https://www.keepassx.org/dev/attachments/download/72/KeePassX-#{version}.dmg"
-  name 'KeePassX'
-  homepage 'http://www.keepassx.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.keepassx.org/releases/#{version}/KeePassX-#{version}.dmg"
+  appcast "https://github.com/keepassx/keepassx/releases.atom"
+  name "KeePassX"
+  homepage "https://www.keepassx.org/"
 
-  app 'KeePassX.app'
+  app "KeePassX.app"
 
-  zap :delete => '~/.keepassx'
+  uninstall_preflight do
+    set_ownership "#{appdir}/KeePassX.app"
+  end
+
+  zap trash: "~/.keepassx"
 end

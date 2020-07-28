@@ -1,12 +1,11 @@
-cask :v1 => 'cloudytabs' do
-  version '1.4'
-  sha256 '7ba67b0f7415fe2d2cb545866eb0e9c7c2bea8980445921a9da5d2bf55711d76'
+cask "cloudytabs" do
+  version "1.9.1"
+  sha256 "acbccf2172242b6cd5e702ad06293e616932889e75e1dbfdb3b6229a0dbf87e0"
 
   url "https://github.com/josh-/CloudyTabs/releases/download/v#{version}/CloudyTabs.zip"
-  appcast 'http://joshparnham.com/projects/cloudytabs/appcast.xml',
-          :sha256 => '70140cb26a2a25589d739d6dac6f2e04118a938814909fe08c720b0174adf2b4'
-  homepage 'https://github.com/josh-/CloudyTabs/'
-  license :mit
+  appcast "https://github.com/josh-/CloudyTabs/releases.atom"
+  name "CloudyTabs"
+  homepage "https://github.com/josh-/CloudyTabs/"
 
-  app 'CloudyTabs.app'
+  app "CloudyTabs.app"
 end

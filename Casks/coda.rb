@@ -1,16 +1,23 @@
-cask :v1 => 'coda' do
-  version '2.5.2'
-  sha256 'd81764e9e54625663f2b043ee117f555515462046dfdf7b03a14740c4b78113f'
+cask "coda" do
+  version "2.7.5"
+  sha256 "05e368a269ee17952ab9ab6539a9f6bf1c1ff0916669f698cf2b28c7f433a9f5"
 
   url "https://download.panic.com/coda/Coda%20#{version}.zip"
-  appcast 'http://www.panic.com/updates/update.php'
-  homepage 'https://panic.com/Coda/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  appcast "https://www.panic.com/updates/update.php?appName=Coda%202&appVersion=1"
+  name "Panic Coda"
+  homepage "https://panic.com/coda/"
 
-  app 'Coda 2.app'
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
 
-  zap :delete => [
-                  '~/Library/Application Support/Coda 2',
-                  '~/Library/Preferences/com.panic.Coda2.plist',
-                 ]
+  app "Coda #{version.major}.app"
+
+  zap trash: [
+    "~/Library/Application Support/Coda #{version.major}",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.panic.coda2.sfl*",
+    "~/Library/Caches/com.apple.helpd/Generated/com.panic.Coda#{version.major}.help*",
+    "~/Library/Caches/com.panic.Coda#{version.major}",
+    "~/Library/Preferences/com.panic.Coda#{version.major}.plist",
+    "~/Library/Saved Application State/com.panic.Coda#{version.major}.savedState",
+  ]
 end

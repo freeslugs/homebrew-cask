@@ -1,10 +1,10 @@
-cask :v1 => 'shades' do
+cask "shades" do
   version :latest
   sha256 :no_check
 
-  url 'http://www.charcoaldesign.co.uk/shades/download/intel'
-  homepage 'http://www.charcoaldesign.co.uk/shades'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.charcoaldesign.co.uk/shades/download/intel"
+  name "Shades"
+  homepage "https://www.charcoaldesign.co.uk/shades"
 
-  prefpane 'Shades Preferences.prefPane'
+  prefpane "Shades Preferences.prefPane"
 end

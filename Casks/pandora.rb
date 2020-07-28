@@ -1,10 +1,14 @@
-cask :v1 => 'pandora' do
-  version '2.0.8'
-  sha256 '9ac216fd51bb063f020a86c6f5d250989dfa033a2d6a3d703124c2f4bfa510d8'
+cask "pandora" do
+  version "15.0.3"
+  sha256 "1858152de9d5fe18c876093a95c39c92fe878fba633c3e54e27fcdeb70a06c15"
 
-  url "https://www.pandora.com/static/desktop_app/pandora_#{version.gsub('.','_')}.air"
-  homepage 'http://www.pandora.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # p-desktop-app.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://p-desktop-app.s3.amazonaws.com/releases/Pandora-#{version}.dmg"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://pdora.co/desktop_mac_download"
+  name "Pandora"
+  homepage "https://www.pandora.com/desktop"
 
-  app 'Pandora.app'
+  app "Pandora.app"
+
+  zap trash: "~/Library/Preferences/com.pandora.desktop.plist"
 end

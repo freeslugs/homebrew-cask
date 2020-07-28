@@ -1,11 +1,11 @@
-cask :v1 => 'doxygen' do
-  version '1.8.9.1'
-  sha256 '6d50c7374b6897aabf41a96aee21bcd993d3258e46f7954408b5a1bd436735eb'
+cask "doxygen" do
+  version "1.8.18"
+  sha256 "472d6bbf61621a3c3a7f9492ae604c2befb58a4b18d144166a674f398734864b"
 
-  url "ftp://ftp.stack.nl/pub/users/dimitri/Doxygen-#{version}.dmg"
-  name 'Doxygen'
-  homepage 'http://www.stack.nl/~dimitri/doxygen/'
-  license :gpl
+  url "https://doxygen.nl/files/Doxygen-#{version}.dmg"
+  appcast "https://www.doxygen.nl/download.html"
+  name "Doxygen"
+  homepage "https://www.doxygen.nl/"
 
-  app 'Doxygen.app'
+  app "Doxygen.app"
 end

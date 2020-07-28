@@ -1,12 +1,11 @@
-cask :v1 => 'openlp' do
-  version '2.0.5'
-  sha256 '0ba5a37c359394c277e221f8ca74191d3425cf3cfbd70699d81346c77c93d746'
+cask "openlp" do
+  version "2.9.1"
+  sha256 "c01ff0a446716048c9f2e19b13ebf124a2d7fadcd6d73273e8d41cf60326c2c5"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/openlp/openlp/#{version}/OpenLP-#{version}.dmg"
-  name 'OpenLP'
-  homepage 'http://openlp.org'
-  license :gpl
+  url "https://get.openlp.org/#{version}/OpenLP-#{version}.dmg"
+  appcast "https://get.openlp.org"
+  name "OpenLP"
+  homepage "https://openlp.org/"
 
-  app 'OpenLP.app'
+  app "OpenLP.app"
 end

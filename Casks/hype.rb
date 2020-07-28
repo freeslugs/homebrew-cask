@@ -1,12 +1,12 @@
-cask :v1 => 'hype' do
-  version :latest
-  sha256 :no_check
+cask "hype" do
+  version "4.0.6"
+  sha256 "b9307becb39c627ed9b9f1c2d2190b33e7d9f7494f5c4076ba17cefaf41171b0"
 
-  url 'http://tumult.com/hype/download/Hype.zip'
-  name 'Hype'
-  homepage 'http://tumult.com/hype/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
-  tags :vendor => 'Tumult'
+  url "https://tumult.com/hype/download/Hype.zip"
+  appcast "https://tumult.com/hype/appcast_hype#{version.major}.xml"
+  name "Tumult Hype"
+  homepage "https://tumult.com/hype/"
 
-  app 'Hype2.app'
+  # Renamed for consistency: app name is different in the Finder and in a shell
+  app "Hype#{version.major}.app", target: "Hype #{version.major}.app"
 end

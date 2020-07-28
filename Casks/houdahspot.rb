@@ -1,15 +1,13 @@
-cask :v1 => 'houdahspot' do
-  version :latest
-  sha256 :no_check
+cask "houdahspot" do
+  version "5.1.4"
+  sha256 "fa5f591adf24650064c531621f6f0f075e2c27164af0fa070f00fc404ccc4398"
 
-  url 'http://www.houdah.com/houdahSpot/download_assets/HoudahSpot_latest.zip'
-  appcast 'http://www.houdah.com/houdahSpot/updates/cast4.xml'
-  homepage 'http://www.houdah.com/houdahSpot/'
-  license :commercial
+  url "https://dl.houdah.com/houdahSpot/updates/cast#{version.major}_assets/HoudahSpot#{version}.zip"
+  appcast "https://www.houdah.com/houdahSpot/updates/cast#{version.major}.xml"
+  name "HoudahSpot"
+  homepage "https://www.houdah.com/houdahSpot/"
 
-  app 'HoudahSpot.app'
+  depends_on macos: ">= :high_sierra"
 
-  postflight do
-    suppress_move_to_applications
-  end
+  app "HoudahSpot.app"
 end

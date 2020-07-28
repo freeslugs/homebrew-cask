@@ -1,14 +1,28 @@
-cask :v1 => 'coteditor' do
-  version '2.1.1'
-  sha256 '3de8cc6fd3788dc593955f41eafa83af713c31faa68b77a5a70fc85491f0d0f0'
+cask "coteditor" do
+  if MacOS.version <= :yosemite
+    version "3.2.8"
+    sha256 "73dd20d27b75c7b0c46242a465adb3df5b5f0b901f42c5a9a85777a57c4a17d6"
+  else
+    version "3.9.3"
+    sha256 "9ff6da27ce0af2b2ca1937965514ed4740eaecccaccd0d0f53e14633229f6240"
+  end
 
-  # github.com is the official download host per the vendor homepage
+  # github.com/coteditor/CotEditor/ was verified as official when first introduced to the cask
   url "https://github.com/coteditor/CotEditor/releases/download/#{version}/CotEditor_#{version}.dmg"
-  appcast 'http://coteditor.com/appcast.xml',
-          :sha256 => 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'
-  name 'CotEditor'
-  homepage 'http://coteditor.com/'
-  license :gpl
+  appcast "https://github.com/coteditor/CotEditor/releases.atom"
+  name "CotEditor"
+  homepage "https://coteditor.com/"
 
-  app 'CotEditor.app'
+  auto_updates true
+
+  app "CotEditor.app"
+  binary "#{appdir}/CotEditor.app/Contents/SharedSupport/bin/cot"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.coteditor.CotEditor",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.coteditor.coteditor.sfl*",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.coteditor.CotEditor.help*",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/Japanese/HelpSDMIndexFile/com.coteditor.CotEditor.help*",
+    "~/Library/Containers/com.coteditor.CotEditor",
+  ]
 end

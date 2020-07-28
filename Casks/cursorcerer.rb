@@ -1,10 +1,10 @@
-cask :v1 => 'cursorcerer' do
+cask "cursorcerer" do
   version :latest
   sha256 :no_check
 
-  url 'http://www.doomlaser.com/downloads/Cursorcerer.zip'
-  homepage 'http://doomlaser.com/cursorcerer-hide-your-cursor-at-will/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://www.doomlaser.com/downloads/Cursorcerer.zip"
+  name "Cursorcerer"
+  homepage "http://doomlaser.com/cursorcerer-hide-your-cursor-at-will/"
 
-  prefpane 'Cursorcerer.prefPane'
+  prefpane "Cursorcerer.prefPane"
 end

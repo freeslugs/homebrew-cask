@@ -1,22 +1,28 @@
-cask :v1 => 'spectacle' do
+cask "spectacle" do
+  version "1.2"
+  sha256 "766d5bf3b404ec567110a25de1d221290bc829302283b28ed0fbe73b9557f30c"
 
-  if MacOS.release <= :mountain_lion
-    version '0.8.6'
-    sha256 '3e367d2d7e6fe7d5f41d717d49cb087ba7432624b71ddd91c0cfa9d5a5459b7c'
-  else
-    version '0.8.8'
-    sha256 '7c7386e526cbabedb1e16f2e3366c7842712f590985fe9d4f57ff9c0a7854bcf'
+  # spectacle.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://spectacle.s3.amazonaws.com/downloads/Spectacle+#{version}.zip"
+  appcast "https://www.spectacleapp.com/updates/appcast.xml"
+  name "Spectacle"
+  homepage "https://www.spectacleapp.com/"
 
-    appcast 'http://spectacleapp.com/updates/appcast.xml',
-            :sha256 => '5d75e2e07886ca135916e224b4b5c1468d9af1ea8ef355db33b28bff511fa6b2'
+  auto_updates true
+
+  app "Spectacle.app"
+
+  uninstall quit: "com.divisiblebyzero.Spectacle"
+
+  zap trash: [
+    "~/Library/Application Support/Spectacle",
+    "~/Library/Caches/com.divisiblebyzero.Spectacle",
+    "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.divisiblebyzero.Spectacle",
+    "~/Library/Cookies/com.divisiblebyzero.Spectacle.binarycookies",
+    "~/Library/Preferences/com.divisiblebyzero.Spectacle.plist",
+  ]
+
+  caveats do
+    discontinued
   end
-
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/spectacle/downloads/Spectacle+#{version}.zip"
-  homepage 'http://spectacleapp.com/'
-  license :mit
-
-  app 'Spectacle.app'
-
-  zap :delete => '~/Library/Preferences/com.divisiblebyzero.Spectacle.plist'
 end

@@ -1,11 +1,12 @@
-cask :v1 => 'mesasqlite' do
-  version '4.0.8'
-  sha256 '16741eb458127db0ce72e71824ddf938ee7b30a8b6ea4bc0e82357aab5b3359b'
+cask "mesasqlite" do
+  version "4.3.5"
+  sha256 "ae458d82235aabedb2e32f12e514f69b3c931ca8b1f63cf7d271e3243de8bc97"
 
-  url "http://www.desertsandsoftware.com/DEMOS/MesaSQLite#{version.gsub('.','')}.zip"
-  name 'MesaSQLite'
-  homepage 'http://www.desertsandsoftware.com/wordpress/?page_id=17'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://www.desertsandsoftware.com/DEMOS/MesaSQLite#{version.no_dots}.zip"
+  appcast "http://www.desertsandsoftware.com/?page_id=99",
+          must_contain: version.no_dots
+  name "MesaSQLite"
+  homepage "http://www.desertsandsoftware.com/wordpress/?page_id=17"
 
-  app 'MesaSQLite.app'
+  app "MesaSQLite.app"
 end

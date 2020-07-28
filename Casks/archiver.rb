@@ -1,12 +1,19 @@
-cask :v1 => 'archiver' do
-  version :latest
-  sha256 :no_check
+cask "archiver" do
+  version "3.0.9"
+  sha256 "6e5a623b5ab84efafa9d7dee5f76527a458518552d7caa1dcaae48f23048783e"
 
-  # googleapis.com is the official download host per the vendor homepage
-  url 'https://commondatastorage.googleapis.com/incrediblebee/apps/Archiver/Archiver.zip'
-  name 'Archiver'
-  homepage 'http://archiverapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # storage.googleapis.com/incrediblebee/ was verified as official when first introduced to the cask
+  url "https://storage.googleapis.com/incrediblebee/apps/Archiver-#{version.major}/Archiver-#{version}.zip"
+  appcast "https://api.incrediblebee.com/appcasts/archiver-#{version.major}.xml"
+  name "Archiver"
+  homepage "https://archiverapp.com/"
 
-  app 'Archiver.app'
+  depends_on macos: ">= :sierra"
+
+  app "Archiver.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.incrediblebee.Archiver*",
+    "~/Library/Preferences/com.incrediblebee.Archiver*.plist",
+  ]
 end

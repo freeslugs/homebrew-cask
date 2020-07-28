@@ -1,12 +1,14 @@
-cask :v1 => 'darktable' do
-  version '1.6.3'
-  sha256 'be568ad20bfb75aed703e2e4d0287b27464dfed1e70ef2c17418de7cc631510f'
+cask "darktable" do
+  version "3.0.2"
+  sha256 "b71dab1b4f0ad796055f6d725a82913ad08f609de6ca96d65dbe6ffbeecb6416"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/darktable-org/darktable/releases/download/release-#{version}/darktable-#{version}.dmg"
-  name 'darktable'
-  homepage 'http://www.darktable.org/'
-  license :gpl
+  # github.com/darktable-org/darktable/ was verified as official when first introduced to the cask
+  url "https://github.com/darktable-org/darktable/releases/download/release-#{version.major_minor_patch}/darktable-#{version}.dmg"
+  appcast "https://github.com/darktable-org/darktable/releases.atom"
+  name "darktable"
+  homepage "https://www.darktable.org/"
 
-  app 'darktable.app'
+  conflicts_with cask: "darktable-dev"
+
+  app "darktable.app"
 end

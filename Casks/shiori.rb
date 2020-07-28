@@ -1,12 +1,11 @@
-cask :v1 => 'shiori' do
-  version '1.0.2'
-  sha256 'c832edc2762fdaadc80bfe042ee6f7bd128955e3d7b27bdc5baf5806a0c8a719'
+cask "shiori" do
+  version "1.1.0"
+  sha256 "0496885a3f738681184c28e61fe134621a831af3c8f457784e9da72e43eae94d"
 
-  url "http://aki-null.net/shiori/release/Shiori_#{version}.zip"
-  appcast 'http://aki-null.net/shiori/appcast.xml',
-          :sha256 => '244668dde7c677ddaaccc55c997874e13d3c8de5213c5e0810eeacd6fdcc713e'
-  homepage 'http://aki-null.net/shiori/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://aki-null.net/shiori/release/Shiori_#{version}.zip"
+  appcast "https://aki-null.net/shiori/appcast.xml"
+  name "Shiori"
+  homepage "https://aki-null.net/shiori/"
 
-  app 'Shiori.app'
+  app "Shiori.app"
 end

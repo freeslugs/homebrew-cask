@@ -1,14 +1,17 @@
-cask :v1 => 'adobe-dng-converter' do
-  version '8.6'
-  sha256 '3bb43ca608b7e62727512c813b395ea46aad545f68f9323cc78c9c5f47145650'
+cask "adobe-dng-converter" do
+  version "12.3"
+  sha256 "1cfac471868ad6032d53207dfddf92d6f2f2e8ec2aeb2a0d1b2a9b016956cea8"
 
-  url "http://download.adobe.com/pub/adobe/dng/mac/DNGConverter_#{version.gsub('.', '_')}.dmg"
-  name 'Adobe Camera Raw and DNG Converter'
-  homepage 'http://www.adobe.com/support/downloads/product.jsp?product=106&platform=Macintosh'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.adobe.com/pub/adobe/dng/mac/DNGConverter_#{version.dots_to_underscores}.dmg"
+  appcast "https://supportdownloads.adobe.com/product.jsp?product=106&platform=Macintosh"
+  name "Adobe Camera Raw and DNG Converter"
+  homepage "https://supportdownloads.adobe.com/product.jsp?product=106&platform=Macintosh"
 
-  pkg 'Adobe DNG Converter.pkg'
+  pkg "DNGConverter_#{version.dots_to_underscores}.pkg"
 
-  uninstall :pkgutil => 'com.adobe.adobeDngConverter*',
-            :quit =>    'com.adobe.DNGConverter'
+  uninstall pkgutil: [
+    "com.adobe.CameraRawProfiles",
+    "com.adobe.DNGConverter",
+  ],
+            quit:    "com.adobe.DNGConverter"
 end

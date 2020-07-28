@@ -1,12 +1,11 @@
-cask :v1 => 'iphoto-library-manager' do
-  version '4.1.10'
-  sha256 '2ab9ec177b2c6ee94847ea6c2164a51f86e2c9e288433f9f7a4f20ab175be519'
+cask "iphoto-library-manager" do
+  version "4.2.7"
+  sha256 "19befc6553638687f27883e822d7ecb780f31ad358bd3057c2079de4f12edea9"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/fatcatsoftware/iplm/iPhotoLibraryManager_#{version.gsub('.', '')}.zip"
-  name 'iPhoto Library Manager'
-  homepage 'http://www.fatcatsoftware.com/iplm/'
-  license :commercial
+  url "https://www.fatcatsoftware.com/iplm/iPhotoLibraryManager.zip"
+  appcast "https://www.fatcatsoftware.com/iplm/iplm#{version.major}_appcast.xml"
+  name "iPhoto Library Manager"
+  homepage "https://www.fatcatsoftware.com/iplm/"
 
-  app 'iPhoto Library Manager.app'
+  app "iPhoto Library Manager.app"
 end

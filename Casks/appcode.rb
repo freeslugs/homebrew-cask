@@ -1,25 +1,29 @@
-cask :v1 => 'appcode' do
-  version '3.1.4'
-  sha256 'ca623c106337dd355732200d25f2e0a4776629dd4185a01f972e9ad34b417eb4'
+cask "appcode" do
+  version "2020.1.6,201.8743.15"
+  sha256 "40c86c3c0d9e10bbe3d7cb682939001d24d6b7a02b55cf287194da86054b662a"
 
-  url "http://download.jetbrains.com/objc/AppCode-#{version}.dmg"
-  name 'AppCode'
-  homepage 'http://www.jetbrains.com/objc/'
-  license :commercial
+  url "https://download.jetbrains.com/objc/AppCode-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=AC&latest=true&type=release"
+  name "AppCode"
+  homepage "https://www.jetbrains.com/objc/"
 
-  app 'AppCode.app'
+  auto_updates true
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  app "AppCode.app"
 
-      brew cask install caskroom/homebrew-versions/java6
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "appcode") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-
-    To use existing newer Java at your own risk,
-    add JVMVersion=1.6+ to ~/Library/Preferences/IntelliJIdea14/idea.properties
-  EOS
+  zap trash: [
+    "~/Library/Application Support/AppCode#{version.major_minor}",
+    "~/Library/Caches/AppCode#{version.major_minor}",
+    "~/Library/Logs/AppCode#{version.major_minor}",
+    "~/Library/Preferences/AppCode#{version.major_minor}",
+  ]
 end

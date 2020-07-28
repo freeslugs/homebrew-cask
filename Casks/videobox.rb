@@ -1,11 +1,10 @@
-cask :v1 => 'videobox' do
-  version '4.1.2'
-  sha256 'bd9e6ae942b729b02c40ad076814be7c5e2f966325c9c5e982070d03443408c5'
+cask "videobox" do
+  version "4.2.3"
+  sha256 "c4cb71213dc3819a5e5b85fb824172ddafecf2e281157efe234e5d2288a51808"
 
-  url "http://download.tastyapps.com/videobox_#{version}.dmg"
-  name 'Videobox'
-  homepage 'http://www.tastyapps.com/videobox/'
-  license :closed
+  url "https://www.tastyapps.com/downloads/videobox_#{version}.dmg"
+  name "Videobox"
+  homepage "https://www.tastyapps.com/videobox.html"
 
-  app 'Videobox.app'
+  app "Videobox.app"
 end

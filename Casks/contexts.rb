@@ -1,12 +1,21 @@
-cask :v1 => 'contexts' do
-  version :latest
-  sha256 :no_check
+cask "contexts" do
+  version "3.7.1"
+  sha256 "de5e4a660cc30276155606b539d1ae58684115a3983d69598f1505fcad499a87"
 
-  url 'http://contextsformac.com/releases/Contexts.zip'
-  appcast 'http://www.contextsformac.com/releases/appcast.xml'
-  name 'Contexts'
-  homepage 'http://contextsformac.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://contexts.co/releases/Contexts-#{version}.dmg"
+  appcast "https://contexts.co/appcasts/stable.xml"
+  name "Contexts"
+  homepage "https://contexts.co/"
 
-  app 'Contexts.app'
+  app "Contexts.app"
+
+  uninstall quit: "com.contextsformac.Contexts"
+
+  zap trash: [
+    "~/Library/Application Support/.com.contextsformac.Contexts.plist",
+    "~/Library/Application Support/com.contextsformac.Contexts",
+    "~/Library/Caches/com.contextsformac.Contexts",
+    "~/Library/Logs/Contexts",
+    "~/Library/Preferences/com.contextsformac.Contexts.plist",
+  ]
 end

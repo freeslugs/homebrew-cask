@@ -1,11 +1,11 @@
-cask :v1 => 'orange' do
-  version '2.7.8-a81a512'
-  sha256 '2f91e55f41f08b0d691b553f70c38266491ba8efd1c0bd2c60ad8791cd25d81f'
+cask "orange" do
+  version "3.24.1"
+  sha256 "4f31193260c4f2d9f0a495d664e8fbc7438aebfadc7e83f1d950c1c672873887"
 
-  url "http://orange.biolab.si/download/files/Orange-#{version}.dmg"
-  name 'Orange'
-  homepage 'http://orange.biolab.si/'
-  license :gpl
+  url "https://download.biolab.si/download/files/Orange#{version.major}-#{version}.dmg"
+  appcast "https://github.com/biolab/orange3/releases.atom"
+  name "Orange"
+  homepage "https://orange.biolab.si/"
 
-  app 'Orange.app'
+  app "Orange#{version.major}.app"
 end

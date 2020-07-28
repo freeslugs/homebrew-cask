@@ -1,11 +1,12 @@
-cask :v1 => 'pikopixel' do
-  version '1.0b4'
-  sha256 'bf024db394bfd6031f02f75313a591f949decea0cad80ec07357c0f32e34fa92'
+cask "pikopixel" do
+  version "1.0-b9"
+  sha256 "fb5a495a9284c9ea435f4d48e6572c1e1e673e11fe020e52ac0bf98b73a6f4ce"
 
-  url "http://twilightedge.com/downloads/PikoPixel#{version}.dmg"
-  name 'PikoPixel'
-  homepage 'http://twilightedge.com/mac/pikopixel/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://twilightedge.com/downloads/PikoPixel.#{version}.dmg",
+      user_agent: :fake
+  appcast "http://twilightedge.com/mac/pikopixel/history.html"
+  name "PikoPixel"
+  homepage "http://twilightedge.com/mac/pikopixel/"
 
-  app 'PikoPixel.app'
+  app "PikoPixel.app"
 end

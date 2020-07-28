@@ -1,10 +1,18 @@
-cask :v1 => 'qiyimedia' do
-  version '3.1.14'
-  sha256 'bab6c18060eabb2ae3326c562de6e33041ab6a0476817ae7fc1f39d2265734b5'
+cask "qiyimedia" do
+  version "20200612,5.19.3-271"
+  sha256 "2d71630cdd9750cbe67ca9c88f7eac6f956b7ff69c4697e278fa9d7d79b7ec2f"
 
-  url 'http://static.qiyi.com/ext/common/QIYImedia_Mac_5.dmg'
-  homepage 'http://www.iqiyi.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://mbdapp.iqiyi.com/j/ot/iQIYIMedia_000.dmg"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://mbdapp.iqiyi.com/j/ot/iQIYIMedia_000.dmg",
+          must_contain: version.before_comma
+  name "爱奇艺视频"
+  homepage "https://app.iqiyi.com/mac/player/index.html"
 
-  app '爱奇艺视频.app'
+  app "爱奇艺.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.iqiyi.player",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.iqiyi.player.sfl*",
+    "~/Library/Containers/com.iqiyi.player",
+  ]
 end

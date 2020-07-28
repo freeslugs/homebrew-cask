@@ -1,10 +1,12 @@
-cask :v1 => 'stepmania' do
-  version '5beta4a'
-  sha256 'a87148a15e8507080ae03e42b07b35bb601e622d63c142da8a08dcdb9f9e42cd'
+cask "stepmania" do
+  version "5.0.12"
+  sha256 "b49eb7f4405c8cc289053deb48c30edcd8517a2948853e77befe9073818eb336"
 
-  url 'https://github.com/stepmania/stepmania/releases/download/SM5-beta4a/StepMania-v5.0-beta-4a-mac.dmg'
-  homepage 'http://www.stepmania.com/'
-  license :mit
+  # github.com/stepmania/stepmania/ was verified as official when first introduced to the cask
+  url "https://github.com/stepmania/stepmania/releases/download/v#{version}/StepMania-#{version}-mac.dmg"
+  appcast "https://github.com/stepmania/stepmania/releases.atom"
+  name "StepMania"
+  homepage "https://www.stepmania.com/"
 
-  app 'StepMania-v5.0-beta-4a/Stepmania.app'
+  app "StepMania-#{version}/Stepmania.app"
 end

@@ -1,11 +1,12 @@
-cask :v1 => 'neofinder' do
-  version :latest
-  sha256 :no_check
+cask "neofinder" do
+  version "7.6"
+  sha256 "3f9ac55d08a086050f6ed7d40010571504a9228aef6fe86599e70b1a4d41934e"
 
-  url 'http://www.cdfinder.de/neofinder.zip'
-  appcast 'http://www.wfs-apps.de/updates/neofinder-appcast-64.xml'
-  homepage 'http://www.cdfinder.de'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # wfs-apps.de/ was verified as official when first introduced to the cask
+  url "https://www.wfs-apps.de/updates/neofinder.#{version}.zip"
+  appcast "https://www.wfs-apps.de/updates/neofinder-appcast-64.xml"
+  name "NeoFinder"
+  homepage "https://www.cdfinder.de/"
 
-  app 'NeoFinder.app'
+  app "NeoFinder.app"
 end

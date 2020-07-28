@@ -1,16 +1,16 @@
-cask :v1 => 'tvrenamer' do
-  version '0.6'
-  sha256 'fe38d8f7fab69bc54673ef9822b01401d5d72453865842f27023ecd7de4a531a'
+cask "tvrenamer" do
+  version "0.8"
+  sha256 "fa250e1641d473d5ece9959c8f3091ab18ad9eddb5a6bccb062212c84cc6aca8"
 
-  # github.com is the official download host per the vendor homepage
+  # github.com/tvrenamer/tvrenamer/ was verified as official when first introduced to the cask
   url "https://github.com/tvrenamer/tvrenamer/releases/download/v#{version}/TVRenamer-#{version}-osx64.zip"
-  homepage 'http://tvrenamer.org'
-  license :gpl
+  appcast "https://github.com/tvrenamer/tvrenamer/releases.atom"
+  name "TVRenamer"
+  homepage "http://tvrenamer.org/"
 
   app "TVRenamer-#{version}.app"
 
-  caveats <<-EOS.undent
-    #{token} requires a Java JRE to be installed. You should be prompted to install
-    Java on the first execution if it is not already present.
-  EOS
+  caveats do
+    depends_on_java
+  end
 end

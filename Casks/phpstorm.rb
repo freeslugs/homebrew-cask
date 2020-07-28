@@ -1,27 +1,30 @@
-cask :v1 => 'phpstorm' do
-  version '8.0.3'
-  sha256 '6c9b36ebfed67f5ec2e6a96f2f61826653b312686ecd8a298e0e2ca3e3a09559'
+cask "phpstorm" do
+  version "2020.1.4,201.8743.18"
+  sha256 "f068cdd6697779dca853393ff785a72e18236ebb578b847e5fa007bc0592203e"
 
-  url "http://download.jetbrains.com/webide/PhpStorm-#{version}.dmg"
-  name 'PhpStorm'
-  homepage 'http://www.jetbrains.com/phpstorm/'
-  license :commercial
+  url "https://download.jetbrains.com/webide/PhpStorm-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=PS&latest=true&type=release"
+  name "JetBrains PhpStorm"
+  homepage "https://www.jetbrains.com/phpstorm/"
 
-  app 'PhpStorm.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Application Support/WebIde80',
-                  '~/Library/Preferences/WebIde80',
-                  '~/Library/Preferences/com.jetbrains.PhpStorm.plist',
-                 ]
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  app "PhpStorm.app"
 
-      brew cask install caskroom/homebrew-versions/java6
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "pstorm") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap trash: [
+    "~/Library/Application Support/PhpStorm#{version.major_minor}",
+    "~/Library/Caches/PhpStorm#{version.major_minor}",
+    "~/Library/Logs/PhpStorm#{version.major_minor}",
+    "~/Library/Preferences/PhpStorm#{version.major_minor}",
+    "~/Library/Preferences/jetbrains.phpstorm.*.plist",
+  ]
 end

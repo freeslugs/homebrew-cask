@@ -1,11 +1,12 @@
-cask :v1 => 'nodebox' do
-  version '3.0.39'
-  sha256 '44620d6554c467863c0d68d5e90ff3edf0c7f9ab6c5614cdef2fcb54f9044fb4'
+cask "nodebox" do
+  version "3.0.51"
+  sha256 "2187ebaa849de93f54c5550529678a8a160b06cf6186e8d21a66fc43f395e629"
 
-  url "https://secure.nodebox.net/downloads/NodeBox-#{version}.zip"
-  name 'NodeBox'
-  homepage 'http://nodebox.net/node/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/nodebox/nodebox/ was verified as official when first introduced to the cask
+  url "https://github.com/nodebox/nodebox/releases/download/v#{version}/NodeBox-#{version}.zip"
+  appcast "https://www.nodebox.net/node/release-notes.html"
+  name "NodeBox"
+  homepage "https://www.nodebox.net/node/"
 
-  app 'NodeBox.app'
+  app "NodeBox.app"
 end

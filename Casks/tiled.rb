@@ -1,12 +1,14 @@
-cask :v1 => 'tiled' do
-  version '0.11.0'
-  sha256 '82d9c33f02b1f048807e55728331e1c94c92a9cd3cb83d1bc6dc89cf7655e1be'
+cask "tiled" do
+  version "1.4.1"
+  sha256 "23ab6204d0fa89a50e0591be9a9e8f54689d6941b55465f5711f123277c33f15"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/bjorn/tiled/releases/download/v#{version}/tiled-#{version}.dmg"
-  name 'Tiled'
-  homepage 'http://www.mapeditor.org/'
-  license :gpl
+  # github.com/bjorn/tiled/ was verified as official when first introduced to the cask
+  url "https://github.com/bjorn/tiled/releases/download/v#{version}/Tiled-#{version}-macos.zip"
+  appcast "https://github.com/bjorn/tiled/releases.atom"
+  name "Tiled"
+  homepage "https://www.mapeditor.org/"
 
-  app 'Tiled.app'
+  depends_on macos: ">= :sierra"
+
+  app "Tiled.app"
 end

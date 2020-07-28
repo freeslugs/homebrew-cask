@@ -1,16 +1,24 @@
-cask :v1 => 'iterm2' do
-  # note: "2" is not a version number, but indicates a different vendor
-  version '2.0'
-  sha256 '6a59e1b96d9037b6ff1b8aaaf7aed5cff572d74d6e58390db16028433769c058'
+cask "iterm2" do
+  # note: "2" is not a version number, but an intrinsic part of the product name
+  version "3.3.12"
+  sha256 "6811b520699e8331b5d80b5da1e370e0ed467e68bc56906f08ecfa986e318167"
 
-  url "http://www.iterm2.com/downloads/stable/iTerm2_v#{version.sub('.','_')}.zip"
-  name 'iTerm2'
-  homepage 'http://www.iterm2.com/'
-  appcast 'http://iterm2.com/appcasts/final.xml',
-          :sha256 => 'd8e8c6f4990676b33c81d7b577b96ef5eed9f8f872c104d02f25e0290b0a8ee5'
-  license :gpl
+  url "https://iterm2.com/downloads/stable/iTerm2-#{version.dots_to_underscores}.zip"
+  appcast "https://iterm2.com/appcasts/newest/final_new.xml"
+  name "iTerm2"
+  homepage "https://www.iterm2.com/"
 
-  app 'iTerm.app'
+  auto_updates true
+  depends_on macos: ">= :sierra"
 
-  zap :delete => '~/Library/Preferences/com.googlecode.iterm2.plist'
+  app "iTerm.app"
+
+  zap trash: [
+    "~/Library/Application Support/iTerm",
+    "~/Library/Application Support/iTerm2",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.googlecode.iterm2.sfl*",
+    "~/Library/Caches/com.googlecode.iterm2",
+    "~/Library/Preferences/com.googlecode.iterm2.plist",
+    "~/Library/Saved Application State/com.googlecode.iterm2.savedState",
+  ]
 end

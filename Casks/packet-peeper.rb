@@ -1,11 +1,18 @@
-cask :v1 => 'packet-peeper' do
-  version '2014-05-11'
-  sha256 'ed7d287b2dcd42ec9658c0623d97146821e386f59a67c0759252ea7d7e3f2ba3'
+cask "packet-peeper" do
+  version "2019-12-17"
+  sha256 "75f081ab7e9a75f6d41172518864891d426bf05f10f91890c61c330c18de1729"
 
-  # bitbucket is the official download host per the vendor homepage
-  url "https://bitbucket.org/choll/packetpeeper/downloads/PacketPeeper_#{version}.dmg"
-  homepage 'http://packetpeeper.org/'
-  license :gpl
+  # github.com/choll/packetpeeper/ was verified as official when first introduced to the cask
+  url "https://github.com/choll/packetpeeper/releases/download/#{version}/PacketPeeper_#{version}.dmg"
+  appcast "https://packetpeeper.org/release-notes/"
+  name "Packet Peeper"
+  homepage "https://packetpeeper.org/"
 
-  app 'Packet Peeper.app'
+  app "Packet Peeper.app"
+
+  zap trash: [
+    "~/Library/Preferences/org.PacketPeeper.plist",
+    "~/Library/Saved Application State/org.PacketPeeper.savedState",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.packetpeeper.sfl*",
+  ]
 end

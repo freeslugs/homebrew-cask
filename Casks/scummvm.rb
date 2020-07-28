@@ -1,13 +1,11 @@
-cask :v1 => 'scummvm' do
-  version '1.7.0'
-  sha256 'c382c231680011e7def2349baa666e142570ac833d9f4a1ca56e8f1efc5156c5'
+cask "scummvm" do
+  version "2.1.2"
+  sha256 "f7e63342c70157337e489d7dba6eacad61842311b6406ca56f17ff1d059443bf"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/scummvm/scummvm/#{version}/scummvm-#{version}-macosx.dmg"
-  appcast 'http://www.scummvm.org/appcasts/macosx/release.xml',
-          :sha256 => 'bea2fd9739e102c781753c991b6ee6481a1c0c3f00621e96dca06a2b83e42135'
-  homepage 'http://scummvm.org/'
-  license :gpl
+  url "https://scummvm.org/frs/scummvm/#{version}/scummvm-#{version}-macosx.dmg"
+  appcast "https://www.scummvm.org/downloads/"
+  name "ScummVM"
+  homepage "https://www.scummvm.org/"
 
-  app 'ScummVM.app'
+  app "ScummVM.app"
 end

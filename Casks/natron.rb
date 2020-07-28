@@ -1,12 +1,12 @@
-cask :v1 => 'natron' do
-  version '1.1.0'
-  sha256 'e06352b0b11acbf0bbeb2d7b3258916233b1fb41fadfff08257fdc50d9738b14'
+cask "natron" do
+  version "2.3.15"
+  sha256 "9ac24bb154aea1d65813c2a8451237f02b77dd68a39619c91a671ab897eebde9"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/natron/Natron_MaxOSX_x86_64bits_v#{version}.dmg"
-  name 'Natron'
-  homepage 'https://natron.inria.fr/'
-  license :mpl
+  # github.com/NatronGitHub/Natron/ was verified as official when first introduced to the cask
+  url "https://github.com/NatronGitHub/Natron/releases/download/v#{version}/Natron-#{version}-OSX-64.dmg"
+  appcast "https://github.com/NatronGitHub/Natron/releases.atom"
+  name "Natron"
+  homepage "https://NatronGitHub.github.io/"
 
-  app 'Natron.app'
+  app "Natron.app"
 end

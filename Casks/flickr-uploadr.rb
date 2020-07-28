@@ -1,10 +1,10 @@
-cask :v1 => 'flickr-uploadr' do
+cask "flickr-uploadr" do
   version :latest
   sha256 :no_check
 
-  url 'https://downloads.flickr.com/uploadr/FlickrUploadr.dmg'
-  homepage 'http://www.flickr.com/tools/'
-  license :gratis
+  url "https://downloads.flickr.com/uploadr/FlickrUploadr.dmg"
+  name "Flickr Uploadr"
+  homepage "https://www.flickr.com/tools/"
 
-  app 'Flickr Uploadr.app'
+  app "Flickr Uploadr.app"
 end

@@ -1,11 +1,18 @@
-cask :v1 => 'openscad' do
-  version '2014.03'
-  sha256 'c324c19c2d36f21517b602f8ae2ec04fa14c90896c91fc8dbb37aed5b3ba16bd'
+cask "openscad" do
+  version "2019.05"
+  sha256 "df6f6f3d34ac0d07f533ec4ccf59082189fb37c0276c1b8df651291e2509420e"
 
-  url "http://files.openscad.org/OpenSCAD-#{version}.dmg"
-  name 'OpenSCAD'
-  homepage 'http://www.openscad.org/'
-  license :gpl
+  url "https://files.openscad.org/OpenSCAD-#{version}.dmg"
+  appcast "https://github.com/openscad/openscad/releases.atom"
+  name "OpenSCAD"
+  homepage "https://www.openscad.org/"
 
-  app 'OpenSCAD.app'
+  app "OpenSCAD.app"
+  binary "#{appdir}/OpenSCAD.app/Contents/MacOS/OpenSCAD", target: "openscad"
+
+  zap trash: [
+    "~/Library/Caches/org.openscad.OpenSCAD",
+    "~/Library/Preferences/org.openscad.OpenSCAD.plist",
+    "~/Library/Saved Application State/org.openscad.OpenSCAD.savedState",
+  ]
 end

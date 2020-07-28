@@ -1,11 +1,12 @@
-cask :v1 => 'veusz' do
-  version '1.22'
-  sha256 'bfcd3a93a4177deeee10089378123039afb0a9114a996e5b9b3b93388a23f3c2'
+cask "veusz" do
+  version "3.2.1"
+  sha256 "ee81b517f07c7ff1a31a7ec6f18a41380aa97506866a366db86114a585221902"
 
-  url "http://download.gna.org/veusz/Binaries-AppleOSX/veusz-#{version}-AppleOSX.dmg"
-  name 'Veusz'
-  homepage 'http://home.gna.org/veusz/'
-  license :gpl
+  # github.com/veusz/veusz/ was verified as official when first introduced to the cask
+  url "https://github.com/veusz/veusz/releases/download/veusz-#{version}/veusz-#{version}-AppleOSX.dmg"
+  appcast "https://github.com/veusz/veusz/releases.atom"
+  name "Veusz"
+  homepage "https://veusz.github.io/"
 
-  app 'Veusz.app'
+  app "Veusz.app"
 end

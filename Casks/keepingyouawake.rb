@@ -1,13 +1,29 @@
-cask :v1 => 'keepingyouawake' do
-  version '1.2.1'
-  sha256 'e1f40532043949b785d0cb1d6f6a5a3a4ed4073a3db4ca6ed9b3d0275d7d1c2f'
+cask "keepingyouawake" do
+  version "1.5.2"
+  sha256 "2d60da4b5f85803eadf9c29e32aa878f84f2a82f618ae1720b8d76454b88ac11"
 
   url "https://github.com/newmarcel/KeepingYouAwake/releases/download/#{version}/KeepingYouAwake-#{version}.zip"
-  appcast 'https://newmarcel.github.io/KeepingYouAwake/appcast.xml',
-    :sha256 => '738fcec2775620870b759319b9c49fabb71cfff9eaf330048c9725816c52254d',
-    :format => :sparkle
-  homepage 'https://github.com/newmarcel/KeepingYouAwake'
-  license :mit
+  appcast "https://github.com/newmarcel/KeepingYouAwake/releases.atom"
+  name "KeepingYouAwake"
+  homepage "https://github.com/newmarcel/KeepingYouAwake"
 
-  app 'KeepingYouAwake.app'
+  auto_updates true
+  depends_on macos: ">= :yosemite"
+
+  app "KeepingYouAwake.app"
+
+  uninstall quit: "info.marcel-dierkes.KeepingYouAwake"
+
+  zap trash: [
+    "~/Library/Application Scripts/info.marcel-dierkes.KeepingYouAwake",
+    "~/Library/Application Scripts/info.marcel-dierkes.KeepingYouAwake.Launcher",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/info.marcel-dierkes.keepingyouawake.sfl*",
+    "~/Library/Application Support/info.marcel-dierkes.KeepingYouAwake",
+    "~/Library/Caches/info.marcel-dierkes.KeepingYouAwake",
+    "~/Library/Containers/info.marcel-dierkes.KeepingYouAwake",
+    "~/Library/Containers/info.marcel-dierkes.KeepingYouAwake.Launcher",
+    "~/Library/Cookies/info.marcel-dierkes.KeepingYouAwake.binarycookies",
+    "~/Library/Preferences/info.marcel-dierkes.KeepingYouAwake.plist",
+    "~/Library/Saved Application State/info.marcel-dierkes.KeepingYouAwake.savedState",
+  ]
 end

@@ -1,13 +1,23 @@
-cask :v1 => 'wallpaper-wizard' do
-  version '1.5.1'
-  sha256 '5f6d190cff7af60050357d993ee34b9544fe15672b535769766ab783cbd09f99'
+cask "wallpaper-wizard" do
+  version "2.2.0"
+  sha256 "8237a147a685cf4831a637b3fbf113ccb14f1150801450b2f1cc96f2f5b7942c"
 
-  # coppertino.com is the official download host per the vendor homepage
-  url "http://cloud.coppertino.com/wallwiz/wallpaperwizard_#{version}.dmg"
-  appcast 'http://update.coppertino.com/wpw/appcast.xml',
-          :sha256 => '7a10ac07828ce38b72b86bb6003de0430f5a545cdc61e25d865f7ef0db05d6c4'
-  homepage 'http://wallwiz.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # dl.devmate.com/com.macpaw.WallWiz-site/ was verified as official when first introduced to the cask
+  url "https://dl.devmate.com/com.macpaw.WallWiz-site/WallpaperWizard-#{version.major}.dmg"
+  appcast "https://updates.devmate.com/com.macpaw.WallWiz-site.xml"
+  name "Wallpaper Wizard"
+  homepage "https://wallwiz.com/"
 
-  app 'Wallpaper Wizard.app'
+  app "Wallpaper Wizard.app"
+
+  uninstall quit: "com.macpaw.WallWiz-site"
+
+  zap trash: [
+    "~/Library/Preferences/com.macpaw.WallWiz-site.plist",
+    "~/Library/Application Support/Wallpaper Wizard",
+    "~/Library/Application Support/com.macpaw.WallWiz-site",
+    "~/Library/Caches/com.macpaw.WallWiz-site",
+    "~/Library/Cookies/com.macpaw.WallWiz-site.binarycookies",
+    "~/Library/Logs/com.macpaw.WallWiz-site",
+  ]
 end

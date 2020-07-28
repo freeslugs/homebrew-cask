@@ -1,11 +1,18 @@
-cask :v1 => 'dogecoin' do
-  version '1.8.1'
-  sha256 '03c10d6523689d8597933d3b3751830d9cd518f1477cd6da40804b22da0b234b'
+cask "dogecoin" do
+  version "1.14.2"
+  sha256 "d8cbb26ceeb5e395417ed5e8984fc3b1d8990f8d5866deb837a4d82a17dba62e"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/dogecoin/dogecoin/releases/download/v#{version}/dogecoin-#{version}-mac.zip"
-  homepage 'http://dogecoin.com/'
-  license :mit
+  # github.com/dogecoin/dogecoin/ was verified as official when first introduced to the cask
+  url "https://github.com/dogecoin/dogecoin/releases/download/v#{version}/dogecoin-#{version}-osx.dmg"
+  appcast "https://github.com/dogecoin/dogecoin/releases.atom"
+  name "Dogecoin"
+  homepage "https://dogecoin.com/"
 
-  app 'Dogecoin-Qt.app'
+  app "Dogecoin-Qt.app"
+
+  preflight do
+    set_permissions "#{staged_path}/Dogecoin-Qt.app", "0755"
+  end
+
+  zap trash: "~/Library/com.dogecoin.Dogecoin-Qt.plist"
 end

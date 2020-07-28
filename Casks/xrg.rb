@@ -1,10 +1,18 @@
-cask :v1 => 'xrg' do
-  version '1.7.3'
-  sha256 '972ee45e202dee87aa5a696d2393f5eece21c8e6a54368ab6fefb6a371187063'
+cask "xrg" do
+  version "2.8.2"
+  sha256 "b55ce935ed9843cd318fab490ca24249fb1d593aa3ced2484ab333e3560cedb8"
 
-  url "http://download.gauchosoft.com/xrg/XRG-release-#{version}.zip"
-  homepage 'http://www.gauchosoft.com/Products/XRG/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.gauchosoft.com/xrg/XRG-release-#{version}.zip"
+  appcast "https://gauchosoft.com/Products/XRG/"
+  name "XRG"
+  homepage "https://gauchosoft.com/Products/XRG/"
 
-  app 'XRG.app'
+  app "XRG.app"
+
+  zap trash: [
+    "~/Library/Caches/com.apple.helpd/Generated/XRG Help*",
+    "~/Library/Caches/com.piatekjimenez.XRG",
+    "~/Library/Cookies/com.piatekjimenez.XRG.binarycookies",
+    "~/Library/Preferences/com.piatekjimenez.XRG.plist",
+  ]
 end

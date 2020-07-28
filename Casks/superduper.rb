@@ -1,12 +1,15 @@
-cask :v1 => 'superduper' do
-  version :latest
-  sha256 :no_check
+cask "superduper" do
+  version "3.3.1,121"
+  sha256 "589d2ae96d8d130e7a7de2124f6f8c12ab49a21b96e6260df734d39ebb896433"
 
-  url 'http://www.shirt-pocket.com/downloads/SuperDuper!.dmg'
-  homepage 'http://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # shirtpocket.s3.amazonaws.com/SuperDuper/ was verified as official when first introduced to the cask
+  url "https://shirtpocket.s3.amazonaws.com/SuperDuper/SuperDuper!.dmg"
+  appcast "https://versioncheck.blacey.com/superduper/version.xml?VSN=100",
+          must_contain: version.after_comma
+  name "SuperDuper!"
+  homepage "https://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html"
 
-  app 'SuperDuper!.app'
+  app "SuperDuper!.app"
 
-  zap :delete => '~/Library/Application Support/SuperDuper!'
+  zap trash: "~/Library/Application Support/SuperDuper!"
 end

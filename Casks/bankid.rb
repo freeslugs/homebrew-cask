@@ -1,18 +1,14 @@
-cask :v1 => 'bankid' do
-  version :latest
-  sha256 :no_check
+cask "bankid" do
+  version "7.9.1"
+  sha256 "4dfc203b3c88625f9f294dcaf1bd935dc9862842a884639d6658bd8f01951ab3"
 
-  url 'https://install.bankid.com/FileDownloader?fileId=Mac'
-  name 'BankID'
-  homepage 'http://www.bankid.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://install.bankid.com/Repository/BankID_installation_#{version.dots_to_underscores}.pkg"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://install.bankid.com/FileDownloader?fileId=Mac",
+          must_contain: version.dots_to_underscores
+  name "BankID"
+  homepage "https://install.bankid.com/"
 
-  container :type => :naked
-  preflight do
-    system '/bin/mv', '--', staged_path.join('FileDownloader'), staged_path.join('bankid-latest.pkg')
-  end
+  pkg "BankID_installation_#{version.dots_to_underscores}.pkg"
 
-  pkg 'bankid-latest.pkg'
-
-  uninstall :pkgutil => 'com.bankid.bankid.BankID.pkg'
+  uninstall pkgutil: "com.bankid.BankID"
 end

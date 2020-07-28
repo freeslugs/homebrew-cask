@@ -1,12 +1,14 @@
-cask :v1 => 'rapidweaver' do
-  version '6.0.3'
-  sha256 'e30a85f337d846a44feb902f0214b6cd49c2ff375db81a7197704fd57aae0442'
+cask "rapidweaver" do
+  version "8.6.2,20836"
+  sha256 "fb138240beaa0f0f27f4ba2314db8eadc36d168585b8ec366928fb9ed2cdad0b"
 
-  url "http://realmacsoftware.com/redirects/rapidweaver#{version.to_i}/direct"
-  appcast "http://www.realmacsoftware.com/stats/rapidweaver#{version.to_i}.php"
-  name 'RapidWeaver'
-  homepage 'http://realmacsoftware.com/rapidweaver'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/realmacsoftware/ was verified as official when first introduced to the cask
+  url "https://github.com/realmacsoftware/RapidWeaver#{version.major}-releases/releases/download/#{version.before_comma}-%28#{version.after_comma}%29/RapidWeaver#{version.major}.zip"
+  appcast "https://github.com/realmacsoftware/RapidWeaver#{version.major}-releases/releases.atom"
+  name "RapidWeaver"
+  homepage "https://www.realmacsoftware.com/rapidweaver/"
 
-  app 'RapidWeaver.app'
+  depends_on macos: ">= :sierra"
+
+  app "RapidWeaver #{version.major}.app"
 end

@@ -1,15 +1,15 @@
-cask :v1 => 'timer' do
+cask "timer" do
   version :latest
   sha256 :no_check
 
-  url 'http://www.apimac.com/download/Timer.zip'
-  homepage 'http://www.apimac.com/mac/timer/'
-  license :commercial
+  url "https://www.apimac.com/download/Timer.zip"
+  name "Timer"
+  homepage "https://www.apimac.com/mac/timer/"
 
-  app 'Timer.app'
+  app "Timer.app"
 
-  zap :delete => [
-                  '~/Library/Preferences/Apimac',
-                  '~/Library/Application Support/Apimac',
-                 ]
+  zap trash: [
+    "~/Library/Preferences/Apimac",
+    "~/Library/Application Support/Apimac",
+  ]
 end

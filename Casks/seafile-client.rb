@@ -1,11 +1,12 @@
-cask :v1 => 'seafile-client' do
-  version '4.0.6.1'
-  sha256 'ec1ed542d3640a702774abb3afb47a49abb146bab506d410299abd92e725c1a9'
+cask "seafile-client" do
+  version "7.0.8"
+  sha256 "dd0fe6b956719eb473b6fa4ac6fcf1474d5c78d4f2080eecd4060ca1af7ea0af"
 
-  # bitbucket.org is the official download host per the vendor homepage
-  url "https://bitbucket.org/haiwen/seafile/downloads/seafile-client-#{version}.dmg"
-  homepage 'http://seafile.com/'
-  license :gpl
+  # seadrive.org/ was verified as official when first introduced to the cask
+  url "https://download.seadrive.org/seafile-client-#{version}.dmg"
+  appcast "https://www.seafile.com/en/download/"
+  name "Seafile Client"
+  homepage "https://www.seafile.com/"
 
-  app 'Seafile Client.app'
+  app "Seafile Client.app"
 end

@@ -1,10 +1,16 @@
-cask :v1 => 'licecap' do
-  version '1.25'
-  sha256 '0ed33667b3e19ee47fc09b3619499816e229bc678884fd5c27e24e785472f6ba'
+cask "licecap" do
+  version "1.30"
+  sha256 "de2af536ced4a81ef6c89c237741037bd12a4532a231d1fc2f3bc456d175c382"
 
-  url "http://www.cockos.com/licecap/licecap#{version.gsub('.','')}.dmg"
-  homepage 'http://www.cockos.com/licecap/'
-  license :gpl
+  url "https://www.cockos.com/licecap/licecap#{version.no_dots}.dmg"
+  appcast "https://www.cockos.com/licecap/"
+  name "LICEcap"
+  homepage "https://www.cockos.com/licecap/"
 
-  app 'LICEcap.app'
+  app "LICEcap.app"
+
+  zap trash: [
+    "~/Library/Application Support/LICEcap",
+    "~/Library/Preferences/com.cockos.LICEcap.plist",
+  ]
 end

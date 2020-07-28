@@ -1,19 +1,17 @@
-cask :v1 => 'obs' do
-  version '0.8.3'
-  sha256 '5113ce6ed97a424b7d351012dc3a429483a09f070838cd5064426dcdb44e35ef'
+cask "obs" do
+  version "25.0.8"
+  sha256 "5674f446c22e34ea2696386a4d04aa201ac692c8217f610ee3c1d002e371d11f"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/jp9000/obs-studio/releases/download/#{version}/obs-#{version}-installer.dmg"
-  homepage 'http://obsproject.com/'
-  license :gpl
+  url "https://cdn-fastly.obsproject.com/downloads/obs-mac-#{version}.dmg"
+  appcast "https://github.com/obsproject/obs-studio/releases.atom"
+  name "OBS"
+  homepage "https://obsproject.com/"
 
-  pkg 'OBS.mpkg'
+  app "OBS.app"
 
-  uninstall :pkgutil => 'org.obsproject.pkg.obs-studio',
-            :delete => '/Applications/SyphonInject.app'
-
-  zap :delete => [
-                  '/private/var/db/receipts/zakk.lol.SyphonInject.bom',
-                  '/private/var/db/receipts/zakk.lol.SyphonInject.plist'
-                 ]
+  zap trash: [
+    "~/Library/Application Support/obs-studio",
+    "~/Library/Preferences/com.obsproject.obs-studio.plist",
+    "~/Library/Saved Application State/com.obsproject.obs-studio.savedState",
+  ]
 end

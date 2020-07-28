@@ -1,16 +1,12 @@
-cask :v1 => 'inky' do
-  version :latest
-  sha256 :no_check
+cask "inky" do
+  version "0.11.0"
+  sha256 "eb6c25173b19e0550f48791a498ab1ce77cb0f49a6462cc357fee0c1d924ff2b"
 
-  url 'https://inky.com/mail/InkyInstall.dmg'
-  name 'Inky'
-  homepage 'http://inky.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/inkle/inky/ was verified as official when first introduced to the cask
+  url "https://github.com/inkle/inky/releases/download/#{version}/Inky_mac.dmg"
+  appcast "https://github.com/inkle/inky/releases.atom"
+  name "Inky"
+  homepage "https://www.inklestudios.com/ink/"
 
-  app 'Inky.app'
-
-  zap :delete => [
-                  '~/Library/Application Support/Arcode',
-                  '~/Library/Caches/com.arcode.inky',
-                 ]
+  app "Inky.app"
 end

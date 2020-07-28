@@ -1,22 +1,24 @@
-cask :v1 => 'kaleidoscope' do
-  version '2.1.0-134'
-  sha256 'e16360273fb6d37560c7974b95728d82a0482268641753c49f903bf36445d35b'
+cask "kaleidoscope" do
+  version "2.3.1,1441-apr-7-2020"
+  sha256 "720abc4bc1a5cdb0d58fb1794d16c9d4e00d82a570d428ff7b44e36fa45212bd"
 
-  url "http://cdn.kaleidoscopeapp.com/releases/Kaleidoscope-#{version}.zip"
-  appcast 'https://updates.blackpixel.com/updates?app=ks',
-          :sha256 => '80eafc0b115e6f9ad4ec0cdec87809f21a3fc7ff1c540722f74d86dad64da158'
-  name 'Kaleidoscope'
-  homepage 'http://www.kaleidoscopeapp.com/'
-  license :commercial
+  # appcasts.hypergiant.com/ks/prod/ was verified as official when first introduced to the cask
+  url "https://appcasts.hypergiant.com/ks/prod/Kaleidoscope-#{version.before_comma}-build-#{version.after_comma}.zip"
+  appcast "https://appcasts.hypergiant.com/ks/prod/updates"
+  name "Kaleidoscope"
+  homepage "https://www.kaleidoscopeapp.com/"
 
-  app 'Kaleidoscope.app'
-  binary 'Kaleidoscope.app/Contents/Resources/bin/ksdiff'
+  auto_updates true
+  depends_on macos: ">= :sierra"
 
-  postflight do
-    suppress_move_to_applications
-  end
+  app "Kaleidoscope.app"
+  binary "#{appdir}/Kaleidoscope.app/Contents/Resources/bin/ksdiff"
 
-  caveats do
-    files_in_usr_local
-  end
+  zap trash: [
+    "~/Library/Application Support/com.blackpixel.kaleidoscope",
+    "~/Library/Caches/com.blackpixel.kaleidoscope",
+    "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.blackpixel.kaleidoscope",
+    "~/Library/Preferences/com.blackpixel.kaleidoscope.plist",
+    "~/Library/Saved Application State/com.blackpixel.kaleidoscope.savedState",
+  ]
 end

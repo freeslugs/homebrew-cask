@@ -1,13 +1,20 @@
-cask :v1 => 'hermes' do
-  version '1.2.5'
-  sha256 '786e20040bdd6e943b646f74d7cc9a460b37444272c4a7af8d1f5ef77a7d2f2f'
+cask "hermes" do
+  version "1.3.1"
+  sha256 "f7c2949e4a44a9183eb6c937b250052867a0373f9de7a8ecbd63853d7df88dbd"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/hermesmacapp/Hermes-#{version}.zip"
-  appcast 'http://hermesapp.org/versions.xml',
-          :sha256 => 'cc89f8c651e0335c91d52bb120f769ca4c418c13144155476c572ca5da21fb0e'
-  homepage 'http://hermesapp.org/'
-  license :mit
+  # github.com/HermesApp/Hermes/ was verified as official when first introduced to the cask
+  url "https://github.com/HermesApp/Hermes/releases/download/v#{version}/Hermes-#{version}.zip"
+  appcast "https://raw.githubusercontent.com/HermesApp/HermesApp.github.io/master/versions.xml"
+  name "Hermes"
+  homepage "https://hermesapp.org/"
 
-  app 'Hermes.app'
+  auto_updates true
+
+  app "Hermes.app"
+
+  zap trash: [
+    "~/Library/Application Support/Hermes",
+    "~/Library/Caches/com.alexcrichton.Hermes",
+    "~/Library/Preferences/com.alexcrichton.Hermes.plist",
+  ]
 end

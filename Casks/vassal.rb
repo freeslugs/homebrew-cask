@@ -1,12 +1,12 @@
-cask :v1 => 'vassal' do
-  version '3.2.15'
-  sha256 '936f7eeda9ee19c78708102e647aa43b91bfd70690da2552c72a28d5fbd10541'
+cask "vassal" do
+  version "3.3.2"
+  sha256 "669bc1bfb3da870a13b0fbe0e9438d9b4b0c5ac660588d10d88ac62db2357391"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/vassalengine/VASSAL-current/VASSAL-#{version}/VASSAL-#{version}-macosx.dmg"
-  name 'VASSAL'
-  homepage 'http://www.vassalengine.org'
-  license :gpl
+  # github.com/vassalengine/vassal was verified as official when first introduced to the cask
+  url "https://github.com/vassalengine/vassal/releases/download/#{version}/VASSAL-#{version}-macosx.dmg"
+  appcast "https://github.com/vassalengine/vassal/releases.atom"
+  name "VASSAL"
+  homepage "http://www.vassalengine.org/"
 
-  app 'VASSAL.app'
+  app "VASSAL.app"
 end

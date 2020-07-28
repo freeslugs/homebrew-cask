@@ -1,16 +1,11 @@
-cask :v1 => 'time-out' do
+cask "time-out" do
+  version "2.6.1"
+  sha256 "c8eca829aa6f7120c742180bbd6e96b4d3e8c98a9cbc7274c83aa86ce56a0375"
 
-  if MacOS.release <= :snow_leopard
-    version '1.6.5'
-    sha256 '2ceec8d8938af0acf32af601337c129087bb3b8c132c1f18e6eb3581788b8a49'
-  else
-    version '1.7.1'
-    sha256 '3c9892344c8313b8ccf0a76cceb00834ddbe26e5114bcd674c4fd53aeb44e310'
-  end
+  url "https://www.dejal.com/download/timeout-#{version}.zip"
+  appcast "https://dejal.net/appcast/?prod=timeout&aed=direct&from=2037&rel=gen"
+  name "Time Out"
+  homepage "https://www.dejal.com/timeout/"
 
-  url "http://www.dejal.com/download/timeout-#{version}.zip"
-  homepage 'http://www.dejal.com/timeout/'
-  license :gratis
-
-  app 'Time Out.app'
+  app "Time Out.app"
 end

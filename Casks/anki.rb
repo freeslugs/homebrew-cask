@@ -1,17 +1,19 @@
-cask :v1 => 'anki' do
+cask "anki" do
+  version "2.1.29"
+  sha256 "b3fc61553b62c014d979ad738c8eca1713a9fc9dcc8108203063b181ace4ba31"
 
-  if MacOS.release <= :snow_leopard
-    version '2.0.31.qt47'
-    sha256 '43f3bd526b45ab2af2b0017dd33ba7725b3116ef4c6b3abc964eb974109d0c02'
-  else
-    version '2.0.31'
-    sha256 '7afccba7d7998c187156702afb943e0be2b9d14729c8147b9a6fd20e40530fe2'
-  end
+  # github.com/ankitects/anki/ was verified as official when first introduced to the cask
+  url "https://github.com/ankitects/anki/releases/download/#{version}/anki-#{version}-mac.dmg"
+  appcast "https://changes.ankiweb.net/README.md"
+  name "Anki"
+  homepage "https://apps.ankiweb.net/"
 
-  url "http://ankisrs.net/download/mirror/anki-#{version}.dmg"
-  name 'Anki'
-  homepage 'http://ankisrs.net/'
-  license :affero
+  depends_on macos: ">= :sierra"
 
-  app 'Anki.app'
+  app "Anki.app"
+
+  zap trash: [
+    "~/Library/Application Support/Anki",
+    "~/Library/Application Support/Anki2",
+  ]
 end

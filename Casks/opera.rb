@@ -1,10 +1,18 @@
-cask :v1 => 'opera' do
-  version '27.0.1689.76'
-  sha256 'eb6f107865eb195c989a560e3d35fe44f50ae531376fc9f53e65d4a655e78195'
+cask "opera" do
+  version "70.0.3728.71"
+  sha256 "d45077d83846860596202d96e21aa05d1b7ef86e3803258eab0b98b92ae58f00"
 
-  url "http://get.geo.opera.com/pub/opera/desktop/#{version}/mac/Opera_#{version}_Setup.dmg"
-  homepage 'http://www.opera.com/'
-  license :gratis
+  url "https://get.geo.opera.com/pub/opera/desktop/#{version}/mac/Opera_#{version}_Setup.dmg"
+  appcast "https://ftp.opera.com/pub/opera/desktop/"
+  name "Opera"
+  homepage "https://www.opera.com/"
 
-  app 'Opera.app'
+  auto_updates true
+
+  app "Opera.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.operasoftware.Opera.plist",
+    "~/Library/Application Support/com.operasoftware.Opera/",
+  ]
 end

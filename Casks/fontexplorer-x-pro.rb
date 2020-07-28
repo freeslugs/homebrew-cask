@@ -1,16 +1,31 @@
-cask :v1 => 'fontexplorer-x-pro' do
-  version '4.2.1'
-  sha256 '9fd225ff73804231d094f16bdb435355a3b7557d74ec1aeb9d89e925f0673350'
+cask "fontexplorer-x-pro" do
+  version "7.1.1"
+  sha256 "c8da5488810b2b6f0d7a03b968d3a367b506bd5d3af2e66719cdba4c06cd8afc"
 
-  url "http://fast.fontexplorerx.com/FontExplorerXPro#{version.gsub('.','')}.dmg"
-  homepage 'http://www.fontexplorerx.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://fast.fontexplorerx.com/FontExplorerXPro#{version.no_dots}.dmg"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect_curl.cgi?url=https://fex.linotype.com/download/mac/FontExplorerXPro.dmg",
+          must_contain: version.no_dots
+  name "FontExplorer X Pro"
+  homepage "https://www.fontexplorerx.com/"
 
-  app 'FontExplorer X Pro.app'
+  app "FontExplorer X Pro.app"
 
-  zap :delete => [
-                  # todo: is this user-created content?
-                  # '~/FontExplorer X',
-                  '~/Library/Application Support/Linotype/FontExplorer X',
-                 ]
+  uninstall delete:    "/Library/PrivilegedHelperTools/com.linotype.FontExplorerX.securityhelper",
+            launchctl: [
+              "com.linotype.FontExplorerX.securityhelper",
+              "com.linotype.FontFolderProtector",
+            ],
+            quit:      "com.linotype.FontExplorerX"
+
+  zap trash: [
+    "~/Library/Application Support/Linotype/FontExplorer X",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.linotype.fontexplorerx.sfl*",
+    "~/Library/Caches/com.linotype.FontExplorerX",
+    "~/Library/Caches/Metadata/FontExplorer X",
+    "~/Library/Cookies/com.linotype.FontExplorerX.binarycookies",
+    "~/Library/Preferences/com.linotype.FontExplorerX.plist",
+    "~/Library/Saved Application State/com.linotype.FontExplorerX.savedState",
+    "/Users/Shared/.FontExplorer X Server",
+    "/Users/Shared/FontExplorer X Server",
+  ]
 end

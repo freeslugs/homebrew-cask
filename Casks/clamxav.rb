@@ -1,25 +1,18 @@
-cask :v1 => 'clamxav' do
-  version '2.7.5'
-  sha256 '33c6c76cb3e6f8ec9c23b521135b320ea5300910d9e929eaa0556e2bed15cbfe'
+cask "clamxav" do
+  version "3.0.15_8328"
+  sha256 "6e2a6e1a061a28b953737fea590d3c94a6689255fd00b0f44e07c6f8c32dfdb7"
 
-  url "http://www.clamxav.com/downloads/ClamXav_#{version}.dmg"
-  appcast 'http://www.clamxav.com/sparkle/profileInfo.php',
-          :sha256 => '02c70a63eb2b650523d6fdbba82ffb102b19676d576c4a2baa8332194828feb3'
-  homepage 'http://www.clamxav.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://cdn.clamxav.com/ClamXAVdownloads/ClamXAV_#{version}.zip"
+  appcast "https://www.clamxav.com/sparkle/appcast#{version.major}.xml"
+  name "ClamXAV"
+  homepage "https://www.clamxav.com/"
 
-  app 'ClamXav.app'
+  app "ClamXAV.app"
 
-  postflight do
-    suppress_move_to_applications
-  end
-
-  zap :delete => [
-                  '~/Library/Caches/uk.co.markallan.clamxav',
-                  '~/Library/Logs/clamXav-scan.log',
-                  # todo glob/expand needed here
-                  '~/Library/Logs/clamXav-scan.log.0.bz2',
-                 ]
+  zap trash: [
+    "~/Library/Caches/uk.co.markallan.clamxav",
+    "~/Library/Logs/clamXav-scan.*",
+  ]
 
   caveats do
     # this happens sometime after installation, but still worth warning about

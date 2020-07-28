@@ -1,10 +1,11 @@
-cask :v1 => 'mp3gain-express' do
-  version '1.2'
-  sha256 '4bf1f7f900e11830ccb0acf248d1873d14db8b6b0e87386770adf85b6b6eda35'
+cask "mp3gain-express" do
+  version "2.4.0"
+  sha256 "43725242307dc7bee59c133f0fcef1acf64cfeb7d209b833d72cbe930697d32e"
 
-  url "http://projects.sappharad.com/mp3gain/mp3gain_mac#{version.sub('.','')}.zip"
-  homepage 'http://projects.sappharad.com/mp3gain/'
-  license :oss
+  url "https://projects.sappharad.com/mp3gain/mp3gain_mac#{version.chomp(".0").no_dots}.zip"
+  appcast "https://projects.sappharad.com/mp3gain/updates.xml"
+  name "MP3Gain Express"
+  homepage "https://projects.sappharad.com/mp3gain/"
 
-  app 'MP3Gain Express.app'
+  app "MP3Gain Express.app"
 end

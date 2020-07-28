@@ -1,11 +1,18 @@
-cask :v1 => 'vimediamanager' do
-  version '0.7a11c'
-  sha256 '3642a38fdc4d995943e42bad538eb117ab225fb564c05701850fe01d9c99a035'
+cask "vimediamanager" do
+  version "0.7a22"
+  sha256 "dbb251822ba45a7a81847e863b092fcd06a811b184b39f17ad0754662d327b4b"
 
-  url "http://mariusth.channelwood.org/vimediamanager/files/vimediamanager_v#{version}.dmg"
-  name 'ViMediaManager'
-  homepage 'http://mariusth.heliohost.org/vimediamanager/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://github.com/vidalvanbergen/ViMediaManager/releases/download/v#{version}/ViMediaManager.dmg"
+  appcast "https://github.com/vidalvanbergen/ViMediaManager/releases.atom"
+  name "ViMediaManager"
+  homepage "https://github.com/vidalvanbergen/ViMediaManager"
 
-  app 'ViMediaManager.app'
+  app "ViMediaManager.app"
+
+  zap trash: [
+    "~/Library/Application Support/ViMediaManager",
+    "~/Library/Caches/com.vidalvanbergen.vimediamanager-alpha",
+    "~/Library/Preferences/com.vidalvanbergen.vimediamanager-alpha.plist",
+    "~/Library/Saved Application State/com.vidalvanbergen.vimediamanager-alpha.savedState",
+  ]
 end

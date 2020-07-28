@@ -1,22 +1,31 @@
-cask :v1 => 'webstorm' do
-  version '9.0.3'
-  sha256 'adc04ee25e7d3821659d2c4dbe1cdd8d0c15622ebcdaa3db2b6e02f79abb34b8'
+cask "webstorm" do
+  version "2020.2,202.6397.88"
+  sha256 "fd90e34497fa2ae8af3414a51435c5983a81f64b6432b9a61517b22a684f52ef"
 
-  url "http://download-cf.jetbrains.com/webstorm/WebStorm-#{version}.dmg"
-  name 'WebStorm'
-  homepage 'http://www.jetbrains.com/webstorm/'
-  license :commercial
+  url "https://download.jetbrains.com/webstorm/WebStorm-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=WS&latest=true&type=release"
+  name "WebStorm"
+  homepage "https://www.jetbrains.com/webstorm/"
 
-  app 'WebStorm.app'
+  auto_updates true
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  app "WebStorm.app"
 
-      brew cask install caskroom/homebrew-versions/java6
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "wstorm") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap trash: [
+    "~/Library/Application Support/WebStorm#{version.major_minor}",
+    "~/Library/Caches/WebStorm#{version.major_minor}",
+    "~/Library/Logs/WebStorm#{version.major_minor}",
+    "~/Library/Preferences/WebStorm#{version.major_minor}",
+    "~/Library/Preferences/jetbrains.webstorm.aaac0500.plist",
+    "~/Library/Saved Application State/com.jetbrains.WebStorm.savedState",
+  ]
 end

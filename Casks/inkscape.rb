@@ -1,17 +1,30 @@
-cask :v1 => 'inkscape' do
-  version '0.91-1'
-  sha256 '66c9af880f87d5b64006391fc8dd2d3f546d93d6d91235eba7856deacba29862'
+cask "inkscape" do
+  version "1.0.0"
+  sha256 "9b42468815b4bcbc8ccb76a239aea48a2965dbd2f3ae7c3b560c7f2a7e48a955"
 
-  # fastly.net is the official download host per the vendor homepage
-  url "https://inkscape.global.ssl.fastly.net/media/resources/file/Inkscape-#{version}-x11-10.7-x86_64.dmg"
-  homepage 'http://inkscape.org'
-  license :gpl
+  url "https://media.inkscape.org/dl/resources/file/Inkscape-#{version}.dmg"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://inkscape.org/release",
+          must_contain: version.major_minor
+  name "Inkscape"
+  homepage "https://inkscape.org/"
 
-  app 'Inkscape.app'
-  # NOTE: running inkscape on the command line requires absolute paths to files
-  binary 'Inkscape.app/Contents/Resources/bin/inkscape'
+  app "Inkscape.app"
+  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
+  shimscript = "#{staged_path}/inkscape.wrapper.sh"
+  binary shimscript, target: "inkscape"
 
-  zap :delete => '~/.inkscape-etc'
+  preflight do
+    IO.write shimscript, <<~EOS
+      #!/bin/sh
+      exec '#{staged_path}/Inkscape.app/Contents/MacOS/inkscape' "$@"
+    EOS
+  end
 
-  depends_on :x11 => true
+  zap trash: [
+    "~/.config/inkscape",
+    "~/Library/Application Support/Inkscape",
+    "~/Library/Application Support/org.inkscape.Inkscape",
+    "~/Library/Preferences/org.inkscape.Inkscape.plist",
+    "~/Library/Saved Application State/org.inkscape.Inkscape.savedState",
+  ]
 end

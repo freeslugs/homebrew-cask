@@ -1,12 +1,13 @@
-cask :v1 => 'texmacs' do
-  version '1.99.1'
-  sha256 'b6aab5bcb263e847c97062824b8852380cab4159306b035fcca199f92d243d51'
+cask "texmacs" do
+  version "1.99.13"
+  sha256 "4d9e3df9fb5713ddca84dd07e6bda606a7ac4576f7120ea80f6c89a7b8dc4545"
 
-  url "http://www.texmacs.org/Download/ftp/tmftp/macos/TeXmacs-#{version}.dmg"
-  homepage 'http://www.texmacs.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.texmacs.org/Download/ftp/tmftp/macos/TeXmacs-#{version}.dmg"
+  appcast "https://www.texmacs.org/tmweb/download/macosx.en.html"
+  name "GNU TeXmacs"
+  homepage "https://www.texmacs.org/"
 
-  app "TeXmacs-#{version}.app"
+  app "TeXmacs.app"
 
-  zap :delete => '~/.TeXmacs'
+  zap trash: "~/.TeXmacs"
 end

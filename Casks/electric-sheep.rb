@@ -1,14 +1,14 @@
-cask :v1 => 'electric-sheep' do
-  version '2.7b35b'
-  sha256 '767062403cc93aa75192def84b509b4530caca3e271ba23267ffe79cb50da44f'
+cask "electric-sheep" do
+  version "3.0.2"
+  sha256 "db689d0aeac776a3f189205efa32331c0c00b0bea608408b2e855557c56f5937"
 
-  # googlecode.com is the official download host per the vendor homepage
-  url "https://electricsheep.googlecode.com/files/electricsheep-#{version}.dmg"
-  name 'Electric Sheep'
-  homepage 'http://www.electricsheep.org'
-  license :oss
+  # d100rc88eim93q.cloudfront.net/ was verified as official when first introduced to the cask
+  url "https://d100rc88eim93q.cloudfront.net/electricsheep-#{version}.dmg"
+  appcast "https://electricsheep.org/#/download"
+  name "Electric Sheep"
+  homepage "https://gold.electricsheep.org/"
 
-  pkg 'Electric Sheep.mpkg'
+  pkg "Electric Sheep.pkg"
 
-  uninstall :pkgutil => 'org.electricsheep.electricSheep.*'
+  uninstall pkgutil: "org.electricsheep.electricSheep.*"
 end

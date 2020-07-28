@@ -1,21 +1,27 @@
-cask :v1 => 'wkhtmltopdf' do
-  version '0.12.2.1'
+cask "wkhtmltopdf" do
+  version "0.12.6-2"
+  sha256 "81a66b77b508fede8dbcaa67127203748376568b3673a17f6611b6d51e9894f8"
 
-  if Hardware::CPU.is_32_bit?
-    sha256 '582d7da3226809a5ca8bfc6c60903a368fe4c7c54fc31df13bbd0bd2ed093968f1'
-    # sourceforge.net is the official download host per the vendor homepage
-    url "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_osx-carbon-i386.pkg"
-    pkg "wkhtmltox-#{version}_osx-carbon-i386.pkg"
-  else
-    sha256 'c2fd9b39182453ba9672f528e7a503928e51bc6a45c3117da06a5193af338d35'
-    # sourceforge.net is the official download host per the vendor homepage
-    url "http://downloads.sourceforge.net/project/wkhtmltopdf/#{version}/wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
-    pkg "wkhtmltox-#{version}_osx-cocoa-x86-64.pkg"
+  # github.com/wkhtmltopdf/packaging/ was verified as official when first introduced to the cask
+  url "https://github.com/wkhtmltopdf/packaging/releases/download/#{version}/wkhtmltox-#{version}.macos-cocoa.pkg"
+  appcast "https://github.com/wkhtmltopdf/packaging/releases.atom"
+  name "wkhtmltopdf"
+  homepage "https://wkhtmltopdf.org/"
+
+  pkg "wkhtmltox-#{version}.macos-cocoa.pkg"
+
+  uninstall pkgutil: "org.wkhtmltopdf.wkhtmltox",
+            delete:  [
+              "/usr/local/include/wkhtmltox",
+              "/usr/local/lib/libwkhtmltox.dylib",
+              "/usr/local/lib/libwkhtmltox.#{version.major}.dylib",
+              "/usr/local/lib/libwkhtmltox.#{version.major_minor}.dylib",
+              "/usr/local/lib/libwkhtmltox.#{version.sub(/-.*$/, "")}.dylib",
+              "/usr/local/bin/wkhtmltoimage",
+              "/usr/local/bin/wkhtmltopdf",
+            ]
+
+  caveats do
+    files_in_usr_local
   end
-
-  name 'wkhtmltopdf'
-  homepage 'http://wkhtmltopdf.org/'
-  license :gpl
-
-  uninstall :pkgutil => 'org.wkhtmltopdf.wkhtmltox'
 end

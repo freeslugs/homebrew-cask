@@ -1,12 +1,12 @@
-cask :v1 => 'foldingtext' do
-  version :latest
-  sha256 :no_check
+cask "foldingtext" do
+  version "2.2"
+  sha256 "59bd73b1c72c228c1c9e95c441b9e5422eb6f32481d609acb5716131ccab55ec"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url 'https://s3.amazonaws.com/foldingtext/FoldingText.dmg'
-  name 'FoldingText'
-  homepage 'http://www.foldingtext.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # foldingtext.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://foldingtext.s3.amazonaws.com/FoldingText.dmg"
+  appcast "https://foldingtext.s3.amazonaws.com/FoldingText.rss"
+  name "FoldingText"
+  homepage "https://www.foldingtext.com/"
 
-  app 'FoldingText.app'
+  app "FoldingText.app"
 end

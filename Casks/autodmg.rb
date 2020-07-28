@@ -1,11 +1,20 @@
-cask :v1 => 'autodmg' do
-  version '1.5.2'
-  sha256 'a18cc5a840e56faaba133ab0cb3ea24e50b71a81cc87cd436ef71e739e62fea0'
+cask "autodmg" do
+  version "1.9"
+  sha256 "92c10590ef5569797f1879f3b123e0a1f5a0434654a9cc6f6dbb517e779e6a79"
 
   url "https://github.com/MagerValp/AutoDMG/releases/download/v#{version}/AutoDMG-#{version}.dmg"
-  name 'AutoDMG'
-  homepage 'https://github.com/MagerValp/AutoDMG'
-  license :apache
+  appcast "https://github.com/MagerValp/AutoDMG/releases.atom"
+  name "AutoDMG"
+  homepage "https://github.com/MagerValp/AutoDMG"
 
-  app 'AutoDMG.app'
+  depends_on macos: ">= :sierra"
+
+  app "AutoDMG.app"
+
+  zap trash: [
+    "~/Library/Application Support/AutoDMG",
+    "~/Library/Caches/se.gu.it.AutoDMG",
+    "~/Library/Logs/AutoDMG",
+    "~/Library/Preferences/se.gu.it.AutoDMG.plist",
+  ]
 end

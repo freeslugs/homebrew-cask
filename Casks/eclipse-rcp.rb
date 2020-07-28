@@ -1,18 +1,11 @@
-cask :v1 => 'eclipse-rcp' do
-  version '4.4.1'
+cask "eclipse-rcp" do
+  version "4.16.0,2020-06:R"
+  sha256 "a2a0e8c2505e5ab75dd39d275dd16cc99c7e656ee22d6038e2efe54d5e46117e"
 
-  if Hardware::CPU.is_32_bit?
-    sha256 'd1801a1742ff9a96252f30a6234ee306023d228d0a22ab09a79f8ab6f0509132'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1a/eclipse-rcp-luna-SR1a-macosx-cocoa.tar.gz'
-  else
-    sha256 'a105f7457c2820c8852c6e066e500e916074ba2d71eb87c4f296b3e77c1de44a'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1a/eclipse-rcp-luna-SR1a-macosx-cocoa-x86_64.tar.gz'
-  end
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-rcp-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name "Eclipse for RCP and RAP Developers"
+  homepage "https://eclipse.org/"
 
-  name 'Eclipse'
-  name 'Eclipse for RCP and RAP Developers'
-  homepage 'http://eclipse.org/'
-  license :eclipse
-
-  app 'eclipse/Eclipse.app'
+  # Renamed to avoid conflict with other Eclipse.
+  app "Eclipse.app", target: "Eclipse RCP.app"
 end

@@ -1,11 +1,10 @@
-cask :v1 => 'bfxr' do
+cask "bfxr" do
   version :latest
   sha256 :no_check
 
-  url 'http://ded.bfxr.net/~locus/bfxr_update/Bfxr_MAC.zip'
-  name 'Bfxr'
-  homepage 'http://www.bfxr.net/'
-  license :apache
+  url "https://ded.bfxr.net/~locus/bfxr_update/Bfxr_MAC.zip"
+  name "Bfxr"
+  homepage "https://www.bfxr.net/"
 
-  app 'Bfxr.app'
+  app "Bfxr.app"
 end

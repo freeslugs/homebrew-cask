@@ -1,13 +1,19 @@
-cask :v1 => 'kodi' do
-  version '14.1'
-  sha256 'cf71db03a6878673df95c7983feac4a6d750c9b798553ea19e80d95ba2f5d6c8'
+cask "kodi" do
+  version "18.7-Leia"
+  sha256 "88822a1a4aa3dba8959cf84a49fb65ec2dd93ab08fc38467bd8af927707ba153"
 
-  # xbmc.org is the official download host per the vendor homepage
-  url "http://mirrors.xbmc.org/releases/osx/x86_64/kodi-#{version}-Helix-x86_64.dmg"
-  name 'Kodi'
-  name 'XBMC' # former
-  homepage 'http://kodi.tv/'
-  license :gpl
+  url "https://mirrors.kodi.tv/releases/osx/x86_64/kodi-#{version}-x86_64.dmg"
+  appcast "https://github.com/xbmc/xbmc/releases.atom"
+  name "Kodi"
+  homepage "https://kodi.tv/"
 
-  app 'Kodi.app'
+  app "Kodi.app"
+
+  zap trash: [
+    "~/.kodi",
+    "~/Library/Application Support/Kodi",
+    "~/Library/Logs/kodi.log",
+    "~/Library/Logs/kodi.old.log",
+    "~/Library/Saved Application State/org.xbmc.kodi.savedState",
+  ]
 end

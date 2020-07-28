@@ -1,11 +1,15 @@
-cask :v1 => 'ampps' do
-  version '3.0'
-  sha256 '290f2df59bf657d8a43d809bae55bb81cf392cdc3e58fe0f90cdff47f99ede51'
+cask "ampps" do
+  version "3.9"
+  sha256 "7395bdcb3958cef4c3274cc1c6c68444104e6e464f692a76b61ead878236ec7d"
 
-  url "http://files.ampps.com/AMPPS-#{version}.dmg"
-  name 'AMPPS'
-  homepage 'http://www.ampps.com'
-  license :gratis
+  url "https://files.ampps.com/AMPPS-#{version}.dmg"
+  appcast "https://www.ampps.com/downloads"
+  name "AMPPS"
+  homepage "https://www.ampps.com/"
 
-  suite 'AMPPS'
+  suite "AMPPS"
+
+  uninstall_preflight do
+    set_permissions "#{appdir}/AMPPS", "0777"
+  end
 end

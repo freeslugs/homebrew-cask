@@ -1,15 +1,30 @@
-cask :v1 => 'duet' do
-  version '1.2.5'
-  sha256 'd3c178b6b07347fcacc62396706f4f6b9efbbc8d8eb7b0b5f003df0406d59143'
+cask "duet" do
+  version "2.3.1.6"
+  sha256 "6585b0280d55cf75b31d98ff9071f9bff8ddb8a66deb867724ffe836dd007a12"
 
-  # devmate.com is the official download host per the vendor homepage
-  url "http://dl.devmate.com/com.kairos.duet/#{version}/1422514272/duet-#{version}.zip"
-  name 'Duet'
-  homepage 'http://www.duetdisplay.com/'
-  license :unknown
+  # duet.nyc3.cdn.digitaloceanspaces.com/Mac/ was verified as official when first introduced to the cask
+  url "https://duet.nyc3.cdn.digitaloceanspaces.com/Mac/#{version.major_minor.dots_to_underscores}/duet-#{version.dots_to_hyphens}.zip"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://updates.duetdisplay.com/latestMac",
+          must_contain: version.dots_to_hyphens
+  name "Duet"
+  homepage "https://www.duetdisplay.com/"
 
-  app 'duet.app'
+  auto_updates true
 
-  uninstall :kext => 'com.karios.driver.DuetDisplay',
-            :delete => '/usr/libexec/coreduetd'
+  app "duet.app"
+
+  uninstall quit: "com.kairos.duetMac",
+            kext: "com.karios.driver.DuetDisplay"
+
+  zap trash: [
+    "~/Library/Preferences/com.kairos.duet*.plist",
+    "~/Library/Application Support/com.kairos.duet*",
+    "~/Library/Caches/com.crashlytics.data/com.kairos.duet*",
+    "~/Library/Caches/io.fabric.sdk.mac.data/com.kairos.duet*",
+    "~/Library/Caches/com.kairos.duet*",
+  ],
+      rmdir: [
+        "~/Library/Caches/com.crashlytics.data",
+        "~/Library/Caches/io.fabric.sdk.mac.data",
+      ]
 end

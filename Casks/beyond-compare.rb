@@ -1,22 +1,22 @@
-cask :v1 => 'beyond-compare' do
-  version '4.0.7.19761'
-  sha256 'c778d8d70439cb161b49f0883f2824da1c7ecaff485bbfa0a09d82452fee3aef'
+cask "beyond-compare" do
+  version "4.3.5.24893"
+  sha256 "36251c332df4e916fba32d40dc72309d395e62f999dd0c41bfedb331fa2698c6"
 
-  url "http://www.scootersoftware.com/BCompareOSX-#{version}.zip"
-  name 'Beyond Compare'
-  homepage 'http://www.scootersoftware.com/'
-  license :commercial
+  url "https://www.scootersoftware.com/BCompareOSX-#{version}.zip"
+  appcast "https://www.scootersoftware.com/download.php"
+  name "Beyond Compare"
+  homepage "https://www.scootersoftware.com/"
 
-  app 'Beyond Compare.app'
+  auto_updates true
 
-  postflight do
-    suppress_move_to_applications
-  end
+  app "Beyond Compare.app"
+  binary "#{appdir}/Beyond Compare.app/Contents/MacOS/bcomp"
 
-  zap :delete => [
-                  '~/Library/Application Support/Beyond Compare',
-                  '~/Library/Caches/com.apple.helpd/Generated/com.ScooterSoftware.BeyondCompare.help',
-                  '~/Library/Caches/com.ScooterSoftware.BeyondCompare',
-                  '~/Library/Saved Application State/com.ScooterSoftware.BeyondCompare.savedState',
-                 ]
+  zap trash: [
+    "~/Library/Application Support/Beyond Compare",
+    "~/Library/Caches/com.apple.helpd/Generated/com.ScooterSoftware.BeyondCompare.help*",
+    "~/Library/Caches/com.apple.helpd/Generated/Beyond Compare Help*",
+    "~/Library/Caches/com.ScooterSoftware.BeyondCompare",
+    "~/Library/Saved Application State/com.ScooterSoftware.BeyondCompare.savedState",
+  ]
 end

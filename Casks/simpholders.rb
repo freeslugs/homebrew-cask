@@ -1,12 +1,13 @@
-cask :v1 => 'simpholders' do
-  version '1.5.0'
-  sha256 '2f4fb58a20d94a858c4d53648ee37fd082e23f50ef3f367fbaef4d6cea840cd6'
+cask "simpholders" do
+  version "3.0.10,2277"
+  sha256 "edcfb7b1c78873755487640615960980f2c13ae56a565f67c55d30ad1657f134"
 
-  url "http://simpholders.com/site/assets/files/1007/simpholders-#{version.gsub('.','_')}.dmg"
-  appcast 'http://kfi-apps.com/appcasts/simpholders/',
-          :sha256 => 'baa9148ebfb168d1c86480da0863b89a9eeb7b70e8d8e1e5806c7f7e1a0fdec2'
-  homepage 'http://simpholders.com/'
-  license :gratis
+  url "https://simpholders.com/site/assets/files/#{version.after_comma}/simpholders_#{version.before_comma.dots_to_underscores}.dmg"
+  appcast "https://simpholders.com/releases/"
+  name "SimPholders"
+  homepage "https://simpholders.com/"
 
-  app 'SimPholders.app'
+  depends_on macos: ">= :mojave"
+
+  app "SimPholders.app"
 end

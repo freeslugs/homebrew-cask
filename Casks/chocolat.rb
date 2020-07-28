@@ -1,12 +1,11 @@
-cask :v1 => 'chocolat' do
-  version :latest
-  sha256 :no_check
+cask "chocolat" do
+  version "3.4"
+  sha256 "43f1f96350c10aa2918719a2238c1e4ec20dd2cfa7a4930f6e7d74f92207c4fe"
 
-  url 'https://chocolatapp.com/download'
-  appcast 'http://chocolatapp.com/userspace/appcast/appcast_alpha.php'
-  name 'Chocolat'
-  homepage 'http://chocolatapp.com/'
-  license :commercial
+  url "https://chocolatapp.com/versions/Chocolat_#{version}.zip"
+  appcast "https://chocolatapp.com/userspace/appcast/appcast_alpha.php"
+  name "Chocolat"
+  homepage "https://chocolatapp.com/"
 
-  app 'Chocolat.app'
+  app "Chocolat.app"
 end

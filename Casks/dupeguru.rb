@@ -1,11 +1,12 @@
-cask :v1 => 'dupeguru' do
-  version '3.9.1'
-  sha256 '844a929ebb60f3a43a466d3ce3e5ac25b1a79c1a81ae63e19bd9356391589d56'
+cask "dupeguru" do
+  version "4.0.3"
+  sha256 "805fa0e2ddf57ac7d7e79cebe893a3a505f24c28500a204d22eb2b6d3d889454"
 
-  url "http://download.hardcoded.net/dupeguru_osx_#{version.gsub('.', '_')}.dmg"
-  name 'dupeGuru'
-  homepage 'http://www.hardcoded.net/dupeguru/'
-  license :bsd
+  # github.com/arsenetar/dupeguru/ was verified as official when first introduced to the cask
+  url "https://github.com/arsenetar/dupeguru/releases/download/#{version}/dupeguru_osx_#{version.dots_to_underscores}.dmg"
+  appcast "https://github.com/arsenetar/dupeguru/releases.atom"
+  name "dupeGuru"
+  homepage "https://dupeguru.voltaicideas.net/"
 
-  app 'dupeGuru.app'
+  app "dupeGuru.app"
 end

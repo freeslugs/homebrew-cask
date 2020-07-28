@@ -1,12 +1,15 @@
-cask :v1 => 'shimo' do
-  version :latest
-  sha256 :no_check
+cask "shimo" do
+  version "5.0.2_8880"
+  sha256 "09364783b6dcc13b1ef54feaf4c57d1518f25a6c6e3884c9ab6c2a6077942b2a"
 
-  url 'http://www.chungwasoft.com/files/Shimo_latest.zip'
-  appcast 'http://www.chungwasoft.com/library/appcasts/Shimo3/shimocast.php'
-  name 'Shimo'
-  homepage 'http://www.chungwasoft.com/shimo/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # downloads.mailbutler.io/ was verified as official when first introduced to the cask
+  url "https://downloads.mailbutler.io/Shimo_#{version}.zip"
+  appcast "https://www.shimovpn.com/appcast#{version.major}.php"
+  name "Shimo"
+  homepage "https://www.shimovpn.com/"
 
-  app 'Shimo.app'
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
+
+  app "Shimo.app"
 end

@@ -1,12 +1,14 @@
-cask :v1 => 'camtasia' do
-  version :latest
-  sha256 :no_check
+cask "camtasia" do
+  version "2020.0.5"
+  sha256 "f79f9a89f992eb336b6219719ca959d8557078621099c089d4a0c906eae78d3e"
 
-  url 'http://download.techsmith.com/camtasiamac/enu/Camtasia.dmg'
-  appcast 'http://techsmithredirect.appspot.com/cmac?target=sparkleappcast&product=camtasiamac&lang=enu&ver=2.7.1&os=mac&code=none'
-  name 'Camtasia'
-  homepage 'http://www.techsmith.com/camtasia.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.techsmith.com/camtasiamac/releases/Camtasia.dmg"
+  appcast "https://support.techsmith.com/hc/en-us/articles/115006624748-Camtasia-Mac-Version-History"
+  name "Camtasia"
+  homepage "https://www.techsmith.com/camtasia.html"
 
-  app 'Camtasia 2.app'
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
+
+  app "Camtasia #{version.major}.app"
 end

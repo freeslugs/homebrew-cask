@@ -1,10 +1,17 @@
-cask :v1 => 'squidman' do
-  version '3.6'
-  sha256 '26544fbad48dc29dd7ea154cd48e02fa08f673bda3ff173557b8f04f1c334e43'
+cask "squidman" do
+  version "4.1"
+  sha256 "26ec3c2cd84ae7180b90205d55443f9c52966bb0f7770b05c9c80a1bdec92187"
 
-  url "http://squidman.net/resources/downloads/SquidMan#{version}.dmg"
-  homepage 'http://squidman.net/squidman/'
-  license :gratis
+  url "https://squidman.net/resources/downloads/SquidMan#{version}.dmg"
+  appcast "https://squidman.net/squidman/releasenotes/index.html"
+  name "SquidMan"
+  homepage "https://squidman.net/squidman/"
 
-  app 'SquidMan.app'
+  app "SquidMan.app"
+
+  zap trash: "/usr/local/squid"
+
+  caveats do
+    files_in_usr_local
+  end
 end

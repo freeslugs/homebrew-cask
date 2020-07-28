@@ -1,12 +1,11 @@
-cask :v1 => 'polyphone' do
-  version '1.5'
-  sha256 '2eab21617a7cd35252ded1ae0d25404dab8d03a865f6495b61f8990747d1ea20'
+cask "polyphone" do
+  version "2.2,690"
+  sha256 "bb44e3061c9617e7b2c7ef08a93fda59d0a3f94b3057a353d317f872d10f17b8"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/polyphone/polyphone-#{version}.dmg"
-  name 'Polyphone'
-  homepage 'http://polyphone.fr'
-  license :gpl
+  url "https://www.polyphone-soundfonts.com/en/download/file/#{version.after_comma}-polyphone-#{version.before_comma.dots_to_hyphens}-app-zip/latest/download"
+  appcast "https://www.polyphone-soundfonts.com/en/download"
+  name "Polyphone"
+  homepage "https://polyphone-soundfonts.com/"
 
-  app 'Polyphone.app'
+  app "polyphone-#{version.before_comma}.app"
 end

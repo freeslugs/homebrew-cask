@@ -1,13 +1,11 @@
-cask :v1 => 'data-integration' do
-  version :latest
-  sha256 :no_check
+cask "data-integration" do
+  version "9.0.0.0-423"
+  sha256 "05adf26c8b51fb14d1ea75e73579a7718d881228f502a4be5d1ce3a27d5c7997"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url 'http://sourceforge.net/projects/pentaho/files/latest/download'
-  name 'Pentaho Data Integration'
-  homepage 'http://community.pentaho.com'
-  license :oss
-  tags :vendor => 'Pentaho'
+  url "https://downloads.sourceforge.net/pentaho/pdi-ce-#{version}.zip"
+  appcast "https://sourceforge.net/projects/pentaho/rss?path=/"
+  name "Pentaho Data Integration"
+  homepage "https://sourceforge.net/projects/pentaho/"
 
-  app 'data-integration/Data Integration.app'
+  app "data-integration/Data Integration.app"
 end

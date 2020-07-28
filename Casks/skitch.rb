@@ -1,16 +1,25 @@
-cask :v1 => 'skitch' do
-  version '2.7.6'
-  sha256 '9734154ad202152f24de7730a43cf463a93606623a6e992508724542c9de8178'
+cask "skitch" do
+  version "2.8.1"
+  sha256 "d1ae1479960de2b3069a2ae1904d2fb304250e74d6ad7f5d4275b4004ae8f5c5"
 
-  url "http://cdn1.evernote.com/skitch/mac/release/Skitch-#{version}.zip"
-  name 'Skitch'
-  homepage 'http://evernote.com/skitch/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://cdn1.evernote.com/skitch/mac/release/Skitch-#{version}.zip"
+  appcast "https://evernote.s3.amazonaws.com/skitch/mac/release/skitch-appcast.xml"
+  name "Skitch"
+  homepage "https://evernote.com/products/skitch"
 
-  app 'Skitch.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Preferences/com.plasq.skitch.plist',
-                  '~/Library/Preferences/com.plasq.skitch.history',
-                 ]
+  app "Skitch.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.plasq.skitch.plist",
+    "~/Library/Preferences/com.plasq.skitch.history",
+    "~/Library/Application Support/Skitch",
+    "~/Library/Application Support/com.skitch.skitch",
+    "~/Library/Caches/com.evernote.ENAttachmentToPDFHelper",
+    "~/Library/Caches/com.skitch.skitch",
+    "~/Library/Preferences/com.evernote.ENAttachmentToPDFHelper.plist",
+    "~/Library/Preferences/com.skitch.skitch.plist",
+    "~/Library/Saved Application State/com.skitch.skitch.savedState",
+  ]
 end

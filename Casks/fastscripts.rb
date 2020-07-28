@@ -1,13 +1,13 @@
-cask :v1 => 'fastscripts' do
-  version '2.6.8'
-  sha256 '7cc170ecacad63872fe3faddd8dbaaa8f0e232687dbd8365594221ff64999def'
+cask "fastscripts" do
+  version "2.8.1"
+  sha256 "400b06282155a92e55b3cbe753e6b809bce4bd5f6e548776a2cbb3b617cb8d17"
 
-  url "https://www.red-sweater.com/fastscripts/FastScripts#{version}.zip"
-  appcast 'http://www.red-sweater.com/fastscripts/appcast2.php',
-          :sha256 => '500cd40fd4f6a40f76d8329d7246f79414f4d5aeba5bf605be18c16a6de657f5'
-  name 'FastScripts'
-  homepage 'http://www.red-sweater.com/fastscripts/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://red-sweater.com/fastscripts/FastScripts#{version}.zip"
+  appcast "https://red-sweater.com/fastscripts/appcast2.php"
+  name "FastScripts"
+  homepage "https://red-sweater.com/fastscripts/"
 
-  app 'FastScripts.app'
+  depends_on macos: ">= :sierra"
+
+  app "FastScripts.app"
 end

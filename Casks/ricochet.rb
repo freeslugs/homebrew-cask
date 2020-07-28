@@ -1,12 +1,12 @@
-cask :v1 => 'ricochet' do
-  version '1.0.4'
-  sha256 '089e8b8d177ee2b5aeb50b62447a27994a432ffd8fe1893e071c4df4bc5e1993'
+cask "ricochet" do
+  version "1.1.4.1"
+  sha256 "e5fbcbebe51fa52d9443fd2a07714d0e6e087c314a9c3eecf73ed4da8ca9e8aa"
 
-  url "https://ricochet.im/releases/#{version}/Ricochet-#{version}.dmg"
-  gpg "#{url}.asc",
-      :key_id => '9032cae4cbfa933a5a2145d5ff97c53f183c045d'
-  homepage 'https://ricochet.im/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/ricochet-im/ was verified as official when first introduced to the cask
+  url "https://github.com/ricochet-im/ricochet/releases/download/v#{version.major_minor_patch}/ricochet-#{version}-macos.dmg"
+  appcast "https://github.com/ricochet-im/ricochet/releases.atom"
+  name "Ricochet"
+  homepage "https://ricochet.im/"
 
-  app 'Ricochet.app'
+  app "Ricochet.app"
 end

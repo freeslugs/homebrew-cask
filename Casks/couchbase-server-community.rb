@@ -1,10 +1,11 @@
-cask :v1 => 'couchbase-server-community' do
-  version '3.0.1'
-  sha256 '6693176f6799ce43f71b9fa1f09af8ff6857309382e0d115a9a2253474e5a31a'
+cask "couchbase-server-community" do
+  version "6.5.1"
+  sha256 "940497d462e22dfe28d7ab6e1d2d9245a8326c06ad6733692f3e8eb6887ff682"
 
-  url "http://packages.couchbase.com/releases/#{version}/couchbase-server-community_#{version}-macos_x86_64.zip"
-  homepage 'http://www.couchbase.com/'
-  license :apache
+  url "https://packages.couchbase.com/releases/#{version}/couchbase-server-community_#{version}-macos_x86_64.dmg"
+  appcast "http://appcast.couchbase.com/membasex.xml"
+  name "Couchbase Server"
+  homepage "https://www.couchbase.com/"
 
-  app 'Couchbase Server.app'
+  app "couchbase-server-community_#{version}/Couchbase Server.app"
 end

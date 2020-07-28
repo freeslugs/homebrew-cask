@@ -1,12 +1,34 @@
-cask :v1 => 'liteicon' do
-  version '3.5.5'
-  sha256 'b1e0e984b24993fe5c1138cd9779b9d60cb88f29cc9406940e0f3ee71025e152'
+cask "liteicon" do
+  if MacOS.version <= :sierra
+    version "3.7.1"
+    sha256 "b457521a698a0ef55cd3d9c044c82c28984eeebc20d8baf05a9c21b0fa1df432"
+  elsif MacOS.version <= :high_sierra
+    version "3.9"
+    sha256 "d185503d1c6cbbc6f770517853bd9ef08dc620f4e7ce3de913251a57e4d450d9"
+  else
+    version "4.1"
+    sha256 "545cff53df31b63fe28e794fb7f45e4c891885f5de57422b1483724f6d7ed4e0"
+  end
 
-  url "http://www.freemacsoft.net/downloads/LiteIcon_#{version}.zip"
-  appcast 'http://www.freemacsoft.net/liteicon/updates.xml',
-          :sha256 => '3815e06647bbecb0adab6364a2c2808460d1330226744fa01474366ca63eadb1'
-  homepage 'http://www.freemacsoft.net/liteicon/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.freemacsoft.net/downloads/LiteIcon_#{version}.zip"
+  appcast "https://freemacsoft.net/liteicon/updates.xml"
+  name "LiteIcon"
+  homepage "https://freemacsoft.net/liteicon/"
 
-  app 'LiteIcon.app'
+  auto_updates true
+
+  app "LiteIcon.app"
+
+  uninstall quit:      "net.freemacsoft.LiteIcon",
+            delete:    [
+              "/Library/PrivilegedHelperTools/net.freemacsoft.LiteIcon.LIHelperTool",
+              "~/Library/Application Support/LiteIcon",
+            ],
+            launchctl: "net.freemacsoft.LiteIcon.LIHelperTool"
+
+  zap trash: [
+    "~/Library/Preferences/net.freemacsoft.LiteIcon.plist",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/net.freemacsoft.liteicon.sfl*",
+    "~/Library/Application Support/CrashReporter/LiteIcon_*.plist",
+  ]
 end

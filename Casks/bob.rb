@@ -1,11 +1,18 @@
-cask :v1 => 'bob' do
-  version '0.1.2'
-  sha256 'e73e5a5a2a4750cfa62f405846d87abc6fc32dba6df4b1bf74f910cee2cf8e87'
+cask "bob" do
+  version "0.4.0"
+  sha256 "2862b11cd2cb456a1b684e5a7d06fc4dc6433ad1c18af4d61c04a4dbc1150a30"
 
-  url "https://github.com/casperstorm/Bob/releases/download/#{version}/Bob.zip"
-  name 'Bob'
-  homepage 'https://github.com/casperstorm/Bob'
-  license :mit
+  url "https://github.com/ripperhe/Bob/releases/download/v#{version}/Bob.app.zip"
+  appcast "https://github.com/ripperhe/Bob/releases.atom"
+  name "Bob"
+  homepage "https://github.com/ripperhe/Bob"
 
-  app 'Bob.app'
+  depends_on macos: ">= :sierra"
+
+  app "Bob.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.ripperhe.Bob.plist",
+    "~/Library/Caches/com.ripperhe.Bob",
+  ]
 end

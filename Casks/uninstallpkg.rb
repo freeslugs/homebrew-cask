@@ -1,13 +1,20 @@
-cask :v1 => 'uninstallpkg' do
-  version '1.0.7'
-  sha256 '6f5b88434635afe3eee07dcd0b183f00233ccd089ba0c45e3c4a3c8ddaa1fa4a'
+cask "uninstallpkg" do
+  version "1.1.7"
+  sha256 "08f7c047e41282b842934519cb485c954c70639141690edccc8681edbc607a73"
 
-  url "http://www.corecode.at/downloads/uninstallpkg_#{version}.zip"
-  appcast 'http://www.corecode.at/uninstallpkg/uninstallpkg.xml',
-          :sha256 => '5f5de8cb9ee55d7c96582f7359a41c9530170f589f45bdad5ee3f04dd22c829d'
-  name 'UninstallPKG'
-  homepage 'http://www.corecode.at/uninstallpkg/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.corecode.io/downloads/uninstallpkg_#{version}.zip"
+  appcast "https://www.corecode.io/uninstallpkg/uninstallpkg.xml"
+  name "UninstallPKG"
+  homepage "https://www.corecode.io/uninstallpkg/"
 
-  app 'UninstallPKG.app'
+  app "UninstallPKG.app"
+
+  uninstall delete:    "/Library/PrivilegedHelperTools/com.corecode.UninstallPKGDeleteHelper",
+            launchctl: "com.corecode.UninstallPKGDeleteHelper"
+
+  zap trash: [
+    "~/Library/Application Support/UninstallPKG",
+    "~/Library/Preferences/com.corecode.UninstallPKG.plist",
+    "~/Library/Saved Application State/com.corecode.UninstallPKG.savedState",
+  ]
 end

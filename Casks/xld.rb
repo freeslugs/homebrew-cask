@@ -1,20 +1,24 @@
-cask :v1 => 'xld' do
-  version '20141129'
-  sha256 'adbf053cb2b24fb342302932b90ec745740d0421d6b5fbf48c5c35367538d9fd'
+cask "xld" do
+  version "2019.10.04"
+  sha256 "6fedfede1f54d691b69f0d6dc5477062c57fe6c48b7f86624a47eb1b58a1e4ef"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/xld/xld-#{version}.dmg"
-  appcast 'http://xld.googlecode.com/svn/appcast/xld-appcast_e.xml',
-          :sha256 => '16420b367df9b64870bd2a38ee20e688d17b065783b93371065ac7094ab93cb0'
-  name 'X Lossless Decoder'
-  name 'XLD'
-  homepage 'http://tmkk.undo.jp/xld/index_e.html'
-  license :oss
+  # sourceforge.net/xld/ was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/xld/xld-#{version.no_dots}.dmg"
+  appcast "https://svn.code.sf.net/p/xld/code/appcast/xld-appcast_e.xml",
+          must_contain: version.no_dots
+  name "X Lossless Decoder"
+  name "XLD"
+  homepage "https://tmkk.undo.jp/xld/index_e.html"
 
-  app 'XLD.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Application Support/XLD',
-                  '~/Library/Preferences/jp.tmkk.XLD.plist',
-                 ]
+  app "XLD.app"
+  binary "CLI/xld"
+
+  zap trash: [
+    "~/Library/Application Support/XLD",
+    "~/Library/Preferences/jp.tmkk.XLD.plist",
+    "~/Library/Caches/jp.tmkk.XLD",
+    "~/Library/Saved Application State/jp.tmkk.XLD.savedState",
+  ]
 end

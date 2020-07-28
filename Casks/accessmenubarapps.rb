@@ -1,11 +1,18 @@
-cask :v1 => 'accessmenubarapps' do
-  version '2.4'
-  sha256 '1065fbb4ca009758d4f303ed2106bd82a5ae21233b478f50fea3ddaa318473ce'
+cask "accessmenubarapps" do
+  version "2.6.1"
+  sha256 "fe8a08d721af4b9e5e71bb71f3b876169fecde8219b53c01938861c2781fb16c"
 
-  url "http://www.ortisoft.de/resources/AccessMenuBarApps#{version}.dmg"
-  name 'AccessMenuBarApps'
-  homepage 'http://www.ortisoft.de/accessmenubarapps/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.ortisoft.de/resources/AccessMenuBarApps#{version}.zip"
+  appcast "https://www.ortisoft.de/accessmenubarapps/profileInfo.php"
+  name "AccessMenuBarApps"
+  homepage "https://www.ortisoft.de/accessmenubarapps/"
 
-  app 'AccessMenuBarApps.app'
+  app "AccessMenuBarApps#{version}/AccessMenuBarApps.app"
+
+  uninstall quit: "de.ortisoft.AccessMenuBarApps"
+
+  zap trash: [
+    "~/Library/Caches/de.ortisoft.AccessMenuBarApps",
+    "~/Library/Preferences/de.ortisoft.AccessMenuBarApps.plist",
+  ]
 end

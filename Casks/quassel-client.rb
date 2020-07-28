@@ -1,10 +1,11 @@
-cask :v1 => 'quassel-client' do
-  version '0.11.0'
-  sha256 '00e1a1b7a3fc0b5c1c382c488ab93d533a183896ca236d6170cc11e1fc28ac96'
+cask "quassel-client" do
+  version "0.13.1"
+  sha256 "2ebfc69a0a5da2554080b6b3d6d27b577c8d5a591253549b5960788741d7aece"
 
-  url "http://quassel-irc.org/pub/QuasselClient_MacOSX-x86_64_#{version}.dmg"
-  homepage 'http://quassel-irc.org'
-  license :gpl
+  url "https://quassel-irc.org/pub/QuasselClient_MacOSX-x86_64_#{version}.dmg"
+  appcast "https://github.com/quassel/quassel/releases.atom"
+  name "Quassel IRC"
+  homepage "https://quassel-irc.org/"
 
-  app 'Quassel Client.app'
+  app "Quassel Client.app"
 end

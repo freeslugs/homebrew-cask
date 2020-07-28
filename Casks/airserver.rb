@@ -1,11 +1,11 @@
-cask :v1 => 'airserver' do
-  version '5.2'
-  sha256 '021cf849f121df9f6b91d181b917240a76b6f129ef4676d0b491d0bc54e4b06b'
+cask "airserver" do
+  version "7.2.6"
+  sha256 "fc7c7562654ffd47c46e4ffe0a8fc1565d0fa76297ad2e6105cab3c8ab125568"
 
-  url "http://dl.airserver.com/mac/AirServer-#{version}.dmg"
-  name 'AirServer'
-  homepage 'http://www.airserver.com'
-  license :commercial
+  url "https://dl.airserver.com/mac/AirServer-#{version}.dmg"
+  appcast "https://www.airserver.com/downloads/mac/appcast.xml"
+  name "AirServer"
+  homepage "https://www.airserver.com/"
 
-  app 'AirServer.app'
+  app "AirServer.app"
 end

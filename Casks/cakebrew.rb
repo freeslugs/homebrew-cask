@@ -1,12 +1,20 @@
-cask :v1 => 'cakebrew' do
-  version '1.0.9'
-  sha256 'e60ad4e04ff74483b41c28585350d0b9935f3143fbb4b34eb3d72869da9c0e9b'
+cask "cakebrew" do
+  version "1.2.5"
+  sha256 "2dc287acf04952a2b449a0d69cf1581915ef1e6c59d2ec1c83c3e37c263826ca"
 
-  url "https://www.cakebrew.com/files/cakebrew-#{version}.dmg"
-  appcast 'http://www.cakebrew.com/appcast/profileInfo.php',
-          :sha256 => '71b9cf1256459d4565b4efe6bd505a56dd29a50d51e3fed2ed6c20c4ad88dd75'
-  homepage 'http://www.cakebrew.com'
-  license :gpl
+  # cakebrew-377a.kxcdn.com/ was verified as official when first introduced to the cask
+  url "https://cakebrew-377a.kxcdn.com/cakebrew-#{version}.dmg"
+  appcast "https://www.cakebrew.com/appcast/profileInfo.php"
+  name "Cakebrew"
+  homepage "https://www.cakebrew.com/"
 
-  app 'Cakebrew.app'
+  auto_updates true
+
+  app "Cakebrew.app"
+
+  zap trash: [
+    "~/Library/Caches/com.brunophilipe.Cakebrew",
+    "~/Library/Preferences/com.brunophilipe.Cakebrew.plist",
+    "~/Library/Saved Application State/com.brunophilipe.Cakebrew.savedState",
+  ]
 end

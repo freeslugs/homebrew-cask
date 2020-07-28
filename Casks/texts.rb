@@ -1,12 +1,11 @@
-cask :v1 => 'texts' do
-  version '0.21'
-  sha256 '45bc3294716e7f8624495ee370e949ddc5f0d9bd11d01acf8e6b9c1435ebb989'
+cask "texts" do
+  version "1.5"
+  sha256 "8c3e5c7c761f31abf414d632e6787f95e08ad112bfd43e63f90a925ae0c3fef2"
 
   url "http://www.texts.io/Texts-#{version}.dmg"
-  appcast 'http://www.texts.io/appcast-osx.xml',
-          :sha256 => 'c769657a0b1d6470676cba2d73b32d77be5afc98e3e01d09a68d6482bc65e5fd'
-  homepage 'http://www.texts.io'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  appcast "http://www.texts.io/download/"
+  name "Texts"
+  homepage "http://www.texts.io/"
 
-  app 'Texts.app'
+  app "Texts.app"
 end

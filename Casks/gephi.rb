@@ -1,11 +1,12 @@
-cask :v1 => 'gephi' do
-  version '0.8.2-beta'
-  sha256 'ee8f7845ade6109de7e88ed03cc92885c6d936c34d666503d7c92bf3c5d0659d'
+cask "gephi" do
+  version "0.9.2"
+  sha256 "e83641108bcab4326526293acf2da48ac107c95b811d7f23e1fc1c621489f097"
 
-  # launchpadlibrarian.net is the official download host per the vendor homepage
-  url "https://launchpadlibrarian.net/127456772/gephi-#{version}.dmg"
-  homepage 'http://gephi.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/gephi/gephi/ was verified as official when first introduced to the cask
+  url "https://github.com/gephi/gephi/releases/download/v#{version}/gephi-#{version}-macos.dmg"
+  appcast "https://github.com/gephi/gephi/releases.atom"
+  name "Gephi"
+  homepage "https://gephi.org/"
 
-  app 'Gephi.app'
+  app "Gephi.app"
 end

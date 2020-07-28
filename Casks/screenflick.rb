@@ -1,11 +1,11 @@
-cask :v1 => 'screenflick' do
-  version :latest
-  sha256 :no_check
+cask "screenflick" do
+  version "2.7.51"
+  sha256 "22ed09cceed01c9bbd056c36fe5c43a420df595712eaf5c9d49dba38bef14a02"
 
-  url 'http://www.araelium.com/screenflick/downloads/Screenflick.zip'
-  name 'Screenflick'
-  homepage 'http://www.araelium.com/screenflick/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://store.araelium.com/screenflick/downloads/versions/Screenflick#{version}.zip"
+  appcast "https://arweb-assets.s3.amazonaws.com/downloads/screenflick/updates.json"
+  name "Screenflick"
+  homepage "https://www.araelium.com/screenflick/"
 
-  app 'Screenflick.app'
+  app "Screenflick.app"
 end

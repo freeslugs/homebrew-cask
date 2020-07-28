@@ -1,10 +1,11 @@
-cask :v1 => 'nitroshare' do
-  version '0.2'
-  sha256 '9f208d4b86ca13c4136265fa4a4693c7ef9ba9f0d6a0a84966cfd5f9934abe12'
+cask "nitroshare" do
+  version "0.3.4"
+  sha256 "64a3c62631ea8676ec2fc4f011aabf119ad5b4916de5c1ef969138096584b808"
 
-  url "https://launchpad.net/nitroshare/#{version}/#{version}/+download/nitroshare_#{version}.app.dmg"
-  homepage 'https://launchpad.net/nitroshare'
-  license :gpl
+  url "https://launchpad.net/nitroshare/#{version.major_minor}/#{version}/+download/nitroshare-#{version}-osx.dmg"
+  appcast "https://github.com/nitroshare/nitroshare-desktop/releases.atom"
+  name "NitroShare"
+  homepage "https://launchpad.net/nitroshare"
 
-  app 'NitroShare.app'
+  app "nitroshare.app"
 end

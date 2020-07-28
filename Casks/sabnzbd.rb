@@ -1,16 +1,16 @@
-cask :v1 => 'sabnzbd' do
-  version '0.7.20'
-  sha256 'f7c13afe87ad91ab2f12fb6384feef79ae07bf2417395304b3d8961513d23611'
+cask "sabnzbd" do
+  version "2.3.9"
+  sha256 "dfe5eee0f94b1db79ecbe759ce9c38cec7d9b4357fd58258628e01f46d3ca3ea"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/sabnzbdplus/sabnzbdplus/#{version}/SABnzbd-#{version}-osx.dmg"
-  homepage 'http://sabnzbd.org/'
-  license :gpl
+  # github.com/sabnzbd/sabnzbd/ was verified as official when first introduced to the cask
+  url "https://github.com/sabnzbd/sabnzbd/releases/download/#{version}/SABnzbd-#{version}-osx.dmg"
+  appcast "https://github.com/sabnzbd/sabnzbd/releases.atom"
+  name "SABnzbd"
+  homepage "https://sabnzbd.org/"
 
-  app 'SABnzbd.app'
+  depends_on macos: ">= :yosemite"
 
-  zap :delete => [
-                  '~/Library/Application Support/SABnzbd/sabnzbd.ini',
-                  '~/Library/Application Support/SABnzbd/admin/rss_data.sab',
-                 ]
+  app "SABnzbd.app"
+
+  zap trash: "~/Library/Application Support/SABnzbd"
 end

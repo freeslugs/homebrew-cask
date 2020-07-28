@@ -1,15 +1,12 @@
-cask :v1 => 'raw-photo-processor' do
-  version '4.7.2'
-  sha256 'ef300adaaf3399f43741a51f06c062a34c4e809eecdbbffce2cd15af414fbd7f'
+cask "raw-photo-processor" do
+  # Betas of this software are release quality: https://groups.google.com/d/msg/raw-photo-processor/PJyyP2JwIwI/dn3CFknuCwAJ
+  version "1904Beta"
+  sha256 "9e18765aad727aede5563a7c81cb5c4630e41a058799566f16424e481b897465"
 
-  url 'http://www.raw-photo-processor.com/RPP/RPP_64.zip'
-  appcast 'http://www.raw-photo-processor.com/rpp_updates.xml',
-          :sha256 => '83e550582ec77d965383ba778ce68e0e0c3f71501a546fab8619119ec2825287'
-  name 'Raw Photo Processor'
-  homepage 'http://www.raw-photo-processor.com/RPP/Overview.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.raw-photo-processor.com/RPP/RPP64_#{version}.zip"
+  appcast "https://groups.google.com/forum/feed/raw-photo-processor/msgs/rss.xml?num=50"
+  name "Raw Photo Processor"
+  homepage "https://www.raw-photo-processor.com/RPP/Overview.html"
 
-  # note: this value changes with each version
-  container :nested => 'RPP480_1703_64.dmg'
-  app 'Raw Photo Processor 64.app'
+  app "Raw Photo Processor 64.app"
 end

@@ -1,11 +1,10 @@
-cask :v1 => 'moneydance' do
-  version '2015 build 1145'
-  sha256 'e740d4214b43c16dc30c48da854576a2b4e6359ce4ea8bb40ae726539ebcd68e'
+cask "moneydance" do
+  version :latest
+  sha256 :no_check
 
-  url 'http://infinitekind.com/stabledl/2015/Moneydance.zip'
-  name 'Moneydance'
-  homepage 'http://infinitekind.com/moneydance'
-  license :commercial
+  url "https://infinitekind.com/stabledl/current/Moneydance.zip"
+  name "Moneydance"
+  homepage "https://infinitekind.com/moneydance"
 
-  app 'Moneydance.app'
+  app "Moneydance.app"
 end

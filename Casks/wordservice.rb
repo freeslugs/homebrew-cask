@@ -1,11 +1,11 @@
-cask :v1 => 'wordservice' do
-  version '2.8.1'
-  sha256 'c8085d93400ee60d103225fbaa53409fe66b8c92afe6cda05ca74916562c3a92'
+cask "wordservice" do
+  version "2.8.2"
+  sha256 "bf2a982702d922b984639b372510ee73cdfc28f5c5fbbb5fa540bb2702beab7a"
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # s3.amazonaws.com/DTWebsiteSupport/ was verified as official when first introduced to the cask
   url "https://s3.amazonaws.com/DTWebsiteSupport/download/freeware/wordservice/#{version}/WordService.zip"
-  homepage 'http://www.devontechnologies.com/products/freeware.html#c1115'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  name "WordService"
+  homepage "https://www.devontechnologies.com/apps/freeware"
 
-  app 'WordService.app'
+  app "WordService.app"
 end

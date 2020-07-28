@@ -1,10 +1,10 @@
-cask :v1 => 'tau' do
+cask "tau" do
   version :latest
   sha256 :no_check
 
-  url 'http://tau.uoregon.edu/tau.dmg'
-  homepage 'http://tau.uoregon.edu/'
-  license :oss
+  url "https://www.cs.uoregon.edu/research/tau/tau.dmg"
+  name "TAU"
+  homepage "https://www.cs.uoregon.edu/research/tau/home.php"
 
-  suite 'TAU'
+  suite "TAU"
 end

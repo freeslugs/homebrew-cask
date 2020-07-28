@@ -1,12 +1,20 @@
-cask :v1 => 'platypus' do
-  version '4.8'
-  sha256 '754d9153b92e32faf7e56a4e181de59c6f0b72b3208663042a22e1767d87cb05'
+cask "platypus" do
+  version "5.3"
+  sha256 "efc66e943e6327896d0c1b82b0c1798c9ea17cffa03581e4949541c30d9833b0"
 
-  url "http://sveinbjorn.org/files/software/platypus/platypus#{version}.zip"
-  appcast 'http://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml',
-          :sha256 => '21e37d2b32951108d7d0a4a6cda34b96bd97c4e82338c42583b6498c482239ec'
-  homepage 'http://sveinbjorn.org/platypus'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://sveinbjorn.org/files/software/platypus/platypus#{version}.zip"
+  appcast "https://www.sveinbjorn.org/files/appcasts/PlatypusAppcast.xml"
+  name "Platypus"
+  homepage "https://sveinbjorn.org/platypus"
 
-  app "Platypus-#{version}/Platypus.app"
+  auto_updates true
+
+  app "Platypus.app"
+
+  zap trash: [
+    "~/Library/Application Support/Platypus",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.sveinbjorn.platypus.sfl2",
+    "~/Library/Caches/org.sveinbjorn.Platypus",
+    "~/Library/Preferences/org.sveinbjorn.Platypus.plist",
+  ]
 end

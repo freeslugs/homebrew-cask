@@ -1,13 +1,16 @@
-cask :v1 => 'filebot' do
-  version '4.5.6'
-  sha256 '94ebf2233b771cc1641abc9899069f6a37834df998e6081c1ab617676f6fea7d'
+cask "filebot" do
+  version "4.9.1"
+  sha256 "d3a5ccfd562c1d49e5053c4538d0c82d46b47cc61fdd885a395d96eefbfc18fa"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/filebot/filebot/FileBot_#{version}/FileBot_#{version}.app.tar.gz"
-  homepage 'http://www.filebot.net/'
-  license :gpl
+  url "https://get.filebot.net/filebot/FileBot_#{version}/FileBot_#{version}.app.tar.xz"
+  appcast "https://app.filebot.net/update.xml"
+  name "FileBot"
+  homepage "https://www.filebot.net/"
 
-  app 'FileBot.app'
-  binary 'FileBot.app/Contents/MacOS/filebot.sh', :target => 'filebot'
-  caveats 'FileBot requires Java 8. Run "java -version" to verify.'
+  app "FileBot.app"
+  binary "#{appdir}/FileBot.app/Contents/MacOS/filebot.sh", target: "filebot"
+  binary "#{appdir}/FileBot.app/Contents/Resources/bash_completion.d/filebot_completion",
+         target: "#{HOMEBREW_PREFIX}/etc/bash_completion.d/filebot"
+
+  zap trash: "~/Library/Preferences/net.filebot.ui.plist"
 end

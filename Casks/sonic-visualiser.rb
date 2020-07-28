@@ -1,11 +1,21 @@
-cask :v1 => 'sonic-visualiser' do
-  version '2.4.1'
-  sha256 '45edf5021376ed79e3a7a9a17745261f91362c05d90db17dc3179b1649c29332'
+cask "sonic-visualiser" do
+  version "4.1,2719"
+  sha256 "31d0fe9bb3403de07136411bb7f82c1ebd6cc6fab04bc2756048226e5ca20500"
 
-  # ac.uk is the official download host per the vendor homepage
-  url "https://code.soundsoftware.ac.uk/attachments/download/1186/Sonic%20Visualiser-#{version}.dmg"
-  homepage 'http://www.sonicvisualiser.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # code.soundsoftware.ac.uk/ was verified as official when first introduced to the cask
+  url "https://code.soundsoftware.ac.uk/attachments/download/#{version.after_comma}/Sonic%20Visualiser-#{version.before_comma}.dmg"
+  appcast "https://code.soundsoftware.ac.uk/projects/sonic-visualiser/repository/raw/CHANGELOG"
+  name "Sonic Visualiser"
+  homepage "https://www.sonicvisualiser.org/"
 
-  app 'Sonic Visualiser.app'
+  depends_on macos: ">= :sierra"
+
+  app "Sonic Visualiser.app"
+
+  zap trash: [
+    "~/Library/Saved Application State/org.sonicvisualiser.SonicVisualiser.savedState",
+    "~/Library/Preferences/org.sonicvisualiser.Sonic Visualiser.plist",
+    "~/Library/Preferences/org.sonicvisualiser.SonicVisualiser.plist",
+    "~/Library/Application Support/sonic-visualiser/",
+  ]
 end

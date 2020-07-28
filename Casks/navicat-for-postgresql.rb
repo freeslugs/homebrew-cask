@@ -1,12 +1,11 @@
-cask :v1 => 'navicat-for-postgresql' do
-  version '11.1.9'   # navicat-premium.rb and navicat-for-* should be upgraded together
-  sha256 '2666cf0137f55b1101549244cc5c36898460d9b2ea8ed278606c17b9e02b5b14'
+cask "navicat-for-postgresql" do
+  version "15.0.18"
+  sha256 "2a3d8d80bcc742ec43b748f2ad13e89bd5fcdfa50aa3cdea8d7cb6ae86f50da2"
 
-  url "http://download.navicat.com/download/navicat#{version.sub(%r{^(\d+)\.(\d+).*},'\1\2')}_pgsql_en.dmg"
-  name 'Navicat for PostgreSQL'
-  homepage 'http://www.navicat.com/products/navicat-for-postgresql'
-  license :commercial
-  tags :vendor => 'Navicat'
+  url "http://download.navicat.com/download/navicat#{version.major_minor.no_dots}_pgsql_en.dmg"
+  appcast "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20PostgreSQL&appLang=en"
+  name "Navicat for PostgreSQL"
+  homepage "https://www.navicat.com/products/navicat-for-postgresql"
 
-  app 'Navicat for PostgreSQL.app'
+  app "Navicat for PostgreSQL.app"
 end

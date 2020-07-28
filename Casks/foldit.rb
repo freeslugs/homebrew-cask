@@ -1,10 +1,14 @@
-cask :v1 => 'foldit' do
+cask "foldit" do
   version :latest
   sha256 :no_check
 
-  url 'https://fold.it/portal/download/osx'
-  homepage 'http://fold.it'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://fold.it/portal/files/app/Foldit-macos_x64.dmg"
+  name "Foldit"
+  homepage "https://fold.it/"
 
-  app 'FoldIt.app'
+  depends_on macos: ">= :sierra"
+
+  app "Foldit.app"
+
+  zap trash: "~/Library/Saved Application State/edu.washington.foldit.savedState"
 end

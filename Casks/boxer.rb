@@ -1,12 +1,15 @@
-cask :v1 => 'boxer' do
-  version :latest
-  sha256 :no_check
+cask "boxer" do
+  version "1.4.0"
+  sha256 "a75f9149612f90fa78f1016a6edef34ed600334f7170d624b083a310ae4c904e"
 
-  url 'http://boxerapp.com/download/latest'
-  appcast 'http://boxerapp.com/appcast'
-  name 'Boxer'
-  homepage 'http://boxerapp.com/'
-  license :gpl
+  # github.com/alunbestor/Boxer/ was verified as official when first introduced to the cask
+  url "https://github.com/alunbestor/Boxer/releases/download/v#{version}/boxer-#{version}.zip"
+  appcast "https://github.com/alunbestor/Boxer/releases.atom"
+  name "Boxer"
+  homepage "http://boxerapp.com/"
 
-  app 'Boxer.app'
+  auto_updates true
+  depends_on macos: "<= :mojave"
+
+  app "Boxer.app"
 end

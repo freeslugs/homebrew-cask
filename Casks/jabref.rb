@@ -1,11 +1,12 @@
-cask :v1 => 'jabref' do
-  version '2.10'
-  sha256 'c63a49e47a43bdb026dde7fb695210d9a3f8c0e71445af7d6736c5379b23baa2'
+cask "jabref" do
+  version "5.0"
+  sha256 "a02b02c1b54ebcfa5011e571800483d23d1774fb6117abff8e35055079e7d2e3"
 
-  url "http://downloads.sourceforge.net/project/jabref/jabref/#{version}/JabRef-#{version}-OSX.zip"
-  name 'JabRef'
-  homepage 'http://jabref.sourceforge.net/'
-  license :gpl
+  # github.com/JabRef/jabref/ was verified as official when first introduced to the cask
+  url "https://github.com/JabRef/jabref/releases/download/v#{version}/JabRef-#{version}.dmg"
+  appcast "https://github.com/JabRef/jabref/releases.atom"
+  name "JabRef"
+  homepage "https://www.jabref.org/"
 
-  app 'JabRef.app'
+  app "JabRef.app"
 end

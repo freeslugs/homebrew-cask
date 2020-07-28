@@ -1,10 +1,11 @@
-cask :v1 => 'mdrp' do
-  version :latest
-  sha256 :no_check
+cask "mdrp" do
+  version "9.0.2"
+  sha256 "e146b80260d4a194895245f767c698f00bbc568dfcc4c76e3de3991dc5e72710"
 
-  url 'http://www.macdvdripperpro.com/download/'
-  homepage 'http://www.macdvdripperpro.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.macdvdripperpro.com/MDRP_v#{version.no_dots}.zip"
+  appcast "https://www.macdvdripperpro.com/mdrp_sparkle#{version.major}.xml"
+  name "Mac DVDRipper Pro"
+  homepage "https://www.macdvdripperpro.com/"
 
-  app 'MDRP.app'
+  app "MDRP.app"
 end

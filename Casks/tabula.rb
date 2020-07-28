@@ -1,11 +1,12 @@
-cask :v1 => 'tabula' do
-  version '0.9.5.2'
-  sha256 'b6a2663cbf440d27cc94ac9ac05ac1875136e81f63980a25e1acaf6a3250e131'
+cask "tabula" do
+  version "1.2.1"
+  sha256 "7f0270ce3db17cfa14a8a111de9fbf39fbdd330d9784796daf13019d08cac140"
 
-  url "https://github.com/jazzido/tabula/releases/download/v0.9.5/tabula-mac-#{version}.zip"
-  name 'Tabula'
-  homepage 'http://tabula.nerdpower.org'
-  license :mit
+  # github.com/tabulapdf/tabula/ was verified as official when first introduced to the cask
+  url "https://github.com/tabulapdf/tabula/releases/download/v#{version.major_minor_patch}/tabula-mac-#{version}.zip"
+  appcast "https://github.com/tabulapdf/tabula/releases.atom"
+  name "Tabula"
+  homepage "https://tabula.technology/"
 
-  app 'tabula/Tabula.app'
+  app "tabula/Tabula.app"
 end

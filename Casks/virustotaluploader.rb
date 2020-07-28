@@ -1,10 +1,16 @@
-cask :v1 => 'virustotaluploader' do
-  version '1.3'
-  sha256 '6009c81e0d87b64f56e64ff3137f37fe61ae3b9b792b3700b37e4c55473da5d4'
+cask "virustotaluploader" do
+  version "1.3"
+  sha256 "6009c81e0d87b64f56e64ff3137f37fe61ae3b9b792b3700b37e4c55473da5d4"
 
   url "https://www.virustotal.com/static/bin/VirusTotalUploader_#{version}.dmg"
-  homepage 'https://www.virustotal.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  appcast "https://www.virustotal.com/en/documentation/desktop-applications/mac-osx-uploader"
+  name "VirusTotalUploader"
+  homepage "https://www.virustotal.com/"
 
-  app 'VirusTotalUploader.app'
+  app "VirusTotalUploader.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.virustotal.VirusTotal Uploader.plist",
+    "~/Library/Saved Application State/com.virustotal.VirusTotalUploader.savedState",
+  ]
 end

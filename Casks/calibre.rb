@@ -1,12 +1,46 @@
-cask :v1 => 'calibre' do
-  version '2.20.0'
-  sha256 '235d891a90a87a72e16d4c8979497268055ef6e22c1c3d8aff3d0ce2114c41c7'
+cask "calibre" do
+  if MacOS.version <= :high_sierra
+    version "3.48.0"
+    sha256 "68829cd902b8e0b2b7d5cf7be132df37bcc274a1e5720b4605d2dd95f3a29168"
+    url "https://download.calibre-ebook.com/#{version}/calibre-#{version}.dmg"
+  else
+    version "4.21.0"
+    sha256 "efce0c1fb209e4404fffdc8e9b444e8a17bd31b50250f4e053c9bb0a6bf37ec8"
+    # github.com/kovidgoyal/calibre/ was verified as official when first introduced to the cask
+    url "https://github.com/kovidgoyal/calibre/releases/download/v#{version}/calibre-#{version}.dmg"
+    appcast "https://github.com/kovidgoyal/calibre/releases.atom"
+  end
 
-  # github.com is an official download host per the vendor homepage, and a faster mirror than the main one
-  url "https://github.com/kovidgoyal/calibre/releases/download/v#{version}/calibre-#{version}.dmg"
-  name 'calibre'
-  homepage 'http://calibre-ebook.com/'
-  license :gpl
+  name "calibre"
+  homepage "https://calibre-ebook.com/"
 
-  app 'calibre.app'
+  app "calibre.app"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre-complete"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre-customize"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre-debug"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre-parallel"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre-server"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibre-smtp"
+  binary "#{appdir}/calibre.app/Contents/MacOS/calibredb"
+  binary "#{appdir}/calibre.app/Contents/MacOS/ebook-convert"
+  binary "#{appdir}/calibre.app/Contents/MacOS/ebook-device"
+  binary "#{appdir}/calibre.app/Contents/MacOS/ebook-edit"
+  binary "#{appdir}/calibre.app/Contents/MacOS/ebook-meta"
+  binary "#{appdir}/calibre.app/Contents/MacOS/ebook-polish"
+  binary "#{appdir}/calibre.app/Contents/MacOS/ebook-viewer"
+  binary "#{appdir}/calibre.app/Contents/MacOS/fetch-ebook-metadata"
+  binary "#{appdir}/calibre.app/Contents/MacOS/lrf2lrs"
+  binary "#{appdir}/calibre.app/Contents/MacOS/lrfviewer"
+  binary "#{appdir}/calibre.app/Contents/MacOS/lrs2lrf"
+  binary "#{appdir}/calibre.app/Contents/MacOS/markdown-calibre"
+  binary "#{appdir}/calibre.app/Contents/MacOS/web2disk"
+
+  zap trash: [
+    "~/Library/Caches/calibre",
+    "~/Library/Preferences/calibre",
+    "~/Library/Preferences/net.kovidgoyal.calibre.plist",
+    "~/Library/Saved Application State/com.calibre-ebook.ebook-viewer.savedState",
+    "~/Library/Saved Application State/net.kovidgoyal.calibre.savedState",
+  ]
 end

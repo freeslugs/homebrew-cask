@@ -1,14 +1,12 @@
-cask :v1 => 'qgis' do
-  version '2.6.1-2'
-  sha256 '683ef0c37c0ddbb375189d4fc3ee7713b064c361ce0c68bf29d36b2cd77c85fd'
+cask "qgis" do
+  version "3.14.1"
+  sha256 "9ff7dd12c37dd748190fd32d9223bc041850732c7377291b31cc02a9ba178625"
 
-  url "http://www.kyngchaos.com/files/software/qgis/QGIS-#{version}.dmg"
-  homepage 'http://www.kyngchaos.com/software/qgis'
-  license :gpl
-  pkg 'Install QGIS.pkg'
+  url "https://qgis.org/downloads/macos/qgis-macos-pr.dmg"
+  appcast "https://qgis.org/downloads/macos/qgis-macos-pr.sha256sum",
+          must_contain: version.dots_to_underscores
+  name "QGIS"
+  homepage "https://www.qgis.org/"
 
-  uninstall :pkgutil => 'org.qgis.qgis-*'
-
-  depends_on :cask => 'gdal-framework'
-  depends_on :cask => 'matplotlib'
+  app "QGIS#{version.major_minor}.app"
 end

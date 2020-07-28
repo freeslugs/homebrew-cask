@@ -1,12 +1,18 @@
-cask :v1 => 'ukelele' do
-  version '2.2.8'
-  sha256 'e6200f418dee4ad10fa126536218086273ef8e896b95ede8ba73ddb42ed02ec3'
+cask "ukelele" do
+  version "3.4.2"
+  sha256 "764ee84e645b789524cc7b2c5e4c4440b1e810fccca54c64e9dceb2e40264f6a"
 
-  url "https://scripts.sil.org/cms/scripts/render_download.php?format=file&media_id=Ukelele_#{version}&filename=Ukelele_#{version}.dmg"
-  appcast 'http://scripts.sil.org/cms/scripts/render_download.php?site_id=nrsi&format=file&media_id=ukelele_su_feed&filename=ukelele_su_feed.xml',
-          :sha256 => '5409cb8f49f6de2b0a4c2d638a637d2c460c79532914c57ae87adc4551ed8d16'
-  homepage 'http://scripts.sil.org/ukelele'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://software.sil.org/downloads/r/ukelele/Ukelele_#{version}.dmg"
+  appcast "https://software.sil.org/downloads/r/ukelele/Ukelele_appcast.xml"
+  name "Ukelele"
+  homepage "https://software.sil.org/ukelele/"
 
-  app 'Ukelele.app'
+  app "Ukelele.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.sil.ukelele.sfl*",
+    "~/Library/Preferences/org.sil.ukelele.plist",
+    "~/Library/Preferences/Ukelele",
+    "~/Library/Caches/org.sil.Ukelele",
+  ]
 end

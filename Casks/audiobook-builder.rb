@@ -1,11 +1,11 @@
-cask :v1 => 'audiobook-builder' do
-  version :latest
-  sha256 :no_check
+cask "audiobook-builder" do
+  version "2.1"
+  sha256 "be42a85625cfbea6b53e926edd79714556c6b78862c99e3976ec4418ebe5772f"
 
-  url 'http://www.splasm.com/downloads/audiobookbuilder/Audiobook%20Builder.dmg'
-  name 'Audiobook Builder'
-  homepage 'http://www.splasm.com/audiobookbuilder/'
-  license :commercial
+  url "https://www.splasm.com/downloads/audiobookbuilder/Audiobook%20Builder%20#{version}.dmg"
+  appcast "https://www.splasm.com/audiobookbuilder/"
+  name "Audiobook Builder"
+  homepage "https://www.splasm.com/audiobookbuilder/"
 
-  app 'Audiobook Builder.app'
+  app "Audiobook Builder.app"
 end

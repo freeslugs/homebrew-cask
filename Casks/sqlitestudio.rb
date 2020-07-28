@@ -1,10 +1,19 @@
-cask :v1 => 'sqlitestudio' do
-  version '2.1.5'
-  sha256 '7df2d3bc8a4aafac738b7b412f2bde82f2b1114dc30f173363ec28ae5514f882'
+cask "sqlitestudio" do
+  version "3.2.1"
+  sha256 "b66ce10747ca734c7f0dacf19fc773936756db1ab5441ec29b9b5ba23308844c"
 
-  url "http://sqlitestudio.pl/files/free/stable/macosx/sqlitestudio-#{version}.zip"
-  homepage 'http://sqlitestudio.pl'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/pawelsalawa/sqlitestudio/releases/download/ was verified as official when first introduced to the cask
+  url "https://github.com/pawelsalawa/sqlitestudio/releases/download/#{version}/SQLiteStudio-#{version}.dmg"
+  appcast "https://github.com/pawelsalawa/sqlitestudio/releases.atom"
+  name "SQLiteStudio"
+  homepage "https://sqlitestudio.pl/"
 
-  app 'SQLiteStudio.app'
+  auto_updates true
+
+  app "SQLiteStudio.app"
+
+  zap trash: [
+    "~/.config/sqlitestudio",
+    "~/Library/Saved Application State/com.yourcompany.SQLiteStudio.savedState",
+  ]
 end

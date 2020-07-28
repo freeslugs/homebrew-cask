@@ -1,15 +1,34 @@
-cask :v1 => 'charles' do
-  version '3.9.3'
-  sha256 '84de5c3f233ec6af24f5bab04631daf9ef4af0c549efca8675f9d3946e5aceb8'
+cask "charles" do
+  version "4.5.6"
+  sha256 "c00a002476b7a453ff1585288781081f71a81daacf0e39fa362e733a65f7258c"
 
-  url "http://www.charlesproxy.com/assets/release/#{version}/charles-proxy-#{version}-applejava.dmg"
-  homepage 'http://www.charlesproxy.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.charlesproxy.com/assets/release/#{version}/charles-proxy-#{version}.dmg"
+  appcast "https://www.charlesproxy.com/latest.do"
+  name "Charles"
+  homepage "https://www.charlesproxy.com/"
 
-  app 'Charles.app'
+  app "Charles.app"
 
-  zap :delete => [
-                  '~/Library/Application Support/Charles',
-                  '~/Library/Preferences/com.xk72.charles.config',
-                 ]
+  uninstall_postflight do
+    stdout, * = system_command "/usr/bin/security",
+                               args: ["find-certificate", "-a", "-c", "Charles", "-Z"],
+                               sudo: true
+    hashes = stdout.lines.grep(/^SHA-256 hash:/) { |l| l.split(":").second.strip }
+    hashes.each do |h|
+      system_command "/usr/bin/security",
+                     args: ["delete-certificate", "-Z", h],
+                     sudo: true
+    end
+  end
+
+  uninstall quit:      "com.xk72.Charles",
+            launchctl: "com.xk72.Charles.ProxyHelper",
+            delete:    "/Library/PrivilegedHelperTools/com.xk72.Charles.ProxyHelper"
+
+  zap trash: [
+    "~/Library/Application Support/Charles",
+    "~/Library/Preferences/com.xk72.Charles.plist",
+    "~/Library/Preferences/com.xk72.charles.config",
+    "~/Library/Saved Application State/com.xk72.Charles.savedState",
+  ]
 end

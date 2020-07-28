@@ -1,14 +1,18 @@
-cask :v1 => 'ubar' do
-  version '2.4.7'
-  sha256 '81089a544fa8d37d1632b120811156160b2fb513a20e4d139928341564b2f552'
+cask "ubar" do
+  version "4.1.6"
+  sha256 "732a0c72234aaf11dadb507232e98bf782f0a3e73afdeeeee13f849ebac1417a"
 
-  url "http://www.brawersoftware.com/downloads/ubar/ubar#{version.gsub('.','')}.zip"
-  appcast 'http://brawersoftware.com/appcasts/feeds/ubar/ubar2.xml'
-  name 'uBar'
-  homepage 'http://brawersoftware.com/products/ubar'
-  license :commercial
+  url "https://www.brawersoftware.com/downloads/ubar/ubar#{version.no_dots}.zip"
+  appcast "https://brawersoftware.com/appcasts/feeds/ubar/ubar#{version.major}.xml"
+  name "uBar"
+  homepage "https://brawersoftware.com/products/ubar"
 
-  app 'uBar.app'
+  app "uBar.app"
 
-  depends_on :macos => '>= :mavericks'
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/ca.brawer.ubar.sfl*",
+    "~/Library/Application Support/uBar",
+    "~/Library/Caches/ca.brawer.uBar",
+    "~/Library/Preferences/ca.brawer.uBar.plist",
+  ]
 end

@@ -1,11 +1,11 @@
-cask :v1 => 'psychopy' do
-  version '1.81.00'
-  sha256 '121a3ee098ea6a978e7888da8de6dc3a096205455518aabf9e31edf21bbe0183'
+cask "psychopy" do
+  version "2020.1.3"
+  sha256 "bccf335b807d8934dfb55f7d6e654e9cd371e01d54268031be8717216221c348"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/psychpy/StandalonePsychoPy-#{version}-OSX.dmg"
-  homepage 'http://www.psychopy.org/'
-  license :oss
+  url "https://github.com/psychopy/psychopy/releases/download/#{version}/StandalonePsychoPy3-#{version}-MacOS.dmg"
+  appcast "https://github.com/psychopy/psychopy/releases.atom"
+  name "PsychoPy"
+  homepage "https://github.com/psychopy/psychopy"
 
-  app 'PsychoPy2.app'
+  app "PsychoPy3.app"
 end

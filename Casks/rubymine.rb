@@ -1,27 +1,29 @@
-cask :v1 => 'rubymine' do
-  version '7.0.4'
-  sha256 'a2340eec7652fefb1d6fc7eacd7338d04aac1106eff40d18ad4fe6d379f3c53a'
+cask "rubymine" do
+  version "2020.1.4,201.8743.13"
+  sha256 "a919542a7dc40d2793d499b8c94e20b8c8850619f65d25407f84ae1c476a1322"
 
-  url "http://download-cf.jetbrains.com/ruby/RubyMine-#{version}.dmg"
-  name 'RubyMine'
-  homepage 'http://www.jetbrains.com/ruby/'
-  license :commercial
+  url "https://download.jetbrains.com/ruby/RubyMine-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=RM&latest=true&type=release"
+  name "RubyMine"
+  homepage "https://www.jetbrains.com/ruby/"
 
-  app 'RubyMine.app'
+  auto_updates true
 
-  zap :delete => [
-                  "~/Library/Application Support/RubyMine#{version.gsub('.','')}",
-                  "~/Library/Preferences/RubyMine#{version.gsub('.','')}",
-                 ]
+  app "RubyMine.app"
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "mine") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-      brew cask install caskroom/homebrew-versions/java6
-
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap trash: [
+    "~/Library/Application Support/RubyMine#{version.major_minor}",
+    "~/Library/Caches/RubyMine#{version.major_minor}",
+    "~/Library/Logs/RubyMine#{version.major_minor}",
+    "~/Library/Preferences/RubyMine#{version.major_minor}",
+  ]
 end

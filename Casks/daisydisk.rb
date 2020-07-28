@@ -1,24 +1,22 @@
-cask :v1 => 'daisydisk' do
+cask "daisydisk" do
+  version "4.10"
+  sha256 "fdf7addeaf07c873337823c58a22b1d70e51f6ed3258b4e8013a05bb8d955a1c"
 
-  if MacOS.release == :snow_leopard
-    version '2.1.2'
-    sha256 'd0a606dee19e524d6fa7b79fd48b3b9865123ca4126fb8805f8e96c317b57b31'
-    url 'http://www.daisydiskapp.com/downloads/DaisyDisk_2_1_2.dmg'
-  else
-    version :latest
-    sha256 :no_check
-    url 'http://www.daisydiskapp.com/downloads/DaisyDisk.zip'
-  end
+  url "https://www.daisydiskapp.com/downloads/DaisyDisk.zip"
+  appcast "https://daisydiskapp.com/downloads/appcastReleaseNotes.php?appEdition=Standard&osVersion=10.15"
+  name "DaisyDisk"
+  homepage "https://daisydiskapp.com/"
 
-  appcast 'http://www.daisydiskapp.com/downloads/appcastFeed.php'
-  name 'DaisyDisk'
-  homepage 'http://www.daisydiskapp.com'
-  license :freemium
+  auto_updates true
 
-  app 'DaisyDisk.app'
+  app "DaisyDisk.app"
 
-  depends_on :macos => '>= :snow_leopard'
-  postflight do
-    suppress_move_to_applications
-  end
+  uninstall delete:    "/Library/PrivilegedHelperTools/com.daisydiskapp.DaisyDiskAdminHelper",
+            launchctl: "com.daisydiskapp.DaisyDiskAdminHelper"
+
+  zap trash: [
+    "~/Library/Application Support/DaisyDisk",
+    "~/Library/Caches/com.daisydiskapp.DaisyDiskStandAlone",
+    "~/Library/Preferences/com.daisydiskapp.DaisyDiskStandAlone.plist",
+  ]
 end

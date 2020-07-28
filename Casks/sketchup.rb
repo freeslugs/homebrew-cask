@@ -1,17 +1,24 @@
-cask :v1 => 'sketchup' do
-  version :latest
-  sha256 :no_check
+cask "sketchup" do
+  version "2017,3-116-90851"
+  sha256 "a534d77d1ea9622b19463258abf21768cb8bb8126734bd40329dd4088b04d79f"
 
-  # downloads can be found at http://www.sketchup.com/download/all
-  # trimble.com is the official download host per the vendor homepage
-  url 'https://dl.trimble.com/sketchup/SketchUpMake-en.dmg'
-  homepage 'http://www.sketchup.com/intl/en/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # downloads can be found at https://www.sketchup.com/download/all
+  # dl.trimble.com/sketchup/ was verified as official when first introduced to the cask
+  url "https://www.sketchup.com/sketchup/#{version.before_comma}/en/sketchupmake-#{version.before_comma}-#{version.after_comma}-en-dmg"
+  name "SketchUp"
+  homepage "https://www.sketchup.com/"
 
-  suite 'SketchUp 2015'
+  suite "SketchUp #{version.before_comma}"
 
-  zap :delete => [
-                  '~/Library/Application Support/SketchUp 2015',
-                  '~/Library/Caches/com.sketchup.SketchUp.2015',
-                 ]
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.sketchup.sketchup.#{version.before_comma}.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.sketchup.stylebuilder.#{version.before_comma}.sfl*",
+    "~/Library/Application Support/SketchUp #{version.before_comma}",
+    "~/Library/Application Support/Trimble Connect for SketchUp",
+    "~/Library/Caches/com.sketchup.SketchUp.#{version.before_comma}",
+    "~/Library/Cookies/com.sketchup.SketchUp.#{version.before_comma}.binarycookies",
+    "~/Library/Preferences/com.sketchup.SketchUp.#{version.before_comma}.plist",
+    "~/Library/Preferences/com.sketchup.SketchUp.#{version.before_comma}.plist",
+    "~/Library/Preferences/Trimble.SketchUp-Helper.plist",
+  ]
 end

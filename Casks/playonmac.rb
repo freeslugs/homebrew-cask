@@ -1,10 +1,11 @@
-cask :v1 => 'playonmac' do
-  version '4.2.6'
-  sha256 '171b4470c48a151e2af468bfb11e86c312603d5eb43f15b7b91020e6806ffed1'
+cask "playonmac" do
+  version "4.4.1"
+  sha256 "6d7ea936dd0cf97400a23605ac195e387074f2e49d3a0a7fb2780fa03ff90e62"
 
-  url "http://repository.playonmac.com/PlayOnMac/PlayOnMac_#{version}.dmg"
-  homepage 'http://www.playonmac.com/en'
-  license :gpl    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://repository.playonmac.com/PlayOnMac/PlayOnMac_#{version}.dmg"
+  appcast "https://repository.playonmac.com/PlayOnMac/"
+  name "PlayOnMac"
+  homepage "https://www.playonmac.com/"
 
-  app 'PlayOnMac.app'
+  app "PlayOnMac.app"
 end

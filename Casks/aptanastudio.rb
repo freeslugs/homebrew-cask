@@ -1,11 +1,12 @@
-cask :v1 => 'aptanastudio' do
-  version '3.6.0'
-  sha256 'd2207934d485cca10d6ad624a67d9f21c1bef46e0a9d58a9db334cec7fb55948'
+cask "aptanastudio" do
+  version "3.7.2.201807301111"
+  sha256 "02d0dccd808d1dd7a16ef1aab199e472726b8476cb65728f1f1ad06f6eca2363"
 
-  url "http://download.aptana.com/studio3/standalone/#{version}/mac/Aptana_Studio_3_Setup_#{version}.dmg"
-  name 'Aptana Studio'
-  homepage 'http://www.aptana.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/aptana/studio3/ was verified as official when first introduced to the cask
+  url "https://github.com/aptana/studio3/releases/download/#{version}/Aptana_Studio_#{version.major}.dmg"
+  appcast "https://github.com/aptana/studio#{version.major}/releases.atom"
+  name "Aptana Studio"
+  homepage "http://www.aptana.com/"
 
-  app 'Aptana Studio 3/AptanaStudio3.app'
+  app "AptanaStudio.app"
 end

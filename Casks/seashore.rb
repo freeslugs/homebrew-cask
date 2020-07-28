@@ -1,10 +1,11 @@
-cask :v1 => 'seashore' do
-  version '0.5.1'
-  sha256 '96463a3642f162a20b160d8df273e9b27a5fdbf9708bee6ebf6a6c8528047765'
+cask "seashore" do
+  version "2.5.9"
+  sha256 "511d1bed52249b81d4dddf10013bee1d2f5e8f0e7f0df54ccf0d7feffd69ec2d"
 
-  url 'http://downloads.sourceforge.net/sourceforge/seashore/Seashore.zip'
-  homepage 'http://seashore.sourceforge.net/'
-  license :gpl
+  url "https://github.com/robaho/seashore/releases/download/v#{version}/seashore-bin-#{version}.dmg"
+  appcast "https://github.com/robaho/seashore/releases.atom"
+  name "Seashore"
+  homepage "https://github.com/robaho/seashore"
 
-  app 'Seashore.app'
+  app "Seashore.app"
 end

@@ -1,14 +1,12 @@
-cask :v1 => 'satellite-eyes' do
-  version '1.4.0'
-  sha256 '9ef7e0e5e4ab5a341e4b7bfa2528e788caa2ad73d29949a305e1dfab94bb2574'
+cask "satellite-eyes" do
+  version "1.4.3"
+  sha256 "512ada3ea57aa99853b86e625e5f6675119c85f6308bdbf52adce49513dc1321"
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # satellite-eyes.s3.amazonaws.com/ was verified as official when first introduced to the cask
   url "https://satellite-eyes.s3.amazonaws.com/satellite-eyes-#{version}.zip"
-  appcast 'https://satellite-eyes.s3.amazonaws.com/appcast.xml',
-          :sha256 => '5853ce38284dd959729ea64a423c359d6f2e383be3f062b38825762dfb97860b'
-  name 'Satellite Eyes'
-  homepage 'http://satelliteeyes.tomtaylor.co.uk/'
-  license :apache
+  appcast "https://satellite-eyes.s3.amazonaws.com/appcast.xml"
+  name "Satellite Eyes"
+  homepage "https://satelliteeyes.tomtaylor.co.uk/"
 
-  app 'Satellite Eyes.app'
+  app "Satellite Eyes.app"
 end

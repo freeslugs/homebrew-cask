@@ -1,12 +1,12 @@
-cask :v1 => 'bino' do
-  version '1.4.4'
-  sha256 '924aaef6e95d969bded524647b7a6a35e1c9a8478a7bb855972cfefe25165743'
+cask "bino" do
+  version "1.6.6"
+  sha256 "31f0c7590511c9c5bfb92f488de82565bdc4c945b934a1e8cd40a110beb49fd5"
 
-  # free.fr is the official download host per the vendor homepage
-  url "http://devernay.free.fr/hacks/bino/Bino-#{version}-OSX-SnowLeopard-GPL.zip"
-  name 'Bino'
-  homepage 'http://bino3d.org'
-  license :gpl
+  # devernay.free.fr/hacks/bino/ was verified as official when first introduced to the cask
+  url "http://devernay.free.fr/hacks/bino/Bino-#{version}-OSX-Mavericks-GPL.zip"
+  appcast "http://devernay.free.fr/hacks/bino/"
+  name "Bino"
+  homepage "https://bino3d.org/"
 
-  app 'Bino.app'
+  app "Bino.app"
 end

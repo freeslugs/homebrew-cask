@@ -1,13 +1,12 @@
-cask :v1 => 'avogadro' do
-  version '1.1.1'
-  sha256 '8e63b7ec07555fd30ea2c22ed7f070e1b692fd2c9fbb60a3c8e0ddd411bb6477'
+cask "avogadro" do
+  version "1.90.0"
+  sha256 "71392555d2d38a486ea58d4a522304b59855fa8c3f71d88316bf3828f7a064da"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/avogadro/Avogadro-#{version}.dmg.zip"
-  name 'Avogadro'
-  homepage 'http://avogadro.openmolecules.net/'
-  license :gpl
+  # sourceforge.net/avogadro/avogadro2/ was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/avogadro/avogadro2/Avogadro2-#{version}-Darwin.dmg"
+  appcast "https://sourceforge.net/projects/avogadro/rss"
+  name "Avogadro"
+  homepage "https://avogadro.cc/"
 
-  container :nested => "Avogadro-#{version}.dmg"
-  app 'Avogadro.app'
+  app "Avogadro2.app"
 end

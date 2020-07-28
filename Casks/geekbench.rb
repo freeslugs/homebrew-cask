@@ -1,12 +1,23 @@
-cask :v1 => 'geekbench' do
-  version '3.3.0'
-  sha256 '5e511bddd2dcee9e85c25fd21063e9682c06c3d44995b7d83d601d6360ee77c0'
+cask "geekbench" do
+  if MacOS.version <= :sierra
+    version "4.4.2"
+    sha256 "3c46e630a28a0752afd702fc1cd379edd2420001be22302c932e61751284c0cc"
+  else
+    version "5.2.3"
+    sha256 "51907120ea71b2100716fa9a37e914b2eb82ceac648ff2dbc2ba5156831e89fb"
+  end
 
-  url "http://cdn.primatelabs.com/Geekbench-#{version}-Mac.zip"
-  appcast 'http://www.primatelabs.com/appcast/geekbench3.xml',
-          :sha256 => 'e16473af8653e0c163f02ad054e9e6b7b3c5e99c4768da123d8e21c8f8ffeeaf'
-  homepage 'http://www.primatelabs.com/geekbench/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://cdn.geekbench.com/Geekbench-#{version}-Mac.zip"
+  appcast "https://www.primatelabs.com/appcast/geekbench#{version.major}.xml"
+  name "Geekbench"
+  homepage "https://www.geekbench.com/"
 
-  app 'Geekbench 3.app'
+  auto_updates true
+
+  app "Geekbench #{version.major}.app"
+
+  zap trash: [
+    "~/Library/Caches/com.primatelabs.Geekbench#{version.major}",
+    "~/Library/Preferences/com.primatelabs.Geekbench#{version.major}.plist",
+  ]
 end

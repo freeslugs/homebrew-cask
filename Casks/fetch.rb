@@ -1,10 +1,11 @@
-cask :v1 => 'fetch' do
-  version '5.7.5'
-  sha256 '8f154a7e353dc6ab672d794b019fa5f298010a366379eda3cfa9a1c1c9d71e0d'
+cask "fetch" do
+  version "5.8.1"
+  sha256 "80e824a2fb483f08827a53d61bf07df3ae3f4e6243ff4811bd1ffbeaa48eedc2"
 
-  url "http://fetchsoftworks.com/fetch/download/Fetch_#{version}.dmg?direct=1"
-  homepage 'http://fetchsoftworks.com/fetch/'
-  license :commercial
+  url "https://fetchsoftworks.com/fetch/download/Fetch_#{version}.zip"
+  appcast "https://updates.fetchsoftworks.com/list/fetch-#{version.major}K0-release.xml"
+  name "Fetch"
+  homepage "https://fetchsoftworks.com/fetch/"
 
-  app 'Fetch.app'
+  app "Fetch.app"
 end

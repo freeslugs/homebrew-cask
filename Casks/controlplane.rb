@@ -1,15 +1,14 @@
-cask :v1 => 'controlplane' do
-  version '1.5.6'
-  sha256 '5d6ed527f6a127ab94962458b45d2a4808d79f2be1c56af019ca6102fee8248d'
+cask "controlplane" do
+  version "1.6.7"
+  sha256 "beb444b8117ed91898921a6babc384501dfd92679f5b718fceb6d3aa7a0bf651"
 
-  url "http://www.controlplaneapp.com/download/#{version}"
-  appcast 'http://www.controlplaneapp.com/appcast.xml',
-          :sha256 => 'a2fdf304ec2c9ee7fbc7c6a2e9db16473169a97926acbbe65a6c4b891adcbdcd'
-  name 'ControlPlane'
-  homepage 'http://www.controlplaneapp.com/'
-  license :gpl
+  # github.com/dustinrue/ControlPlane/ was verified as official when first introduced to the cask
+  url "https://github.com/dustinrue/ControlPlane/releases/download/#{version}/ControlPlane-#{version}.dmg"
+  appcast "https://github.com/dustinrue/ControlPlane/releases.atom"
+  name "ControlPlane"
+  homepage "https://www.controlplaneapp.com/"
 
-  app 'ControlPlane.app'
+  app "ControlPlane.app"
 
-  zap :delete => '~/Library/Preferences/com.dustinrue.ControlPlane.plist'
+  zap trash: "~/Library/Preferences/com.dustinrue.ControlPlane.plist"
 end

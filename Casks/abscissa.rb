@@ -1,11 +1,11 @@
-cask :v1 => 'abscissa' do
-  version '3.4.3'
-  sha256 '4ef1744451548aed19665cf71102e3ca8bb2af4ee02e45c6a18721a7b3c91a76'
+cask "abscissa" do
+  version "4.0.3"
+  sha256 "348162e44c506fc0a3f0259c226d09ebc3122f74778a173d99e4fdbe26f81675"
 
   url "http://rbruehl.macbay.de/Abscissa/Downloads/Abscissa-#{version}.zip"
-  name 'Abscissa'
-  homepage 'http://rbruehl.macbay.de/Abscissa'
-  license :gratis
+  appcast "http://rbruehl.macbay.de/Abscissa/Downloads/"
+  name "Abscissa"
+  homepage "http://rbruehl.macbay.de/Abscissa/"
 
-  app 'Abscissa.app'
+  app "Abscissa.app"
 end

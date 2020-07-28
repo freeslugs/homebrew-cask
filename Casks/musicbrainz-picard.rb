@@ -1,12 +1,21 @@
-cask :v1 => 'musicbrainz-picard' do
-  version '1.3.2'
-  sha256 'e3a3139878d01cf4edd2fad20a9a6ced5d3ea669cb919e310a64947082dfdc15'
+cask "musicbrainz-picard" do
+  version "2.3.2"
+  sha256 "5853a8b2612126eca0643f40bac511fca2d958b0fcc71cc93646494582b22694"
 
-  url "ftp://ftp.musicbrainz.org/pub/musicbrainz/picard/MusicBrainz-Picard-#{version}.dmg"
-  name 'Picard'
-  homepage 'http://picard.musicbrainz.org'
-  license :gpl
-  tags :vendor => 'MusicBrainz'
+  # musicbrainz.osuosl.org/pub/ was verified as official when first introduced to the cask
+  url "https://musicbrainz.osuosl.org/pub/musicbrainz/picard/MusicBrainz-Picard-#{version}.dmg"
+  appcast "https://picard.musicbrainz.org/downloads/"
+  name "MusicBrainz Picard"
+  homepage "https://picard.musicbrainz.org/"
 
-  app 'MusicBrainz Picard.app'
+  depends_on macos: ">= :sierra"
+
+  app "MusicBrainz Picard.app"
+
+  zap trash: [
+    "~/.config/MusicBrainz",
+    "~/Library/Caches/MusicBrainz",
+    "~/Library/Preferences/org.musicbrainz.picard.plist",
+    "~/Library/Saved Application State/org.musicbrainz.picard.savedState",
+  ]
 end

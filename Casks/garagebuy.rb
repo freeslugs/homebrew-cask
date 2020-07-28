@@ -1,12 +1,14 @@
-cask :v1 => 'garagebuy' do
-  version '3.1.1'
-  sha256 '4f7b7b941a40be516d923338df84a43073149f785d123ea2ff938f412757f8cf'
+cask "garagebuy" do
+  version "3.4"
+  sha256 "8f51a225baa867b45ad98188a0eb360eee8dbfa7bb320514daf84e6ba80051b0"
 
-  # iwascoding.de is the official download host per the vendor homepage
-  url "http://www.iwascoding.de/downloads/GarageBuy_#{version}.dmg"
-  name 'GarageBuy'
-  homepage 'http://www.iwascoding.com/GarageBuy'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # iwascoding.de/ was verified as official when first introduced to the cask
+  url "https://www.iwascoding.de/downloads/GarageBuy_#{version}.dmg"
+  appcast "https://www.iwascoding.com/GarageBuy/Downloads.html"
+  name "GarageBuy"
+  homepage "https://www.iwascoding.com/GarageBuy/"
 
-  app 'GarageBuy.app'
+  depends_on macos: ">= :sierra"
+
+  app "GarageBuy.app"
 end

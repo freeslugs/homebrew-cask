@@ -1,13 +1,14 @@
-cask :v1 => 'yacreader' do
-  version '7.2.0'
-  sha256 'e671e2c7914c070bc5ed7144db147d9ab6d6f1bc8a8272673e6dc39cb52b3101'
+cask "yacreader" do
+  version "9.6.2.1909283"
+  sha256 "92152f17b4ff072c3463ae045da5d232c2f59cb77267a0eeebb8af5de7d29214"
 
-  # bitbucket.org is the official download host per the vendor homepage
-  url "https://bitbucket.org/luisangelsm/yacreader/downloads/YACReader-#{version}-MacOSX-Intel.dmg"
-  name 'YACReader'
-  homepage 'http://www.yacreader.com'
-  license :gpl
+  # github.com/YACReader/yacreader/ was verified as official when first introduced to the cask
+  url "https://github.com/YACReader/yacreader/releases/download/#{version.major_minor_patch}/YACReader-#{version}.MacOSX-Intel.dmg"
+  appcast "https://github.com/YACReader/yacreader/releases.atom",
+          must_contain: version.major_minor_patch
+  name "YACReader"
+  homepage "https://www.yacreader.com/"
 
-  app 'YACReader.app'
-  app 'YACReaderLibrary.app'
+  app "YACReader.app"
+  app "YACReaderLibrary.app"
 end

@@ -1,10 +1,14 @@
-cask :v1 => 'vmware-horizon-client' do
-  version '3.1.0-2096621'
-  sha256 '2ef9b6a377e722f03c1b8c10ea9e7df5c56b5e3973e370905602b1ce5e4ed17b'
+cask "vmware-horizon-client" do
+  version "5.4.3-16499473,CART21FQ1"
+  sha256 "3fe45ce4f1a84049ed9d7e445fdc0397da7c8b420ae870e686fd66876b2003d6"
 
-  url "https://download3.vmware.com/software/view/viewclients/VMware-Horizon-Client-#{version}.dmg"
-  homepage 'http://www.vmware.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download3.vmware.com/software/view/viewclients/#{version.after_comma}/VMware-Horizon-Client-#{version.before_comma}.dmg"
+  appcast "https://docs.vmware.com/en/VMware-Horizon-Client-for-Mac/",
+          must_contain: version.major_minor
+  name "VMware Horizon Client"
+  homepage "https://www.vmware.com/"
 
-  app 'VMware Horizon Client.app'
+  depends_on macos: ">= :sierra"
+
+  app "VMware Horizon Client.app"
 end

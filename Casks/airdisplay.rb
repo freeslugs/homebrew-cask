@@ -1,13 +1,18 @@
-cask :v1 => 'airdisplay' do
-  version :latest
-  sha256 :no_check
+cask "airdisplay" do
+  version "3.4.2"
+  sha256 "272d14f33b3a4a16e5e0e1ebb2d519db4e0e3da17f95f77c91455b354bee7ee7"
 
-  url 'http://downloads.avatron.com/AirDisplayInstaller.zip'
-  name 'Air Display'
-  homepage 'http://avatron.com/apps/air-display/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.avatron.com/updates/software/airdisplay/ad#{version.no_dots}.zip"
+  appcast "https://www.avatron.com/updates/software/airdisplay/appcast.xml"
+  name "Air Display"
+  homepage "https://avatron.com/applications/air-display/"
 
-  pkg 'Air Display Installer.pkg'
+  depends_on macos: ">= :mojave"
 
-  uninstall :pkgutil => 'com.avatron.pkg.AirDisplay'
+  pkg "Air Display Installer.pkg"
+
+  uninstall pkgutil: [
+    "com.avatron.pkg.AirDisplay",
+    "com.avatron.pkg.AirDisplayHost2",
+  ]
 end

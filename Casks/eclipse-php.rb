@@ -1,18 +1,11 @@
-cask :v1 => 'eclipse-php' do
-  version '4.4.1'
+cask "eclipse-php" do
+  version "4.16.0,2020-06:R"
+  sha256 "f8cf367de4937397f24da6e5efcb6446b75d2a54ed6ec1bb564f2e31a9760cac"
 
-  if Hardware::CPU.is_32_bit?
-    sha256 '807940d356d5e860d8a282187f55c5055399af75ed35eb01a3a4bcfab44b18a4'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1a/eclipse-php-luna-SR1a-macosx-cocoa.tar.gz'
-  else
-    sha256 '0c1e3461dde4dfa5faa0b2692431c195a25c58d1db6f5ac1b3547eddd20b6fff'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR1a/eclipse-php-luna-SR1a-macosx-cocoa-x86_64.tar.gz'
-  end
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-php-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name "Eclipse IDE for PHP Developers"
+  homepage "https://eclipse.org/"
 
-  name 'Eclipse'
-  name 'Eclipse for PHP Developers'
-  homepage 'http://eclipse.org/'
-  license :eclipse
-
-  app 'eclipse/Eclipse.app'
+  # Renamed to avoid conflict with other Eclipse.
+  app "Eclipse.app", target: "Eclipse PHP.app"
 end

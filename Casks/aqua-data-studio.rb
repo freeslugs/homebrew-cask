@@ -1,12 +1,11 @@
-cask :v1 => 'aqua-data-studio' do
-  version '15.0.14'
-  sha256 '49f0fa90f43e67da2641befc6431df61e755200353faaaad1ab4f39fe1e000d4'
+cask "aqua-data-studio" do
+  version "20.6.0-4"
+  sha256 "53e70f183e924514ac27ab64f2c7508de1e510cdb74c1a13cbdc147f131bd535"
 
-  url "http://www.aquafold.com/download/v15.0.0/osx/ads-osx-#{version}.tar.gz"
-  name 'Aqua Data Studio'
-  homepage 'http://www.aquafold.com/aquadatastudio.html'
-  license :commercial
-  tags :vendor => 'Aquafold'
+  url "http://downloads.aquafold.com/v#{version.major_minor}.0/osx/ads-osx-#{version}.tar.gz"
+  appcast "https://www.aquafold.com/aquadatastudio_downloads"
+  name "Aquafold Aqua Data Studio"
+  homepage "https://www.aquafold.com/aquadatastudio"
 
-  app 'Aqua Data Studio.app'
+  app "Aqua Data Studio.app"
 end

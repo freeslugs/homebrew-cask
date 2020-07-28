@@ -1,12 +1,17 @@
-cask :v1 => 'openvanilla' do
-  version '1.0.11'
-  sha256 '35745a0767e4131efbdcb34459c5a7b44126aa11e73af80310b813bf6efe1bc5'
+cask "openvanilla" do
+  version "1.5.0,3260"
+  sha256 "2d180b90b0a8e3e0922fedb8a45cbf6295baff8cd076a164e472a7c00164afba"
 
-  url "https://app.openvanilla.org/file/openvanilla/OpenVanilla-Installer-Mac-#{version}.zip"
-  homepage 'http://openvanilla.org/'
-  license :mit
+  # github.com/openvanilla/openvanilla/ was verified as official when first introduced to the cask
+  url "https://github.com/openvanilla/openvanilla/releases/download/#{version.before_comma}/OpenVanilla-Installer-Mac-#{version.before_comma}.zip"
+  appcast "https://github.com/openvanilla/openvanilla/releases.atom"
+  name "OpenVanilla"
+  homepage "https://openvanilla.org/"
 
-  input_method 'OpenVanillaInstaller.app/Contents/Resources/OpenVanilla.app'
+  container nested: "OpenVanillaInstaller.app/Contents/Resources/NotarizedArchives/OpenVanilla-r#{version.after_comma}.zip"
+
+  input_method "OpenVanilla.app"
+
   caveats do
     logout
   end

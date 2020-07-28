@@ -1,14 +1,14 @@
-cask :v1 => 'amazon-workspaces' do
-  version :latest
-  sha256 :no_check
+cask "amazon-workspaces" do
+  version "3.0.8.1194"
+  sha256 "ab183dd65afb265797d7439e94f97b518297b1dafd14101c646ce593090f67ec"
 
-  # cloudfront.net is the official download host per the vendor homepage
-  url 'https://d2td7dqidlhjx7.cloudfront.net/prod/global/osx/WorkSpaces.pkg'
-  name 'Amazon Workspaces'
-  homepage 'https://aws.amazon.com/workspaces/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # workspaces-client-updates.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://workspaces-client-updates.s3.amazonaws.com/prod/iad/osx/WorkSpaces.pkg"
+  appcast "https://d2td7dqidlhjx7.cloudfront.net/prod/iad/osx/WorkSpacesAppCast_macOS_20171023.xml"
+  name "Amazon Workspaces"
+  homepage "https://clients.amazonworkspaces.com/"
 
-  pkg 'WorkSpaces.pkg'
+  pkg "WorkSpaces.pkg"
 
-  uninstall :pkgutil => 'com.amazon.workspaces'
+  uninstall pkgutil: "com.amazon.workspaces"
 end

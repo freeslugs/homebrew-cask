@@ -1,11 +1,12 @@
-cask :v1 => 'twine' do
-  version '1.4.1'
-  sha256 '717e0f7849f8216a7bae68c66656cf0e3cd0496c8a9d95e3c61e175d56f010e4'
+cask "twine" do
+  version "2.3.9"
+  sha256 "b6afb15ff3f496f88a42e2f268d11875df4d206376cc851f3911bd41ddc58ec5"
 
-  url "http://twinery.org/downloads/twine_#{version}_osx.zip"
-  name 'Twine'
-  homepage 'http://twinery.org/'
-  license :gpl
+  # github.com/klembot/twinejs/ was verified as official when first introduced to the cask
+  url "https://github.com/klembot/twinejs/releases/download/#{version}/twine_#{version}_macos.dmg"
+  appcast "https://github.com/klembot/twinejs/releases.atom"
+  name "Twine"
+  homepage "https://twinery.org/"
 
-  app 'Twine.app'
+  app "Twine.app"
 end

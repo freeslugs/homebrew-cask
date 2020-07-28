@@ -1,17 +1,66 @@
-cask :v1 => 'virtualbox' do
-  version '4.3.24-98716'
-  sha256 'c6d629ca2f5a470b03c48849d2f6c991382c45da5c84255d3c73e78ad5200389'
+cask "virtualbox" do
+  version "6.1.12,139181"
+  sha256 "96c45572213e68fb58ee6669f99caf1126e61495de7e710363350e07f3a1c4d6"
 
-  url "http://download.virtualbox.org/virtualbox/#{version.sub(/-.*$/, '')}/VirtualBox-#{version}-OSX.dmg"
-  name 'VirtualBox'
-  homepage 'http://www.virtualbox.org'
-  license :gpl
-  tags :vendor => 'Oracle'
+  url "https://download.virtualbox.org/virtualbox/#{version.before_comma}/VirtualBox-#{version.before_comma}-#{version.after_comma}-OSX.dmg"
+  appcast "https://download.virtualbox.org/virtualbox/LATEST.TXT"
+  name "Oracle VirtualBox"
+  homepage "https://www.virtualbox.org/"
 
-  pkg 'VirtualBox.pkg'
-  binary '/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
-  binary '/Applications/VirtualBox.app/Contents/MacOS/VBoxHeadless'
+  conflicts_with cask: "virtualbox-beta"
 
-  uninstall :script => { :executable => 'VirtualBox_Uninstall.tool', :args => %w[--unattended] },
-            :pkgutil => 'org.virtualbox.pkg.*'
+  pkg "VirtualBox.pkg",
+      choices: [
+        {
+          "choiceIdentifier" => "choiceVBoxKEXTs",
+          "choiceAttribute"  => "selected",
+          "attributeSetting" => 1,
+        },
+        {
+          "choiceIdentifier" => "choiceVBox",
+          "choiceAttribute"  => "selected",
+          "attributeSetting" => 1,
+        },
+        {
+          "choiceIdentifier" => "choiceVBoxCLI",
+          "choiceAttribute"  => "selected",
+          "attributeSetting" => 1,
+        },
+        {
+          "choiceIdentifier" => "choiceOSXFuseCore",
+          "choiceAttribute"  => "selected",
+          "attributeSetting" => 0,
+        },
+      ]
+
+  postflight do
+    # If VirtualBox is installed before `/usr/local/lib/pkgconfig` is created by Homebrew, it creates it itself
+    # with incorrect permissions that break other packages
+    # See https://github.com/Homebrew/homebrew-cask/issues/68730#issuecomment-534363026
+    set_ownership "/usr/local/lib/pkgconfig"
+  end
+
+  uninstall script:  {
+    executable: "VirtualBox_Uninstall.tool",
+    args:       ["--unattended"],
+    sudo:       true,
+  },
+            pkgutil: "org.virtualbox.pkg.*",
+            delete:  "/usr/local/bin/vboximg-mount"
+
+  zap trash: [
+    "/Library/Application Support/VirtualBox",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.virtualbox.app.virtualbox.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.virtualbox.app.virtualboxvm.sfl*",
+    "~/Library/Preferences/org.virtualbox.app.VirtualBox.plist",
+    "~/Library/Preferences/org.virtualbox.app.VirtualBoxVM.plist",
+    "~/Library/Saved Application State/org.virtualbox.app.VirtualBox.savedState",
+    "~/Library/Saved Application State/org.virtualbox.app.VirtualBoxVM.savedState",
+    "~/Library/VirtualBox",
+  ],
+      rmdir: "~/VirtualBox VMs"
+
+  caveats do
+    kext
+  end
 end

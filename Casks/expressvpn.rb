@@ -1,16 +1,19 @@
-cask :v1 => 'expressvpn' do
-  version '4.0.1.288'
-  sha256 '720f03e3c64e3d84a18f92e5055eadb7df6dd75feee831330be50802a836bc16'
+cask "expressvpn" do
+  version "7.9.4.10"
+  sha256 "2ba96c120d851ba026848efa30a57f43a4f362c56ac6bc5d283b2a11fafe0c78"
 
-  url "https://www.expressvpn.com/4568726248/mac/expressvpn-install_v#{version}.pkg"
-  name 'ExpressVPN'
-  homepage 'https://www.expressvpn.com'
-  license :commercial
+  url "https://download.expressvpn.xyz/clients/mac/expressvpn_mac_#{version}_release.pkg"
+  appcast "https://www.expressvpn.xyz/vpn-software/vpn-mac"
+  name "ExpressVPN"
+  homepage "https://www.expressvpn.xyz/vpn-software/vpn-mac/"
 
-  pkg "expressvpn-install_v#{version}.pkg"
+  auto_updates true
 
-  uninstall :pkgutil => 'com.expressvpn.ExpressVPN',
-            :quit => 'com.expressvpn.ExpressVPN'
+  pkg "expressvpn_mac_#{version}_release.pkg"
 
-  depends_on :macos => '>= :yosemite'
+  uninstall script:  {
+    executable: "#{appdir}/ExpressVPN.app/Contents/Resources/uninstall.tool",
+    input:      ["Yes"],
+  },
+            pkgutil: "com.expressvpn.ExpressVPN"
 end

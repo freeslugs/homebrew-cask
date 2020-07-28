@@ -1,11 +1,12 @@
-cask :v1 => 'keystore-explorer' do
-  version '5.0.1'
-  sha256 '64932fc5a26bd4de32d952b73431307c9a7c3100c1b11e76ab9f55e2a2cf7d49'
+cask "keystore-explorer" do
+  version "5.4.3"
+  sha256 "04bb9a03f56fb279fb9778bd440179b69cd6b2455da02ed1304c73e736afd26d"
 
-  url "http://downloads.sourceforge.net/project/keystore-explorer/KSE%20#{version}/kse-#{version.gsub('.','')}.dmg"
-  name 'KeyStore Explorer'
-  homepage 'http://keystore-explorer.sourceforge.net/'
-  license :gpl
+  # github.com/kaikramer/keystore-explorer/ was verified as official when first introduced to the cask
+  url "https://github.com/kaikramer/keystore-explorer/releases/download/v#{version}/kse-#{version.no_dots}.dmg"
+  appcast "https://github.com/kaikramer/keystore-explorer/releases.atom"
+  name "KeyStore Explorer"
+  homepage "https://keystore-explorer.org/"
 
-  app "KeyStore Explorer #{version}.app"
+  app "KeyStore Explorer.app"
 end

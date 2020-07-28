@@ -1,12 +1,11 @@
-cask :v1 => 'easyfind' do
-  version '4.9.3'
-  sha256 'eb57b21fa28a84116072e80a4c19b0340d5879f407e9f16bf606760b19e647ed'
+cask "easyfind" do
+  version "5.0"
+  sha256 "a389fc3c35a7d5111960c4ce5e631ad3b99ed1dd5534299b577a68cbd06bc327"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/DTWebsiteSupport/download/freeware/easyfind/#{version}/EasyFind.app.zip"
-  name 'EasyFind'
-  homepage 'http://www.devontechnologies.com/download/products.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://download.devontechnologies.com/download/freeware/easyfind/#{version}/EasyFind.app.zip"
+  appcast "https://www.devontechnologies.com/apps/freeware"
+  name "EasyFind"
+  homepage "https://www.devontechnologies.com/apps/freeware"
 
-  app 'EasyFind.app'
+  app "EasyFind.app"
 end

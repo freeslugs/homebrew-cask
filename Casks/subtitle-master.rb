@@ -1,12 +1,11 @@
-cask :v1 => 'subtitle-master' do
-  version '0.6'
-  sha256 'c2a4fe372f0840cdbb4fb8d6ae9d689b516d97a04ea082773308d6a65dc75f60'
+cask "subtitle-master" do
+  version "2.0.1"
+  sha256 "8936495ef4aefe9bf59c28dd4d5a92574c194062067c318667e3f55428245304"
 
-  url "http://updates.subtitlemaster.com/app/Subtitle%20Master%20#{version}.zip"
-  appcast 'http://updates.subtitlemaster.com',
-          :sha256 => '07bc4aa2178fd8851caa8b4c78050c48a02358d5afc59c110d715faffc2e2479'
-  homepage 'http://subtitlemaster.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://github.com/subtitle-master/subtitlemaster/releases/download/v#{version}-SNAPSHOT/Subtitle.Master-osx-v#{version}-SNAPSHOT.zip"
+  appcast "https://github.com/subtitle-master/subtitlemaster/releases.atom"
+  name "Subtitle Master"
+  homepage "https://github.com/subtitle-master/subtitlemaster/releases"
 
-  app 'Subtitle Master.app'
+  app "Subtitle Master.app"
 end

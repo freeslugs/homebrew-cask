@@ -1,17 +1,23 @@
-cask :v1 => 'paragon-ntfs' do
-  version :latest
-  sha256 :no_check
+cask "paragon-ntfs" do
+  version "15"
+  sha256 :no_check # required as upstream package is updated in-place
 
-  url 'http://dl.paragon-software.com/demo/ntfsmac_trial_u.dmg'
-  homepage 'http://www.paragon-software.com/home/ntfs-mac/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dl.paragon-software.com/demo/ntfsmac#{version}_trial.dmg"
+  name "Paragon NTFS for Mac"
+  homepage "https://www.paragon-software.com/ufsdhome/ntfs-mac/"
 
-  pkg 'FSInstaller.app/Contents/Resources/Paragon NTFS for Mac OS X.pkg'
+  auto_updates true
 
-  uninstall :pkgutil => 'com.paragon-software.filesystems.NTFS.pkg',
-            :script => 'Uninstall.app/Contents/Resources/uninstall.sh',
-            :launchctl => [
-                           'com.paragon.ntfs*',
-                           'com.paragon.updater'
-                          ]
+  installer manual: "FSInstaller.app"
+
+  uninstall kext:      "com.paragon-software.filesystems.ntfs",
+            launchctl: "com.paragon-software.ntfs*",
+            pkgutil:   "com.paragon-software.pkg.ntfs",
+            quit:      "com.paragon-software.ntfs*",
+            signal:    [
+              ["KILL", "com.paragon-software.ntfs.FSMenuApp"],
+              ["KILL", "com.paragon-software.ntfs.notification-agent"],
+            ]
+
+  zap trash: "~/Library/Preferences/com.paragon-software.ntfs.fsapp.plist"
 end

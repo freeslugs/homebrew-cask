@@ -1,12 +1,11 @@
-cask :v1 => 'beatport-pro' do
-  version '2.1.1_137'
-  sha256 '62526d08723e5a54953473a2c1530e5b298ab2a50a491dd2a846bf7c0b9499cb'
+cask "beatport-pro" do
+  version "2.4.5_188"
+  sha256 "8582347568c236695c24855d2fc32311961f58fe8b2b240819cf9eaa327bbd66"
 
-  url "http://pro.beatport.com/mac/#{version}/beatportpro_#{version}.dmg"
-  name 'Beatport'
-  name 'Beatport Pro'
-  homepage 'http://pro.beatport.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://pro.beatport.com/mac/#{version}/beatportpro_#{version}.zip"
+  appcast "https://pro.beatport.com/mac/appcast.xml"
+  name "Beatport Pro"
+  homepage "https://www.beatport.com/"
 
-  app 'Beatport Pro.app'
+  app "Beatport Pro.app"
 end

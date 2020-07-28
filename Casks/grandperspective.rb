@@ -1,12 +1,19 @@
-cask :v1 => 'grandperspective' do
-  version '1.5.1'
-  sha256 '92204458042a337c1091879e167ea95e45cae33a7be16fa6c11e80572c54d135'
+cask "grandperspective" do
+  version "2.5.2"
+  sha256 "667b5ee9af8dc9513db35e424caaec07861c76620a680863d3e1462807973ba6"
 
-  url "http://downloads.sourceforge.net/project/grandperspectiv/grandperspective/#{version}/GrandPerspective-#{version.gsub('.','_')}.dmg"
-  homepage 'http://grandperspectiv.sourceforge.net/'
-  license :gpl
+  # downloads.sourceforge.net/grandperspectiv/ was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/grandperspectiv/grandperspective/#{version}/GrandPerspective-#{version.dots_to_underscores}.dmg"
+  appcast "https://sourceforge.net/projects/grandperspectiv/rss?path=/grandperspective"
+  name "GrandPerspective"
+  homepage "https://grandperspectiv.sourceforge.io/"
 
-  app 'GrandPerspective.app'
+  app "GrandPerspective.app"
 
-  zap :delete => '~/Library/Preferences/net.sourceforge.grandperspectiv.plist'
+  zap trash: [
+    "~/Library/Application Scripts/net.courceforge.grandperspectiv",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/net.sourceforge.grandperspectiv.sfl2",
+    "~/Library/Containers/net.sourceforge.grandperspectiv",
+    "~/Library/Preferences/net.sourceforge.grandperspectiv.plist",
+  ]
 end

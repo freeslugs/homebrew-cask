@@ -1,16 +1,15 @@
-cask :v1 => 'sqlworkbenchj' do
-  version '117'
-  sha256 '3d9698c9a0c8e939789e3407c55dfbd963e73cd430e5caf8d66627abae5a14d7'
+cask "sqlworkbenchj" do
+  version "124"
+  sha256 "2173c7f00172bef3fed23e7f57e168a9d156c72c311af032ba469139f80d9fe9"
 
-  url "http://www.sql-workbench.net/Workbench-Build#{version}-MacJava7.tgz"
-  name 'SQL Workbench/J'
-  homepage 'http://www.sql-workbench.net'
-  license :apache
+  url "https://www.sql-workbench.eu/Workbench-Build#{version}-Mac.tgz"
+  appcast "https://www.sql-workbench.eu/wb_news.xml"
+  name "SQL Workbench/J"
+  homepage "https://www.sql-workbench.eu/"
 
-  app 'SQLWorkbenchJ.app'
+  app "SQLWorkbenchJ.app"
 
-  caveats <<-EOS.undent
-    #{token} requires Java. You can install the latest version with
-      brew cask install java
-  EOS
+  caveats do
+    depends_on_java
+  end
 end

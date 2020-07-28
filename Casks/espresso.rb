@@ -1,11 +1,14 @@
-cask :v1 => 'espresso' do
-  version :latest
-  sha256 :no_check
+cask "espresso" do
+  version "5.4.1"
+  sha256 "c28b93b6728869d47d2c277839079c1a1bbd88497d9ae0649800a50f51776072"
 
-  url 'https://macrabbit.com/espresso/get/'
-  name 'Espresso'
-  homepage 'http://macrabbit.com/espresso/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # downloads.kangacode.com/ was verified as official when first introduced to the cask
+  url "https://downloads.kangacode.com/Espresso/Espresso_#{version}.zip"
+  appcast "https://espressoapp.com/updates/"
+  name "Espresso"
+  homepage "https://espressoapp.com/"
 
-  app 'Espresso.app'
+  depends_on macos: ">= :sierra"
+
+  app "Espresso.app"
 end

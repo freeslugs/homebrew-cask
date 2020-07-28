@@ -1,28 +1,32 @@
-cask :v1 => 'intellij-idea-ce' do
-  version '14.0.3'
-  sha256 '31ae30c4cd4813a71c8d180204646bd8fe4a98f9c1e2f19772d1af1b3e977303'
+cask "intellij-idea-ce" do
+  version "2020.1.4,201.8743.12"
+  sha256 "635691fe8fd8eab26ba11dc39abc91a6aea8867dbe98eeae76dd3f2856a45833"
 
-  url "http://download.jetbrains.com/idea/ideaIC-#{version}.dmg"
-  homepage 'https://www.jetbrains.com/idea/'
-  license :apache
+  url "https://download.jetbrains.com/idea/ideaIC-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=IIC&latest=true&type=release"
+  name "IntelliJ IDEA Community Edition"
+  name "IntelliJ IDEA CE"
+  homepage "https://www.jetbrains.com/idea/"
 
-  app 'IntelliJ IDEA 14 CE.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Application Support/IdeaIC14',
-                  '~/Library/Preferences/IdeaIC14',
-                  '~/Library/Caches/IdeaIC14',
-                  '~/Library/Logs/IdeaIC14',
-                 ]
+  app "IntelliJ IDEA CE.app"
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "idea") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-      brew cask install caskroom/homebrew-versions/java6
-
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap trash: [
+    "~/Library/Application Support/IdeaIC#{version.major_minor}",
+    "~/Library/Caches/IdeaIC#{version.major_minor}",
+    "~/Library/Logs/IdeaIC#{version.major_minor}",
+    "~/Library/Preferences/IdeaIC#{version.major_minor}",
+    "~/Library/Preferences/com.jetbrains.intellij.ce.plist",
+    "~/Library/Saved Application State/com.jetbrains.intellij.ce.savedState",
+  ]
 end

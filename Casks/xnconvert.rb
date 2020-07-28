@@ -1,12 +1,10 @@
-cask :v1 => 'xnconvert' do
+cask "xnconvert" do
   version :latest
   sha256 :no_check
 
-  url 'http://download.xnview.com/XnConvert-mac-x64.tgz'
-  name 'XnConvert'
-  homepage 'http://www.xnview.com/en/xnconvert/'
-  license :gratis
-  tags :vendor => 'XnSoft'
+  url "https://download.xnview.com/XnConvert-mac-x64.dmg"
+  name "XnSoft XnConvert"
+  homepage "https://www.xnview.com/en/xnconvert/"
 
-  app 'XnConvert.app'
+  app "XnConvert.app"
 end

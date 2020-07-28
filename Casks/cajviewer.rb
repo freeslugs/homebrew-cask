@@ -1,12 +1,11 @@
-cask :v1 => 'cajviewer' do
-  version :latest
-  sha256 :no_check
+cask "cajviewer" do
+  version "2.0"
+  sha256 "3bc6cc846f9e83a6d750def1861a93c45f8e44705ce33f1e71f456e9dd9e3244"
 
-  url 'http://cajviewer.cnki.net/download/CAJViewerMac.dmg'
-  homepage 'http://cajviewer.cnki.net/download.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://viewer.d.cnki.net/CAJ%E4%BA%91%E9%98%85%E8%AF%BB.dmg"
+  name "CAJViewer"
+  name "CAJ云阅读"
+  homepage "https://cajviewer.cnki.net/cajcloud/cajdownload.html"
 
-  pkg 'CAJViewerMac.pkg'
-
-  uninstall :pkgutil => 'com.TTKN.CAJViewerMac'
+  app "CAJ云阅读.app"
 end

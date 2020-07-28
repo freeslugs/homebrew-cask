@@ -1,21 +1,27 @@
-cask :v1 => 'transmission' do
-  version '2.84'
-  sha256 '53d08a55a5ca55010d409acb10f0285a649b8879085cad83f2cbcb7faa489ad5'
+cask "transmission" do
+  version "3.00"
+  sha256 "f9984b6ba51a02bb8f880c538b28e2c7d6a3b7a22257a166cc3e1d55a133ab34"
 
-  # cachefly.net is the official download host per the vendor homepage
-  url "https://transmission.cachefly.net/Transmission-#{version}.dmg"
-  name 'Transmission'
-  appcast 'http://update.transmissionbt.com/appcast.xml',
-          :sha256 => 'f7177b7ad0bc07a74b484e0033dbf356e112cd1225c8050657b1e21aeaf7bdd3'
-  homepage 'http://www.transmissionbt.com/'
-  license :gpl
+  # github.com/transmission/transmission-releases/ was verified as official when first introduced to the cask
+  url "https://github.com/transmission/transmission-releases/raw/master/Transmission-#{version}.dmg"
+  appcast "https://github.com/transmission/transmission/releases.atom"
+  name "Transmission"
+  homepage "https://transmissionbt.com/"
 
-  app 'Transmission.app'
+  auto_updates true
+  conflicts_with cask: "transmission-nightly"
 
-  zap :delete => [
-                  '~/Library/Application Support/Transmission',
-                  '~/Library/Preferences/org.m0k.transmission.plist',
-                  '~/Library/Preferences/org.m0k.transmission.LSSharedFileList.plist',
-                  '~/Library/Caches/org.m0k.transmission',
-                 ]
+  app "Transmission.app"
+
+  zap trash: [
+    "~/Library/Application Support/Transmission",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/org.m0k.transmission.sfl*",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/Transmission Help*",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/org.m0k.transmission.help",
+    "~/Library/Caches/org.m0k.transmission",
+    "~/Library/Cookies/org.m0k.transmission.binarycookies",
+    "~/Library/Preferences/org.m0k.transmission.LSSharedFileList.plist",
+    "~/Library/Preferences/org.m0k.transmission.plist",
+    "~/Library/Saved Application State/org.m0k.transmission.savedState",
+  ]
 end

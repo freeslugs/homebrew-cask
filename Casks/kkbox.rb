@@ -1,10 +1,10 @@
-cask :v1 => 'kkbox' do
-  version '5.2.20-e5e423c'
-  sha256 '489a9ac26ba7b0e4fcc1d33ece54a5ea1be0751a855056e46500de76affd36ae'
+cask "kkbox" do
+  version "5.2.88-1c04d41"
+  sha256 "789e386baff3ad386eb2275322eef8ce85c90908a5e37d23121f1ee83fa93fb4"
 
-  url "http://download.kkbox.com/files/KKBOX-#{version}.dmg"
-  homepage 'http://www.kkbox.com/'
-  license :commercial
+  url "https://download.kkbox.com/files/KKBOX-#{version}.dmg"
+  name "KKBOX"
+  homepage "https://www.kkbox.com/"
 
-  app 'KKBOX.app'
+  app "KKBOX.app"
 end

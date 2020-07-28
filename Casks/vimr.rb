@@ -1,12 +1,23 @@
-cask :v1 => 'vimr' do
-  version '0.7.0-28'
-  sha256 'b1c285555d5757de00473f485eab20b6cc3700c3e0b55cc0676c3c7988e24c4f'
+cask "vimr" do
+  version "0.33.1-354"
+  sha256 "71a8cfc371f7c117e4aea7b671e66f6840539089de2d4dde09e38bb989578e93"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/qvacua/vimr/releases/download/v#{version}/VimR-#{version.sub(%r{-.*},'')}.tar.bz2"
-  name 'VimR'
-  homepage 'http://vimr.org/'
-  license :gpl
+  # github.com/qvacua/vimr/ was verified as official when first introduced to the cask
+  url "https://github.com/qvacua/vimr/releases/download/v#{version}/VimR-v#{version}.tar.bz2"
+  appcast "https://github.com/qvacua/vimr/releases.atom"
+  name "VimR"
+  homepage "http://vimr.org/"
 
-  app 'VimR.app'
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
+
+  app "VimR.app"
+  binary "#{appdir}/VimR.app/Contents/Resources/vimr"
+
+  zap trash: [
+    "~/Library/Caches/com.qvacua.VimR",
+    "~/Library/Preferences/com.qvacua.VimR.plist",
+    "~/Library/Saved Application State/com.qvacua.VimR.savedState",
+    "~/Library/WebKit/com.qvacua.VimR",
+  ]
 end

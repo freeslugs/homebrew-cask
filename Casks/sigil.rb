@@ -1,12 +1,20 @@
-cask :v1 => 'sigil' do
-  version '0.8.4'
-  sha256 '755dc457cd37bd08cf5eac68fdc93831c03eb4f16cabc710469f361aab45332d'
+cask "sigil" do
+  version "1.3.0"
+  sha256 "8adb6e959c02e982a07cd848e7e20f832424dc9a92620fbbc0a59f8791fa7859"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/user-none/Sigil/releases/download/#{version}/Sigil-#{version}-Mac-Package.dmg"
-  name 'Sigil'
-  homepage 'http://sigil-ebook.com/'
-  license :gpl
+  # github.com/Sigil-Ebook/Sigil/ was verified as official when first introduced to the cask
+  url "https://github.com/Sigil-Ebook/Sigil/releases/download/#{version}/Sigil.app-#{version}-Mac.txz"
+  appcast "https://github.com/Sigil-Ebook/Sigil/releases.atom"
+  name "Sigil"
+  homepage "https://sigil-ebook.com/"
 
-  app 'Sigil.app'
+  depends_on macos: ">= :sierra"
+
+  app "Sigil.app"
+
+  zap trash: [
+    "~/Library/Application Support/sigil-ebook",
+    "~/Library/Preferences/com.sigil-ebook.Sigil.app.plist",
+    "~/Library/Saved Application State/com.sigil-ebook.Sigil.app.savedState",
+  ]
 end

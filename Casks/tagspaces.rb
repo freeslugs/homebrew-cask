@@ -1,16 +1,12 @@
-cask :v1 => 'tagspaces' do
-  version '1.9.0'
+cask "tagspaces" do
+  version "3.5.4"
+  sha256 "47f3bca6918fd66628f3e4f70aaac4f9daa17b26092d78ce01b9c1a6ea4972d0"
 
-  if Hardware::CPU.is_32_bit?
-    sha256 'ca127150d07d45b7b77beefe32df22441504c4de070468996372aed523341264'
-    url "https://github.com/uggrock/tagspaces/releases/download/#{version}/tagspaces-#{version}-osx32.zip"
-  else
-    sha256 '42f115adb5ea7eb687c5b5b07d8843e895a8ed492a46800120e46f1c1f450aa2'
-    url "https://github.com/uggrock/tagspaces/releases/download/#{version}/tagspaces-#{version}-osx64.zip"
-  end
+  # github.com/tagspaces/tagspaces/ was verified as official when first introduced to the cask
+  url "https://github.com/tagspaces/tagspaces/releases/download/v#{version}/tagspaces-mac-#{version}.zip"
+  appcast "https://github.com/tagspaces/tagspaces/releases.atom"
+  name "TagSpaces"
+  homepage "https://www.tagspaces.org/"
 
-  homepage 'http://www.tagspaces.org'
-  license :affero
-
-  app 'TagSpaces.app'
+  app "TagSpaces.app"
 end

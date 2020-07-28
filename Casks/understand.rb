@@ -1,23 +1,11 @@
-cask :v1 => 'understand' do
-  version '3.1.756'
-  sha256 '87b91888b14d1548e618370325353668a9ef12a1e1b988ce2165cce55937e252'
+cask "understand" do
+  version "5.1.1028"
+  sha256 "6a461fdca638291049a620d9c857cc360d1ddf0590a14733277849625ceddc71"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/builds.scitools.com/all_builds/b#{version.sub(%r{.*\.},'')}/Understand/Understand-#{version}-MacOSX-x86.dmg"
-  name 'Understand'
-  homepage 'https://scitools.com'
-  license :unknown # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
-  tags :vendor => 'SciTools'
+  url "http://builds.scitools.com/all_builds/b#{version.patch}/Understand/Understand-#{version}-MacOSX-x86.dmg"
+  appcast "https://scitools.com/download/all-builds/"
+  name "SciTools Understand"
+  homepage "https://scitools.com/features/"
 
-  app 'scitools/bin/macosx/understand.app'
-  app 'scitools/bin/macosx/licenseserver.app'
-  binary 'scitools/bin/macosx/almd'
-  binary 'scitools/bin/macosx/almfree'
-  binary 'scitools/bin/macosx/almhostid'
-  binary 'scitools/bin/macosx/almstatus'
-  binary 'scitools/bin/macosx/almtest'
-  binary 'scitools/bin/macosx/cwork'
-  binary 'scitools/bin/macosx/gvlayout'
-  binary 'scitools/bin/macosx/und'
-  binary 'scitools/bin/macosx/uperl'
+  app "Understand.app"
 end

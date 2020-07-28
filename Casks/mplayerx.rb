@@ -1,20 +1,22 @@
-cask :v1 => 'mplayerx' do
-  version '1.0.22.1'
-  sha256 '08ce85671814e65b8c7ec8438b85be593b6deaf7d5c3b242e686a6b0176a2c77'
+cask "mplayerx" do
+  version "1.1.4,1920"
+  sha256 "9306b11acd9df45464fc3ddca1a3a757f50ef019ea6a09ce13ad3f51f1ef1592"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/mplayerx-osx/MPlayerX-#{version}.zip"
-  name 'MPlayerX'
-  homepage 'http://mplayerx.org/'
-  license :oss
+  # github.com/niltsh/MPlayerX-Deploy/ was verified as official when first introduced to the cask
+  url "https://github.com/niltsh/MPlayerX-Deploy/releases/download/#{version.before_comma}/MPlayerX-#{version.before_comma}-#{version.after_comma}.zip"
+  appcast "https://raw.githubusercontent.com/niltsh/MPlayerX-Deploy/master/appcast.xml"
+  name "MPlayerX"
+  homepage "http://mplayerx.org/"
 
-  app 'MPlayerX.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/.mplayer',
-                  '~/Library/Application Support/MPlayerX',
-                  '~/Library/Preferences/org.niltsh.MPlayerX.LSSharedFileList.plist',
-                  '~/Library/Preferences/org.niltsh.MPlayerX.plist',
-                  '~/Library/Caches/org.niltsh.MPlayerX'
-                 ]
+  app "MPlayerX.app"
+
+  zap trash: [
+    "~/.mplayer",
+    "~/Library/Application Support/MPlayerX",
+    "~/Library/Preferences/org.niltsh.MPlayerX.LSSharedFileList.plist",
+    "~/Library/Preferences/org.niltsh.MPlayerX.plist",
+    "~/Library/Caches/org.niltsh.MPlayerX",
+  ]
 end

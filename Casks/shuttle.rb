@@ -1,12 +1,14 @@
-cask :v1 => 'shuttle' do
-  version '1.2.2'
-  sha256 '116a216b8f0a9485ed82d944b5ae99bfad1c96a7d2aa3c296808ab824264d7a4'
+cask "shuttle" do
+  version "1.2.9"
+  sha256 "0b80bf62922291da391098f979683e69cc7b65c4bdb986a431e3f1d9175fba20"
 
-  url "https://github.com/fitztrev/shuttle/releases/download/#{version}/Shuttle.zip"
-  homepage 'http://fitztrev.github.io/shuttle/'
-  license :mit
+  # github.com/fitztrev/shuttle/ was verified as official when first introduced to the cask
+  url "https://github.com/fitztrev/shuttle/releases/download/v#{version}/Shuttle.zip"
+  appcast "https://github.com/fitztrev/shuttle/releases.atom"
+  name "Shuttle"
+  homepage "https://fitztrev.github.io/shuttle/"
 
-  app 'Shuttle.app'
+  app "Shuttle.app"
 
-  zap :delete => '~/.shuttle.json'
+  zap trash: "~/.shuttle.json"
 end

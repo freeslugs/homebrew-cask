@@ -1,12 +1,17 @@
-cask :v1 => 'tuxera-ntfs' do
-  version '2014'
-  sha256 '808423a1246a3a9cfa03d4ada3b10cd7958e88dbb34bb0c044741d3266202514'
+cask "tuxera-ntfs" do
+  version "2019"
+  sha256 "ac655a302afbbe2022ec9c2af3df65e8bcd1bb66a783770025f78f3595a2798f"
 
-  url 'https://www.tuxera.com/mac/tuxerantfs_2014.dmg'
-  name 'Tuxera NTFS'
-  homepage 'http://www.tuxera.com/products/tuxera-ntfs-for-mac/'
-  license :closed
+  url "https://download.tuxera.com/mac/tuxerantfs_#{version}.dmg"
+  appcast "https://www.tuxera.com/products/tuxera-ntfs-for-mac/download/"
+  name "Tuxera NTFS"
+  homepage "https://www.tuxera.com/products/tuxera-ntfs-for-mac/"
 
-  pkg '.packages/Flat/Install Tuxera NTFS.mpkg'
-  uninstall :script => '/System/Library/Filesystems/fusefs_txantfs.fs/Support/uninstall-package.sh'
+  pkg ".packages/Flat/Install Tuxera NTFS.mpkg"
+
+  uninstall quit:    "com.tuxera.Tuxera-NTFS",
+            pkgutil: [
+              "com.tuxera.pkg.Tuxera_NTFS",
+              "com.tuxera.pkg.Tuxera_NTFS_compat",
+            ]
 end

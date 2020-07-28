@@ -1,11 +1,11 @@
-cask :v1 => 'vlcstreamer' do
-  version :latest
-  sha256 :no_check
+cask "vlcstreamer" do
+  version "5.25"
+  sha256 "7f5d68a69af857804150c7d24209b38fd50a136d0cda42b0abb8626a4abe2797"
 
-  url 'http://hobbyistsoftware.com/Downloads/VLCStreamer/latest-mac.php?cdn'
-  appcast 'http://hobbyistsoftware.com/Downloads/VLCStreamer/vlcStreamerVersions.xml'
-  homepage 'http://hobbyistsoftware.com/vlcstreamer'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://hobbyistsoftware.com/Downloads/VLCStreamer/Versions/VLCStreamer_#{version}.dmg"
+  appcast "https://hobbyistsoftware.com/vlcstreamer-versions"
+  name "VLC Streamer"
+  homepage "https://hobbyistsoftware.com/vlcstreamer"
 
-  app 'VLCStreamer.app'
+  app "VLCStreamer.app"
 end

@@ -1,11 +1,12 @@
-cask :v1 => 'jubler' do
-  version '5.0.5'
-  sha256 '363f272cc1e15e02cf3e28935b9b2fdd91c43b93b2d1afef281e500c158b8bcd'
+cask "jubler" do
+  version "7.0.3"
+  sha256 "1165706840cdff7ed729d3737e9f3540e5d0216c0ef4fe506e80bbddfdce572e"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/jubler/Jubler-#{version}.dmg"
-  homepage 'http://www.jubler.org/'
-  license :gpl
+  # github.com/teras/Jubler/ was verified as official when first introduced to the cask
+  url "https://github.com/teras/Jubler/releases/download/v#{version}/Jubler-#{version}.dmg"
+  appcast "https://github.com/teras/Jubler/releases.atom"
+  name "Jubler"
+  homepage "https://www.jubler.org/"
 
-  app 'Jubler.app'
+  app "Jubler.app"
 end

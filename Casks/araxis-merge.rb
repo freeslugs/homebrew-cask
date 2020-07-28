@@ -1,41 +1,38 @@
-cask :v1 => 'araxis-merge' do
-  version '2014.4581'
-
-  depends_on :macos => '>= :mavericks'
-  if MacOS.release <= :mavericks
-    sha256 '4029be850bbffd8a46b30b7701434474c33e07e678848ae47e094ddba04668d2'
-    url "http://www.araxis.com/download/Merge#{version}-OSX10.9.dmg"
+cask "araxis-merge" do
+  if MacOS.version <= :yosemite
+    version "2017.4884"
+    sha256 "abba11a92e1f50d913356d31123bed5bb08838ce39c4659206fd24c32432c4b3"
+    url "https://www.araxis.com/download/Merge#{version}-OSX10.10.dmg"
   else
-    sha256 '483314bfe464f8954aeb0ddc839dfcab061d7d070bdbbe63b28934a54436663d'
-    url "http://www.araxis.com/download/Merge#{version}-OSX10.10.dmg"
+    version "2020.5400"
+    sha256 "47152e8c8503345c765fc61c56ffd282095ebb3dc13e59f200748834a7563211"
+    url "https://www.araxis.com/download/Merge#{version}-macOS.dmg"
   end
 
-  name 'Araxis Merge'
-  homepage 'http://www.araxis.com/merge'
-  license :commercial
-  tags :vendor => 'Araxis'
+  appcast "https://www.araxis.com/news-feed.atom"
+  name "Araxis Merge"
+  homepage "https://www.araxis.com/merge/"
 
-  app 'Araxis Merge.app'
+  app "Araxis Merge.app"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxisgitdiff"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxisopendiff"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxissvndiff"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/compare", target: "araxiscompare"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxisgitmerge"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxisp4diff"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxissvndiff3"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/compare2", target: "araxiscompare2"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxishgmerge"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxisp4winmrg"
+  binary "#{appdir}/Araxis Merge.app/Contents/Utilities/araxissvnmerge"
 
-  binary 'Utilities/araxisgitdiff'
-  binary 'Utilities/araxisopendiff'
-  binary 'Utilities/araxissvndiff'
-  binary 'Utilities/compare'
-  binary 'Utilities/araxisgitmerge'
-  binary 'Utilities/araxisp4diff'
-  binary 'Utilities/araxissvndiff3'
-  binary 'Utilities/compare2'
-  binary 'Utilities/araxishgmerge'
-  binary 'Utilities/araxisp4winmrg'
-  binary 'Utilities/araxissvnmerge'
+  zap trash: [
+    "~/Library/Preferences/com.araxis.merge.LSSharedFileList.plist",
+    "~/Library/Preferences/com.araxis.merge.plist",
+  ]
 
-  zap :delete => [
-                 '~/Library/Preferences/com.araxis.merge.LSSharedFileList.plist',
-                 '~/Library/Preferences/com.araxis.merge.plist',
-                 ]
-
-  caveats <<-EOS.undent
+  caveats <<~EOS
     For instructions to integrate Araxis Merge with Finder or other applications,
-    see http://www.araxis.com/merge/documentation-os-x/installing.en
+    see https://www.araxis.com/merge/documentation-os-x/installing.en
   EOS
 end

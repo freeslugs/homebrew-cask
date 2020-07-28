@@ -1,12 +1,15 @@
-cask :v1 => 'packages' do
-  version '1.1.2'
-  sha256 '8fa1aff087b5f82cbbec557a01a65998c4ca244925f778e559038fc82d9ab23d'
+cask "packages" do
+  version "1.2.9"
+  sha256 "70ac111417728c17b1f27d5520afd87c33f899f12de8ace0f703e3e1c500b28e"
 
-  url 'http://s.sudre.free.fr/Software/files/Packages.dmg'
-  homepage 'http://s.sudre.free.fr/Software/Packages/about.html'
-  license :bsd
+  url "http://s.sudre.free.fr/Software/files/Packages.dmg"
+  appcast "http://s.sudre.free.fr/Software/Packages/release_notes.html"
+  name "Packages"
+  homepage "http://s.sudre.free.fr/Software/Packages/about.html"
 
-  pkg 'packages/Packages.pkg'
+  auto_updates true
 
-  uninstall :script => 'Extras/uninstall.sh'
+  pkg "packages/Packages.pkg"
+
+  uninstall script: "Extras/uninstall.sh"
 end

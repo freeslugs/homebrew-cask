@@ -1,11 +1,11 @@
-cask :v1 => 'splitshow' do
-  version '0.9.1'
-  sha256 'd82b4f4d69dec6307901747018841e4617bfaa411acc83e43af75ca7d8b80a04'
+cask "splitshow" do
+  version "0.9.12-alpha"
+  sha256 "742b5ddc5d171c4bcc8281f4469df8ca62a59c71a7b318ff29ad9a664b80f2b8"
 
-  url "https://splitshow.googlecode.com/files/SplitShow_v#{version}.dmg"
-  name 'SplitShow'
-  homepage 'https://code.google.com/p/splitshow/'
-  license :mit
+  url "https://github.com/mpflanzer/splitshow/releases/download/v#{version}/SplitShow.app.zip"
+  appcast "https://github.com/mpflanzer/splitshow/releases.atom"
+  name "SplitShow"
+  homepage "https://github.com/mpflanzer/splitshow"
 
-  app 'SplitShow.app'
+  app "SplitShow.app"
 end

@@ -1,13 +1,15 @@
-cask :v1 => 'netnewswire' do
-  version '4.0.0-166'
-  sha256 '94bbf93cc820be06f32fc80ff1ce065e5e5e219a0587fee948355a72140d05f3'
+cask "netnewswire" do
+  version "5.0.3"
+  sha256 "c78a1015159d0a2154e32ae3e73a2683ec3c684eac81513ebf77478f8770e76a"
 
-  url "http://cdn.netnewswireapp.com/releases/NetNewsWire-#{version}.zip"
-  appcast 'https://updates.blackpixel.com/updates?app=nnw',
-          :sha256 => '33564e80110c0e5bc562bf65f09046d95afcbab79d0e9c49617c2b8548a64cc2'
-  name 'NetNewsWire'
-  homepage 'http://netnewswireapp.com/'
-  license :commercial
+  # github.com/brentsimmons/NetNewsWire/ was verified as official when first introduced to the cask
+  url "https://github.com/brentsimmons/NetNewsWire/releases/download/mac-#{version}/NetNewsWire#{version}.zip"
+  appcast "https://github.com/brentsimmons/NetNewsWire/releases.atom"
+  name "NetNewsWire"
+  homepage "https://ranchero.com/netnewswire/"
 
-  app 'NetNewsWire.app'
+  auto_updates true
+  depends_on macos: ">= :mojave"
+
+  app "NetNewsWire.app"
 end

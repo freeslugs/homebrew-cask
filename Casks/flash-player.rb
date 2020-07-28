@@ -1,18 +1,27 @@
-cask :v1 => 'flash-player' do
-  version '16.0.0.305'
-  sha256 '97de37554de73492c0c13b5ffa8f6eb13e853f50b0bdcf565b16b0b024a6593c'
+cask "flash-player" do
+  version "32.0.0.403"
+  sha256 "205c00273a8c4ed31513907b39dfefef7126762267f7655093c69c374ba7f94c"
 
-  # macromedia.com is the official download host per the vendor homepage
-  url "https://fpdownload.macromedia.com/pub/flashplayer/updaters/#{version.to_i}/flashplayer_#{version.to_i}_sa.dmg"
-  name 'Adobe Flash Player'
-  homepage 'https://www.adobe.com/support/flashplayer/downloads.html'
-  license :gratis
-  tags :vendor => 'Adobe'
+  url "https://fpdownload.adobe.com/pub/flashplayer/updaters/#{version.major}/flashplayer_#{version.major}_sa.dmg"
+  appcast "https://fpdownload.adobe.com/pub/flashplayer/update/current/xml/version_en_mac_pl.xml",
+          must_contain: version.tr(".", ",")
+  name "Adobe Flash Player projector"
+  homepage "https://www.adobe.com/support/flashplayer/debug_downloads.html"
 
-  app 'Flash Player.app'
+  app "Flash Player.app"
 
-  zap :delete => [
-                  '~/Library/Caches/Adobe/Flash Player',
-                  '~/Library/Logs/FlashPlayerInstallManager.log',
-                 ]
+  uninstall pkgutil:   "com.adobe.pkg.PepperFlashPlayer",
+            launchctl: "com.adobe.fpsaud",
+            delete:    [
+              "/Library/Application Support/Adobe/Flash Player Install Manager",
+              "/Library/Internet Plug-Ins/PepperFlashPlayer",
+            ]
+
+  zap trash: [
+    "/Library/Internet Plug-Ins/flashplayer.xpt",
+    "~/Library/Caches/Adobe/Flash Player",
+    "~/Library/Logs/FlashPlayerInstallManager.log",
+    "~/Library/Preferences/Macromedia/Flash Player",
+    "~/Library/Saved Application State/com.adobe.flashplayer.installmanager.savedState",
+  ]
 end

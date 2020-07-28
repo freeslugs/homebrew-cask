@@ -1,32 +1,34 @@
-cask :v1 => 'cocoaspell' do
-  version '2.1'
-  sha256 '06d6cd7f2b04c47f553c5a3a33ebe6bc5651457521cbe7e3ead84a6cb218053c'
+cask "cocoaspell" do
+  version "2.5"
+  sha256 "d8dd01e6471df86f55d5f272a33fdb421f49a2fb923a9858a8772ec4367d333c"
 
-  # usc.edu is the official download host per the vendor homepage
-  url "http://people.ict.usc.edu/~leuski/cocoaspell/cocoAspell.#{version}.dmg"
-  name 'cocoAspell'
-  homepage 'http://cocoaspell.leuski.net/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://people.ict.usc.edu/~leuski/cocoaspell/cocoAspell.#{version}.dmg",
+      user_agent: :fake
+  appcast "https://people.ict.usc.edu/~leuski/cocoaspell/"
+  name "cocoAspell"
+  homepage "https://people.ict.usc.edu/~leuski/cocoaspell/"
 
-  pkg 'cocoAspell.pkg'
+  depends_on macos: ">= :el_capitan"
 
-  uninstall :pkgutil => 'net.leuski.cocoaspell.*',
-            :delete  => [
-                         '/Application Support/cocoAspell/aspell6-en-6.0-0',
-                         '/Library/PreferencePanes/Spelling.prefPane',
-                        ]
-  zap :delete => [
-                 '~/.aspell.conf',
-                 '~/.aspell.en.prepl',
-                 # Debatable. The Pws holds user-created content, though typically
-                 # created through the application, and the user is not likely aware
-                 # of this particular file.
-                 # '~/.aspell.en.pws',
-                ]
+  pkg "cocoAspell.pkg"
 
-  caveats <<-EOS.undent
-    Non-English dictionaries must be installed separately.  For more information, see
+  uninstall pkgutil: "net.leuski.cocoaspell.*",
+            delete:  [
+              "/Application Support/cocoAspell/aspell6-en-6.0-0",
+              "/Library/Application Support/cocoAspell",
+              "/Library/PreferencePanes/Spelling.prefPane",
+            ]
 
-      http://people.ict.usc.edu/~leuski/cocoaspell/install_dict.php
+  zap trash: [
+    "~/.aspell.conf",
+    "~/.aspell.en.prepl",
+    "~/.aspell.en.pws",
+    "~/Library/Preferences/cocoAspell",
+  ]
+
+  caveats <<~EOS
+    Non-English dictionaries must be installed separately. For more information, see
+
+      https://people.ict.usc.edu/~leuski/cocoaspell/install_dict.php
   EOS
 end

@@ -1,12 +1,12 @@
-cask :v1 => 'mumble' do
-  version '1.2.8'
-  sha256 '19ea209ed4a589ad0959f4c8b4af47f479efbf63d5efb0b170c3b31f98979e2f'
+cask "mumble" do
+  version "1.3.2"
+  sha256 "badd93282e0a9bdca88f769ab9f0172dd275ae4dc5eeb3a85321941837a8c760"
 
-  url "http://downloads.sourceforge.net/sourceforge/mumble/Mumble-#{version}.dmg"
-  gpg "#{url}.sig",
-      :key_url => 'http://mumble.info/gpg/mumble-auto-build-2014.asc'
-  homepage 'http://mumble.sourceforge.net'
-  license :bsd
+  # github.com/mumble-voip/mumble/ was verified as official when first introduced to the cask
+  url "https://github.com/mumble-voip/mumble/releases/download/#{version}/Mumble-#{version}.dmg"
+  appcast "https://github.com/mumble-voip/mumble/releases.atom"
+  name "Mumble"
+  homepage "https://wiki.mumble.info/wiki/Main_Page"
 
-  app 'Mumble.app'
+  app "Mumble.app"
 end

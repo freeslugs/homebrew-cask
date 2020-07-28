@@ -1,12 +1,25 @@
-cask :v1 => 'itsycal' do
-  version '0.8.12'
-  sha256 '1b138d7ddce1ac725c7fd0146225dd50f1bad90b62cf727fe89c636c4281e697'
+cask "itsycal" do
+  if MacOS.version <= :el_capitan
+    version "0.10.16"
+    sha256 "dbf1b104c7a3a2ca3ead9879145cb0557955c29d53f35a92b42f48e68122957c"
+  elsif MacOS.version <= :high_sierra
+    version "0.11.17"
+    sha256 "fda1ba5611deaf4d5b834118b3af37ea9c5d08d1f8c813d04e7dd0552a270e11"
+    appcast "https://itsycal.s3.amazonaws.com/itsycal.xml"
+  else
+    version "0.12.3"
+    sha256 "b7bda0a3f55b142dde96ea82b12934f9bcf38b7c86ad68773067133a435d76ba"
+    appcast "https://itsycal.s3.amazonaws.com/itsycal.xml"
+  end
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/itsycal/Itsycal-#{version}.zip"
-  name 'Itsycal'
-  homepage 'http://www.mowglii.com/itsycal/'
-  license :gratis
+  # itsycal.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://itsycal.s3.amazonaws.com/Itsycal-#{version}.zip"
+  name "Itsycal"
+  homepage "https://www.mowglii.com/itsycal/"
 
-  app 'Itsycal.app'
+  auto_updates true
+
+  app "Itsycal.app"
+
+  zap trash: "~/Library/Preferences/com.mowglii.ItsycalApp.plist"
 end

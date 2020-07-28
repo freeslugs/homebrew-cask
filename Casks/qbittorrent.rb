@@ -1,11 +1,24 @@
-cask :v1 => 'qbittorrent' do
-  version '3.1.11.1'
-  sha256 'e5bf67f6ffcf26673ffa7238f0e1aebd025b77151016de1da5d18d49e578c451'
+cask "qbittorrent" do
+  version "4.2.5"
+  sha256 "52f86aa8f0e3f5c15013d40ff7789861dc6afdce077dfa461ccff2a56ff0d8f7"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/qbittorrent/qbittorrent-#{version}.dmg"
-  homepage 'http://www.qbittorrent.org'
-  license :gpl
+  # sourceforge.net/qbittorrent/ was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/qbittorrent/qbittorrent-mac/qbittorrent-#{version}/qbittorrent-#{version}.dmg"
+  appcast "https://sourceforge.net/projects/qbittorrent/rss?path=/qbittorrent-mac"
+  name "qBittorrent"
+  homepage "https://www.qbittorrent.org/"
 
-  app 'qBittorrent.app'
+  depends_on macos: ">= :high_sierra"
+
+  # Renamed for consistency: app name is different in the Finder and in a shell.
+  app "qbittorrent.app", target: "qBittorrent.app"
+
+  zap trash: [
+    "~/.config/qBittorrent",
+    "~/Library/Application Support/qBittorrent",
+    "~/Library/Caches/qBittorrent",
+    "~/Library/Preferences/org.qbittorrent.qBittorrent.plist",
+    "~/Library/Preferences/qBittorrent",
+    "~/Library/Saved Application State/org.qbittorrent.qBittorrent.savedState",
+  ]
 end

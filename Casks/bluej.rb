@@ -1,11 +1,11 @@
-cask :v1 => 'bluej' do
-  version '3.1.4'
-  sha256 '507ce17037010e7a52684f97b32a07a391aca8fb1fa194748d35036242c87f80'
+cask "bluej" do
+  version "4.2.2"
+  sha256 "37ae5c8c575ac3ee88f6890a7555ae38662f339622528987986a6ae335310311"
 
-  url "http://www.bluej.org/download/files/BlueJ-#{version.gsub('.', '')}.zip"
-  name 'BlueJ'
-  homepage 'http://www.bluej.org'
-  license :gpl
+  url "https://www.bluej.org/download/files/BlueJ-mac-#{version.no_dots}.zip"
+  appcast "https://www.bluej.org"
+  name "BlueJ"
+  homepage "https://www.bluej.org/"
 
-  app "BlueJ #{version}/BlueJ.app"
+  app "BlueJ #{version.sub(/[a-z]$/, "")}/BlueJ.app"
 end

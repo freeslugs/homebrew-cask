@@ -1,12 +1,11 @@
-cask :v1 => 'navicat-for-sql-server' do
-  version '11.1.9'   # navicat-premium.rb and navicat-for-* should be upgraded together
-  sha256 'e4024315d51ccd42aac5bf65754f9bb7b6bb11692e8013df744fe25db9cded40'
+cask "navicat-for-sql-server" do
+  version "15.0.18"
+  sha256 "f37c99a3ef442651660b0460c935e2f71ede7a9e3d043cec0e8ff9f7909b91a1"
 
-  url "http://download.navicat.com/download/navicat#{version.sub(%r{^(\d+)\.(\d+).*},'\1\2')}_sqlserver_en.dmg"
-  name 'Navicat for SQL Server'
-  homepage 'http://www.navicat.com/products/navicat-for-sqlserver'
-  license :commercial
-  tags :vendor => 'Navicat'
+  url "http://download.navicat.com/download/navicat#{version.major_minor.no_dots}_sqlserver_en.dmg"
+  appcast "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20SQL%20Server&appLang=en"
+  name "Navicat for SQL Server"
+  homepage "https://www.navicat.com/products/navicat-for-sqlserver"
 
-  app 'Navicat For SQL Server.app'
+  app "Navicat For SQL Server.app"
 end

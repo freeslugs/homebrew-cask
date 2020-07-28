@@ -1,13 +1,15 @@
-cask :v1 => 'td-agent' do
-  version '2.1.1'
-  sha256 '388f418e9bd7a2314335eb37bc62b5c2cc1b61fdf1f1d29f74a99dc020f486bb'
+cask "td-agent" do
+  version "3.1.1-0"
+  sha256 "aea92474070fc973315228dde287a32111d29cb52f4a94bc7f73cfa73d88afc8"
 
-  url "http://packages.treasuredata.com/2/macosx/td-agent-#{version}-0.dmg"
-  homepage 'http://www.fluentd.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # packages.treasuredata.com.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "http://packages.treasuredata.com.s3.amazonaws.com/#{version.major}/macosx/td-agent-#{version}.dmg"
+  appcast "https://td-agent-package-browser.herokuapp.com/#{version.major}/macosx"
+  name "td-agent"
+  homepage "https://www.fluentd.org/"
 
-  pkg "tdagent-#{version}-0.pkg"
+  pkg "td-agent-#{version}.pkg"
 
-  uninstall :pkgutil => 'test.treasuredatainc.pkg.tdagent2',
-            :launchctl => 'td-agent'
+  uninstall pkgutil:   "test.treasuredatainc.pkg.td-agent",
+            launchctl: "td-agent"
 end

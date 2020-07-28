@@ -1,10 +1,11 @@
-cask :v1 => 'texmaker' do
-  version :latest
-  sha256 :no_check
+cask "texmaker" do
+  version "5.0.4"
+  sha256 "3ff64e0993b91fd19b5ecb8f48c2004e86bf125b2334aca5c2a20abef27424d3"
 
-  url 'http://www.xm1math.net/texmaker/TexmakerMacosxLion.zip'
-  homepage 'http://www.xm1math.net/texmaker'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.xm1math.net/texmaker/assets/files/texmaker-#{version}.dmg"
+  appcast "https://www.xm1math.net/texmaker/assets/files/"
+  name "Texmaker"
+  homepage "https://www.xm1math.net/texmaker/"
 
-  app 'TexmakerMacosxLion/texmaker.app'
+  app "texmaker.app"
 end

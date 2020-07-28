@@ -1,13 +1,11 @@
-cask :v1 => 'linphone' do
-  version '3.7.0'
-  sha256 '4d4a01354a7b5cd011746d3477a93ffb6e531ff8e2afccd2b9bb031f06cc42cc'
+cask "linphone" do
+  version "4.2.1"
+  sha256 "55c75b8afd24a253876b7db1e2de71800639cf4492a12519731ed19a1ac83582"
 
-  # gnu.org is the official download host per the vendor homepage
-  url "http://download-mirror.savannah.gnu.org/releases/linphone/3.7.x/macos/linphone-#{version}.dmg"
-  gpg "#{url}.sig",
-      :key_id => '3ecd52dee2f56985'
-  homepage 'http://www.linphone.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.linphone.org/releases/macosx/app/Linphone-#{version}-mac.dmg"
+  appcast "https://www.linphone.org/releases/macosx/RELEASE"
+  name "Linphone"
+  homepage "https://www.linphone.org/"
 
-  app 'Linphone.app'
+  app "Linphone.app"
 end

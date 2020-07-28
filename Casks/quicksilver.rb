@@ -1,15 +1,18 @@
-cask :v1 => 'quicksilver' do
-  version '1.2.2'
-  sha256 'bd11b3671ddc104e80ceefd017aae137f9f09e021f8f0af0c8c905130e329d85'
+cask "quicksilver" do
+  version "1.6.1"
+  sha256 "abc2c084913f95d3036a0cfe696bf9cd4b9fd0d6c3c16bec6e4a98ae600492c8"
 
-  url 'http://cdn.qsapp.com/plugins/files/com.blacktree.Quicksilver__16401.dmg'
-  homepage 'http://qsapp.com/'
-  license :apache
+  url "https://qsapp.com/archives/downloads/Quicksilver%20#{version}.dmg"
+  appcast "https://qsapp.com/archives/"
+  name "Quicksilver"
+  homepage "https://qsapp.com/"
 
-  app 'Quicksilver.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Preferences/com.blacktree.Quicksilver.plist',
-                  '~/Library/Application Support/Quicksilver',
-                 ]
+  app "Quicksilver.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.blacktree.Quicksilver.plist",
+    "~/Library/Application Support/Quicksilver",
+  ]
 end

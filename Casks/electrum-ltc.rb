@@ -1,13 +1,11 @@
-cask :v1 => 'electrum-ltc' do
-  version '1.9.8.6'
-  sha256 '6e6cee192fc4485d8ba0850fc07eab6d58b0abd55b92209a2076aa3d12c10801'
+cask "electrum-ltc" do
+  version "3.3.8.1"
+  sha256 "167c6d7eb21b1f064254e215adf826c6c77f22bcad8e1851645d33d1a4af65d4"
 
-  url "https://electrum-ltc.org/download/Electrum-LTC-#{version}.dmg"
-  gpg "#{url}.asc",
-      :key_id => '9914864dfc33499c6ca2beea22453004695506fd'
-  name 'Electrum-LTC'
-  homepage 'http://electrum-ltc.org'
-  license :gpl
+  url "https://electrum-ltc.org/download/electrum-ltc-#{version}.dmg"
+  appcast "https://electrum-ltc.org/"
+  name "Electrum-LTC"
+  homepage "https://electrum-ltc.org/"
 
-  app 'Electrum-LTC.app'
+  app "Electrum-LTC.app"
 end

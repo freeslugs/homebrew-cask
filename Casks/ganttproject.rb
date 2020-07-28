@@ -1,11 +1,12 @@
-cask :v1 => 'ganttproject' do
-  version '2.6.5-r1638'
-  sha256 '8cee2c4575389bd5961e1e105d0a4fdca37969cc57e049456a885f5fdbcee9ec'
+cask "ganttproject" do
+  version "2.8.11,r2396"
+  sha256 "b8f64286ca9c04f606336994785c5ed3995c1842f8b1d82199f7ad0bb01d2851"
 
-  # googlecode.com is the official download host per the vendor homepage
-  url "https://ganttproject.googlecode.com/files/ganttproject-#{version}.dmg"
-  homepage 'http://www.ganttproject.biz'
-  license :oss
+  # github.com/bardsoftware/ganttproject/ was verified as official when first introduced to the cask
+  url "https://github.com/bardsoftware/ganttproject/releases/download/ganttproject-#{version.before_comma}/ganttproject-#{version.before_comma}-#{version.after_comma}.dmg"
+  appcast "https://github.com/bardsoftware/ganttproject/releases.atom"
+  name "GanttProject"
+  homepage "https://www.ganttproject.biz/"
 
-  app "GanttProject #{version.sub(%r{-.*},'')}.app"
+  app "GanttProject.app"
 end

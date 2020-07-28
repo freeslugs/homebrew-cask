@@ -1,11 +1,11 @@
-cask :v1 => 'preferencecleaner' do
-  version :latest
-  sha256 :no_check
+cask "preferencecleaner" do
+  version "2.0"
+  sha256 "800f1df5ca2519eaf66e0efc383a7a3f76018f8f8760058c3cee08b5ec75bd8e"
 
-  url 'http://www.echomist.co.uk/software/downloads/PreferenceCleaner.dmg'
-  name 'PreferenceCleaner'
-  homepage 'http://www.echomist.co.uk/software/PreferenceCleaner.shtml'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.echomist.co.uk/software/downloads/PreferenceCleaner_#{version}.dmg"
+  appcast "https://www.echomist.co.uk/software/PreferenceCleaner.php"
+  name "PreferenceCleaner"
+  homepage "https://www.echomist.co.uk/software/PreferenceCleaner.php"
 
-  app 'PreferenceCleaner.app'
+  app "PreferenceCleaner #{version.major}.app"
 end

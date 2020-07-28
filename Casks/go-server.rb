@@ -1,10 +1,12 @@
-cask :v1 => 'go-server' do
-  version '14.2.0-377'
-  sha256 '19fd85946f838a647dba5de75aff4a63eb0c03f6b0c2f619e42705936053d493'
+cask "go-server" do
+  version "19.1.0-8469"
+  sha256 "6f7d6ce6875d51ab7194834ec836bc502a405b82c90b9359df520850850a27ee"
 
-  url "http://download.go.cd/gocd/go-server-#{version}-osx.zip"
-  homepage 'http://www.go.cd/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # download.gocd.io/binaries/ was verified as official when first introduced to the cask
+  url "https://download.gocd.io/binaries/#{version}/osx/go-server-#{version}-osx.zip"
+  appcast "https://github.com/gocd/gocd/releases.atom"
+  name "Go Server"
+  homepage "https://www.gocd.org/"
 
-  app 'Go Server.app'
+  app "Go Server.app"
 end

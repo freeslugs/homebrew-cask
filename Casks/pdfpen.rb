@@ -1,10 +1,13 @@
-cask :v1 => 'pdfpen' do
-  version :latest
-  sha256 :no_check
+cask "pdfpen" do
+  version "1212.1,1594827478"
+  sha256 "bbbdd5f1e0a9e391f05063443ffa66c5e9d3378701a89b43a1503c6bc8c49223"
 
-  url 'http://dl.smilesoftware.com/com.smileonmymac.PDFpen/PDFpen.zip'
-  homepage 'http://smilesoftware.com/PDFpen/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dl.smilesoftware.com/com.smileonmymac.PDFpen/#{version.before_comma}/#{version.after_comma}/PDFpen-#{version.before_comma}.zip"
+  appcast "https://updates.smilesoftware.com/com.smileonmymac.PDFpen.xml"
+  name "PDFpen"
+  homepage "https://smilesoftware.com/PDFpen"
 
-  app 'PDFpen.app'
+  depends_on macos: ">= :sierra"
+
+  app "PDFpen.app"
 end

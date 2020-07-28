@@ -1,12 +1,11 @@
-cask :v1 => 'flexiglass' do
-  version :latest
-  sha256 :no_check
+cask "flexiglass" do
+  version "1.7.1-12833"
+  sha256 "9ceb47ae0093646033960c9fc9c665b1bc59d46cd3baa8047dcb18b96ebd18cc"
 
-  url 'http://downloads.nulana.com/flexiglass/Flexiglass.dmg'
-  appcast 'http://downloads.nulana.com/flexiglass/appcast.xml'
-  name 'Flexiglass'
-  homepage 'http://nulana.com/flexiglass/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://downloads.nulana.com/flexiglass/Flexiglass-#{version}.zip"
+  appcast "https://downloads.nulana.com/flexiglass/appcast.xml"
+  name "Flexiglass"
+  homepage "https://nulana.com/flexiglass/"
 
-  app 'Flexiglass.app'
+  app "Flexiglass.app"
 end

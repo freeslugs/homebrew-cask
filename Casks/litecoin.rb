@@ -1,12 +1,23 @@
-cask :v1 => 'litecoin' do
-  version '0.8.7.4'
-  sha256 'ab69c7b668cae4cff2025e3ea6845751277851e880a7f030e12ec525d088eeb9'
+cask "litecoin" do
+  version "0.18.1"
+  sha256 "b81d9101c6ecb38b7699cf3d05ab57df7922f40f23c8a3377750c335d7102266"
 
-  url "https://download.litecoin.org/litecoin-#{version}/macosx/Litecoin-Qt-#{version}.dmg"
-  gpg "#{url}.asc",
-      :key_id => 'c37e4723969276f5'
-  homepage 'https://litecoin.org/'
-  license :x11
+  url "https://download.litecoin.org/litecoin-#{version}/osx/litecoin-#{version}-osx.dmg"
+  appcast "https://github.com/litecoin-project/litecoin/releases.atom"
+  name "Litecoin"
+  homepage "https://litecoin.org/"
 
-  app 'Litecoin-Qt.app'
+  app "Litecoin-Qt.app"
+
+  preflight do
+    set_permissions "#{staged_path}/Litecoin-Qt.app", "0755"
+  end
+
+  postflight do
+    set_permissions "#{appdir}/Litecoin-Qt.app", "0555"
+  end
+
+  uninstall_preflight do
+    set_permissions "#{appdir}/Litecoin-Qt.app", "0755"
+  end
 end

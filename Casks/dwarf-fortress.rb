@@ -1,15 +1,29 @@
-cask :v1 => 'dwarf-fortress' do
-  version '0.40.14'
-  sha256 'f5c2e841702327af73fbed1f32eeb6ade7c3789ae795e8fa2b6a1a777e927ceb'
+cask "dwarf-fortress" do
+  version "0.47.04"
+  sha256 "1b424d530554399fa3897a9e7a902f6a93e2eb1b680fdeffbac416bb4a312f30"
 
-  url "http://www.bay12games.com/dwarves/df_#{version.sub(%r{^0+\.},'').gsub('.','_')}_osx.tar.bz2"
-  homepage 'http://www.bay12games.com/dwarves/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.bay12games.com/dwarves/df_#{version.minor}_#{version.patch}_osx.tar.bz2"
+  name "Dwarf Fortress"
+  homepage "https://www.bay12games.com/dwarves/"
 
-  # todo: should this be
-  #
-  #    suite 'df_osx', :target => 'Dwarf Fortress'
-  #
-  # ?
-  artifact 'df_osx/df', :target => 'Dwarf Fortress/df'
+  # shim script (https://github.com/Homebrew/homebrew-cask/issues/18809)
+  shimscript = "#{staged_path}/df_osx/df.wrapper.sh"
+  binary shimscript, target: "dwarf-fortress"
+
+  preflight do
+    IO.write shimscript, <<~EOS
+      #!/bin/sh
+      exec '#{staged_path}/df_osx/df' "$@"
+    EOS
+  end
+
+  uninstall_preflight do
+    if Dir.exist?("#{staged_path}/df_osx/data/save")
+      FileUtils.cp_r("#{staged_path}/df_osx/data/save", "/tmp/dwarf-fortress-save/")
+    end
+  end
+
+  caveats <<~EOS
+    During uninstall, your save data will be copied to /tmp/dwarf-fortress-save
+  EOS
 end

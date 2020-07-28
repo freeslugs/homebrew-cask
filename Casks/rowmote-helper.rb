@@ -1,11 +1,13 @@
-cask :v1 => 'rowmote-helper' do
-  version '3.9.4'
-  sha256 'ea0b33ef5e5572892985b6abe07b214efe29483f36a1aa903339b75fb3c3028d'
+cask "rowmote-helper" do
+  version "4.2.3"
+  sha256 "08a6803c66e55032252a2f946316cdff99f81f168a6c2e12f724ad37ffef1373"
 
-  url "http://regularrateandrhythm.com/rowmote-pro/rh/rowmote-helper-#{version}.zip"
-  name 'Rowmote Helper'
-  homepage 'http://regularrateandrhythm.com/apps/rowmote-pro/'
-  license :commercial
+  url "https://regularrateandrhythm.com/rowmote-pro/rh/rowmote-helper-#{version}.zip"
+  appcast "https://www.regularrateandrhythm.com/apps/rowmote-pro/rowmote-appcast.xml"
+  name "Rowmote Helper"
+  homepage "https://regularrateandrhythm.com/apps/rowmote-pro/"
 
-  app 'Rowmote Helper.app'
+  auto_updates true
+
+  app "Rowmote Helper.app"
 end

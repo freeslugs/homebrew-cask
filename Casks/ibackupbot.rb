@@ -1,10 +1,10 @@
-cask :v1 => 'ibackupbot' do
+cask "ibackupbot" do
   version :latest
   sha256 :no_check
 
-  url 'http://www.icopybot.com/iBackupBot-Setup.dmg'
-  homepage 'http://www.icopybot.com/itunes-backup-manager.htm'
-  license :closed
+  url "https://www.icopybot.com/iBackupBot-Setup.dmg"
+  name "iBackupBot"
+  homepage "https://www.icopybot.com/itunes-backup-manager.htm"
 
-  app 'iBackupBot.app'
+  app "iBackupBot.app"
 end

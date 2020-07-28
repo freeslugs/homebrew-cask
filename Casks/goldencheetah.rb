@@ -1,11 +1,12 @@
-cask :v1 => 'goldencheetah' do
-  version '3.1'
-  sha256 '53daceee5b54baa742278e370b2bada1ba02d32c9fa77afa757dd5cb51f4fb52'
+cask "goldencheetah" do
+  version "3.5"
+  sha256 "02518bee5427ec126aa2fdb3d3c6d236c03dd25a78623c36e8f3d27080028f2a"
 
-  url "https://github.com/GoldenCheetah/GoldenCheetah/releases/download/v#{version}/GoldenCheetah-64bit-#{version}.0-QT5.dmg"
-  name 'GoldenCheetah'
-  homepage 'http://www.goldencheetah.org/'
-  license :gpl
+  # github.com/GoldenCheetah/GoldenCheetah/ was verified as official when first introduced to the cask
+  url "https://github.com/GoldenCheetah/GoldenCheetah/releases/download/V#{version}/GoldenCheetah_v#{version}_64bit_MacOS.dmg"
+  appcast "https://github.com/GoldenCheetah/GoldenCheetah/releases.atom"
+  name "GoldenCheetah"
+  homepage "https://www.goldencheetah.org/"
 
-  app 'GoldenCheetah.app'
+  app "GoldenCheetah.app"
 end

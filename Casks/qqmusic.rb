@@ -1,10 +1,20 @@
-cask :v1 => 'qqmusic' do
-  version '1.3.0'
-  sha256 '2f1198f9b3e1407822a771fcdfdd643b65f35f6b51cc0af8c6b11fa11fc30a0d'
+cask "qqmusic" do
+  version :latest
+  sha256 :no_check
 
-  url "http://dldir1.qq.com/music/clntupate/QQMusicForMacV#{version}.dmg"
-  homepage 'http://y.qq.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dldir1.qq.com/music/clntupate/mac/QQMusicMac_Mgr.dmg"
+  name "QQ音乐"
+  homepage "https://y.qq.com/"
 
-  app 'QQ音乐.app'
+  app "QQMusic.app"
+
+  uninstall quit: "com.tencent.QQMusicMac"
+
+  zap trash: [
+    "~/Library/Application Support/com.tencent.QQMusicMac",
+    "~/Library/Caches/com.tencent.QQMusicMac",
+    "~/Library/Containers/com.tencent.QQMusicMac",
+    "~/Library/Preferences/com.tencent.QQMusicMac.plist",
+    "~/Library/Saved Application State/com.tencent.QQMusicMac.savedState",
+  ]
 end

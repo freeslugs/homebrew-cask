@@ -1,10 +1,11 @@
-cask :v1 => 'prepros' do
-  version '4.0.1'
-  sha256 '84510d1252274898b0fc4f95828b60e29a2c946a158bbf7d3188611c62dcd3b1'
+cask "prepros" do
+  version "7.3.17"
+  sha256 "1bf3ef540654fd9ce534437c03f40e7325910dba4b984ed0431349fe28b4087e"
 
-  url "http://download.alphapixels.com/Prepros-#{version}.zip"
-  homepage 'http://alphapixels.com/prepros/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://downloads.prepros.io/v#{version.major}/Prepros-#{version}.zip"
+  appcast "https://www.macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://prepros.io/downloads/stable/mac"
+  name "Prepros"
+  homepage "https://prepros.io/"
 
-  app 'Prepros.app'
+  app "Prepros.app"
 end

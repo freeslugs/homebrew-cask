@@ -1,18 +1,24 @@
-cask :v1 => 'skim' do
-  version '1.4.10'
-  sha256 '344677ce81e565dbc4b9f6d5b001eba9e5e1dadb083d75bb6f5301100149f6bc'
+cask "skim" do
+  version "1.5.10"
+  sha256 "f575a90b71bcd181530d9895f4ead1a0995a21e4069723d71b231ba0f3be4cd7"
 
-  url "http://downloads.sourceforge.net/project/skim-app/Skim/Skim-#{version}/Skim-#{version}.dmg"
-  appcast 'http://skim-app.sourceforge.net/skim.xml',
-          :sha256 => '92ff99e126c3daf99d680dd23f16ab84e26430e96478bbaeb71180756dd12ce1'
-  name 'Skim'
-  homepage 'http://skim-app.sourceforge.net/'
-  license :bsd
+  # downloads.sourceforge.net/skim-app/ was verified as official when first introduced to the cask
+  url "https://downloads.sourceforge.net/skim-app/Skim/Skim-#{version}/Skim-#{version}.dmg"
+  appcast "https://skim-app.sourceforge.io/skim.xml"
+  name "Skim"
+  homepage "https://skim-app.sourceforge.io/"
 
-  app 'Skim.app'
-  binary 'Skim.app/Contents/SharedSupport/displayline'
-  binary 'Skim.app/Contents/SharedSupport/skimnotes'
-  binary 'Skim.app/Contents/SharedSupport/skimpdf'
+  auto_updates true
 
-  zap :delete => '~/Library/Preferences/net.sourceforge.skim-app.skim.plist'
+  app "Skim.app"
+  binary "#{appdir}/Skim.app/Contents/SharedSupport/displayline"
+  binary "#{appdir}/Skim.app/Contents/SharedSupport/skimnotes"
+  binary "#{appdir}/Skim.app/Contents/SharedSupport/skimpdf"
+
+  zap trash: [
+    "~/Library/Preferences/net.sourceforge.skim-app.skim.plist",
+    "~/Library/Preferences/net.sourceforge.skim-app.skim.bookmarks.plist",
+    "~/Library/Caches/net.sourceforge.skim-app.skim",
+    "~/Library/Cookies/net.sourceforge.skim-app.skim.binarycookies",
+  ]
 end

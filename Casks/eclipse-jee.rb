@@ -1,18 +1,22 @@
-cask :v1 => 'eclipse-jee' do
-  version '4.4.2'
+cask "eclipse-jee" do
+  version "4.16.0,2020-06:R"
+  sha256 "e9bfc2f7f05285e5ab38a88bf0753ffb5e34cfd79266278c7511249551a7a724"
 
-  if Hardware::CPU.is_32_bit?
-    sha256 '319a0c224c356aca62d3aae2b157cb958031e4afb4dfd41f6ab853915cd62dba'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR2/eclipse-jee-luna-SR2-macosx-cocoa.tar.gz'
-  else
-    sha256 '27e4307b45b76f664c52c43995cc2dca605cc751aa4605baf08b625eacf3d6ab'
-    url 'http://download.eclipse.org/technology/epp/downloads/release/luna/SR2/eclipse-jee-luna-SR2-macosx-cocoa-x86_64.tar.gz'
+  url "https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/#{version.after_comma.before_colon}/#{version.after_colon}/eclipse-jee-#{version.after_comma.before_colon}-#{version.after_colon}-macosx-cocoa-x86_64.dmg&r=1"
+  name "Eclipse IDE for Java EE Developers"
+  homepage "https://eclipse.org/"
+
+  # Renamed to avoid conflict with other Eclipse.
+  app "Eclipse.app", target: "Eclipse JEE.app"
+
+  zap trash: [
+    "~/Library/Caches/org.eclipse.platform.ide",
+    "~/Library/Cookies/org.eclipse.platform.ide.binarycookies",
+    "~/Library/Preferences/org.eclipse.platform.ide.plist",
+    "~/Library/Saved Application State/org.eclipse.platform.ide.savedState",
+  ]
+
+  caveats do
+    depends_on_java
   end
-
-  name 'Eclipse'
-  name 'Eclipse IDE for Java EE Developers'
-  homepage 'http://eclipse.org/'
-  license :eclipse
-
-  app 'eclipse/Eclipse.app'
 end

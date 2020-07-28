@@ -1,11 +1,10 @@
-cask :v1 => 'licensed' do
+cask "licensed" do
   version :latest
   sha256 :no_check
 
-  url 'http://amarsagoo.info/licensed/Licensed.dmg'
-  name 'Licensed'
-  homepage 'http://amarsagoo.info/licensed'
-  license :gratis
+  url "https://amarsagoo.info/licensed/Licensed.dmg"
+  name "Licensed"
+  homepage "https://amarsagoo.info/licensed/"
 
-  app 'Licensed.app'
+  app "Licensed.app"
 end

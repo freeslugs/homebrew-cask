@@ -1,11 +1,21 @@
-cask :v1 => 'xee' do
-  version '3.4'
-  sha256 'e9d47feb6fd1365333958e04372bbc02d3bc098ba7a14695a0c91957dfb1fb99'
+cask "xee" do
+  version "3.5.3,45:1504018134"
+  sha256 "756719157ae7d9cd3a0153ca80b48b71a239691d3ff8aa0061fd529a825d7926"
 
-  url "http://wakaba.c3.cx/releases/mac/Xee#{version}.dmg"
-  name 'Xee³'
-  homepage 'http://xee.c3.cx/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # devmate.com/cx.c3.Xee3/ was verified as official when first introduced to the cask
+  url "https://dl.devmate.com/cx.c3.Xee3/#{version.after_comma.before_colon}/#{version.after_colon}/Xee-#{version.after_comma.before_colon}.zip"
+  appcast "https://updates.devmate.com/cx.c3.Xee3.xml"
+  name "Xee³"
+  homepage "https://theunarchiver.com/xee"
 
-  app 'Xee³.app'
+  auto_updates true
+
+  app "Xee³.app"
+
+  zap trash: [
+    "~/Library/Application Support/Xee³",
+    "~/Library/Caches/cx.c3.Xee3",
+    "~/Library/Cookies/cx.c3.Xee3.binarycookies",
+    "~/Library/Preferences/cx.c3.Xee3.plist",
+  ]
 end

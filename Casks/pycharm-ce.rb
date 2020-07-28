@@ -1,24 +1,32 @@
-cask :v1 => 'pycharm-ce' do
-  version '4.0.4'
-  sha256 'abbad61e767c29ddb0f3c7bf8d8baf1d22cf9c3ff06f542dc2b5460e4ba3d252'
+cask "pycharm-ce" do
+  version "2020.1.4,201.8743.11"
+  sha256 "c79d9cc173c0cc8744aceeb078604c6ee9cff691e4d1c9962153cd986e7360c0"
 
-  url "https://download.jetbrains.com/python/pycharm-community-#{version}.dmg"
-  name 'PyCharm'
-  name 'PyCharm Community Edition'
-  name 'PyCharm CE'
-  homepage 'http://www.jetbrains.com/pycharm'
-  license :apache
+  url "https://download.jetbrains.com/python/pycharm-community-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=PCC&latest=true&type=release"
+  name "Jetbrains PyCharm Community Edition"
+  name "PyCharm CE"
+  homepage "https://www.jetbrains.com/pycharm/"
 
-  app 'PyCharm CE.app'
+  app "PyCharm CE.app"
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "charm") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-      brew cask install caskroom/homebrew-versions/java6
-
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap trash: [
+    "~/Library/Application Support/PyCharm#{version.major_minor}",
+    "~/Library/Caches/PyCharmCE#{version.major_minor}",
+    "~/Library/Caches/PyCharm#{version.major_minor}",
+    "~/Library/Logs/PyCharm#{version.major_minor}",
+    "~/Library/Logs/PyCharmCE#{version.major_minor}",
+    "~/Library/Preferences/PyCharm#{version.major_minor}",
+    "~/Library/Preferences/PyCharmCE#{version.major_minor}",
+    "~/Library/Saved Application State/com.jetbrains.pycharm.savedState",
+  ]
 end

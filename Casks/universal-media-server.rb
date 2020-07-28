@@ -1,11 +1,14 @@
-cask :v1 => 'universal-media-server' do
-  version '5.0.1'
-  sha256 'c89e298d592fe59fc1906c2cdcf4b26dfbac020e65314c9021ef031e4d8ce453'
+cask "universal-media-server" do
+  version "9.8.0"
+  sha256 "9f885a05aadfcfe6216ad767435c22faeef1792ee3a44a42e800d23c7bc910c9"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/sourceforge/unimediaserver/Official%20Releases/OS%20X/UMS-#{version}-Java8.dmg"
-  homepage 'http://universalmediaserver.com'
-  license :gpl
+  # github.com/UniversalMediaServer/UniversalMediaServer/ was verified as official when first introduced to the cask
+  url "https://github.com/UniversalMediaServer/UniversalMediaServer/releases/download/#{version}/UMS-#{version}.dmg"
+  appcast "https://github.com/UniversalMediaServer/UniversalMediaServer/releases.atom"
+  name "Universal Media Server"
+  homepage "https://www.universalmediaserver.com/"
 
-  app 'Universal Media Server.app'
+  app "Universal Media Server.app"
+
+  zap trash: "~/Library/Application Support/UMS/"
 end

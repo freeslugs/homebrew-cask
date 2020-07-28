@@ -1,24 +1,19 @@
-cask :v1 => 'bettertouchtool' do
+cask "bettertouchtool" do
+  version "3.389-1612"
+  sha256 "2b47402d15843d361a504ab938689327335d6aceaeed0ebac4b421e5623a0fbc"
 
-  if MacOS.release <= :snow_leopard
-    version '0.939'
-    sha256 'fad5e9d36259c379bdb33188cf15d179fd9ff73023035c98f5734e7e3e13bb75'
-    url "http://bettertouchtool.net/btt#{version}.zip"
-  else
-    version :latest
-    sha256 :no_check
-    url 'http://bettertouchtool.net/BetterTouchTool.zip'
-  end
+  # bettertouchtool.net/releases/ was verified as official when first introduced to the cask
+  url "https://bettertouchtool.net/releases/btt#{version}.zip"
+  appcast "https://www.corecode.io/macupdater/appcasts/bettertouchtool.txt"
+  name "BetterTouchTool"
+  homepage "https://folivora.ai/"
 
-  appcast 'http://appcast.boastr.net'
-  name 'BetterTouchTool'
-  homepage 'http://bettertouchtool.net/'
-  license :commercial
+  auto_updates true
 
-  app 'BetterTouchTool.app'
+  app "BetterTouchTool.app"
 
-  zap :delete => [
-                  '~/Library/Preferences/com.hegenberg.BetterTouchTool.plist',
-                  '~/Library/Application Support/BetterTouchTool',
-                 ]
+  zap trash: [
+    "~/Library/Preferences/com.hegenberg.BetterTouchTool.plist",
+    "~/Library/Application Support/BetterTouchTool",
+  ]
 end

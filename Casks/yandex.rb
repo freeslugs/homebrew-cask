@@ -1,10 +1,11 @@
-cask :v1 => 'yandex' do
+cask "yandex" do
   version :latest
   sha256 :no_check
 
-  url 'https://download.cdn.yandex.net/browser/yandex/ru/Yandex.dmg'
-  homepage 'http://browser.yandex.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # yandex.net/ was verified as official when first introduced to the cask
+  url "https://download.cdn.yandex.net/browser/yandex/ru/Yandex.dmg"
+  name "Yandex.Browser"
+  homepage "https://browser.yandex.ru/desktop/"
 
-  app 'Yandex.app'
+  app "Yandex.app"
 end

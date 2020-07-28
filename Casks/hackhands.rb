@@ -1,11 +1,11 @@
-cask :v1 => 'hackhands' do
-  version '0.1.1'
-  sha256 'f3d5b67a79d963f88ddc03d2e5947a19a616a670442b2b1389159bd3960dcd8d'
+cask "hackhands" do
+  version "2.0.2"
+  sha256 "f5eb24548d5897c17a75da12c527f122189667578775864009741074aeb53d1c"
 
-  url 'http://desktop.hackhands.com.s3-website-us-west-1.amazonaws.com/v0.1.1/osx/HackHands.zip'
-  name 'HackHands'
-  homepage 'https://hackhands.com/desktop'
-  license :gratis
+  # s.pluralsight.com/mentors/desktop/ was verified as official when first introduced to the cask
+  url "https://s.pluralsight.com/mentors/desktop/HackHands-#{version}.dmg"
+  name "HackHands"
+  homepage "https://hackhands.com/desktop/"
 
-  app 'HackHands.app'
+  app "HackHands.app"
 end

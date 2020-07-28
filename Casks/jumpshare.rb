@@ -1,11 +1,21 @@
-cask :v1 => 'jumpshare' do
-  version '1.0.25-3'
-  sha256 'a2a2d44d858616965c8271dcfc177ec299e9592fed3abb795ddb81b533f6d818'
+cask "jumpshare" do
+  version "2.6.2"
+  sha256 "3ce2bc3d45a1789b125c6a4f3fb8607ef390326077d8cfb88b8c8c98c371ccbf"
 
-  url "https://jumpshare.com/desktop/mac/Jumpshare_#{version}.dmg"
-  name 'Jumpshare'
-  homepage 'https://jumpshare.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://apps.jumpshare.com/desktop/mac/updates/Jumpshare-#{version}.tar.bz2"
+  appcast "https://apps.jumpshare.com/desktop/mac/updates/appcast.xml"
+  name "Jumpshare"
+  homepage "https://jumpshare.com/"
 
-  app 'Jumpshare.app'
+  depends_on macos: ">= :high_sierra"
+
+  app "Jumpshare.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.jumpshare.JumpshareLoginHelper",
+    "~/Library/Application Support/com.jumpshare.Jumpshare",
+    "~/Library/Containers/com.jumpshare.JumpshareLoginHelper",
+    "~/Library/Cookies/com.jumpshare.Jumpshare.binarycookies",
+    "~/Library/Preferences/com.jumpshare.Jumpshare.plist",
+  ]
 end

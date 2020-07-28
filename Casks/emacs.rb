@@ -1,11 +1,23 @@
-cask :v1 => 'emacs' do
-  version '24.4'
-  sha256 '2d13ff9edff16d4e8f4bc9cf37961cf91a3f308fad5e9c214c4a546e86719312'
+cask "emacs" do
+  version "26.3"
+  sha256 "310f34b3890584b08fd6de9f422d0747ed3405910120ecfd2eb2cbf8921986a6"
 
-  url "http://emacsformacosx.com/emacs-builds/Emacs-#{version}-universal.dmg"
-  name 'Emacs'
-  homepage 'http://emacsformacosx.com/'
-  license :oss
+  url "https://emacsformacosx.com/emacs-builds/Emacs-#{version}-universal.dmg"
+  appcast "https://emacsformacosx.com/atom/release"
+  name "Emacs"
+  homepage "https://emacsformacosx.com/"
 
-  app 'Emacs.app'
+  conflicts_with formula: "emacs"
+
+  app "Emacs.app"
+  binary "#{appdir}/Emacs.app/Contents/MacOS/Emacs", target: "emacs"
+  binary "#{appdir}/Emacs.app/Contents/MacOS/bin/ebrowse"
+  binary "#{appdir}/Emacs.app/Contents/MacOS/bin/emacsclient"
+  binary "#{appdir}/Emacs.app/Contents/MacOS/bin/etags"
+
+  zap trash: [
+    "~/Library/Caches/org.gnu.Emacs",
+    "~/Library/Preferences/org.gnu.Emacs.plist",
+    "~/Library/Saved Application State/org.gnu.Emacs.savedState",
+  ]
 end

@@ -1,11 +1,10 @@
-cask :v1 => 'bookends' do
+cask "bookends" do
   version :latest
   sha256 :no_check
 
-  url 'http://www.sonnysoftware.com/Bookends.dmg'
-  name 'Bookends'
-  homepage 'http://www.sonnysoftware.com'
-  license :closed
+  url "https://www.sonnysoftware.com/Bookends.dmg"
+  name "Bookends"
+  homepage "https://www.sonnysoftware.com/"
 
-  app 'Bookends.app'
+  app "Bookends.app"
 end

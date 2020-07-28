@@ -1,12 +1,21 @@
-cask :v1 => 'subler' do
-  version '0.31'
-  sha256 'b9894827ae93ecd2e087cf333cd79f0a622ec4ac3a06737a418635e26940ca7a'
+cask "subler" do
+  version "1.6.5"
+  sha256 "7f57f7433dedf273b6e14d2d9d38518609027369f95a56e6f8284433b7a88b13"
 
+  # bitbucket.org/galad87/subler/ was verified as official when first introduced to the cask
   url "https://bitbucket.org/galad87/subler/downloads/Subler-#{version}.zip"
-  appcast 'http://subler.googlecode.com/svn/doc/appcast.xml',
-          :sha256 => 'b8d659a84089c8ebd4969c7e5393b0472d844c79d43bad33cbfbbe153f2dfb51'
-  homepage 'https://bitbucket.org/galad87/subler'
-  license :gpl
+  appcast "https://subler.org/appcast/appcast.xml"
+  name "Subler"
+  homepage "https://subler.org/"
 
-  app 'Subler.app'
+  auto_updates true
+
+  app "Subler.app"
+
+  zap trash: [
+    "~/Library/Preferences/org.galad.Subler.plist",
+    "~/Library/Application Support/Subler",
+    "~/Library/Caches/org.galad.Subler",
+    "~/Library/Saved Application State/org.galad.Subler.savedState",
+  ]
 end

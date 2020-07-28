@@ -1,13 +1,11 @@
-cask :v1 => 'epubquicklook' do
-  version :latest
-  sha256 :no_check
+cask "epubquicklook" do
+  version "1.8"
+  sha256 "923b2ebcbffc4ee1da42550c2239b41bad088d61956b22b1a92b293329ef6fe5"
 
-  url 'http://people.ict.usc.edu/~leuski/programming/EPUBQuickLookPlugin.dmg'
-  name 'EPUB QuickLook plugin'
-  homepage 'http://people.ict.usc.edu/~leuski/programming/epub-quickview.php'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://github.com/jaketmp/ePub-quicklook/releases/download/v#{version}/epub.qlgenerator.zip"
+  appcast "https://github.com/jaketmp/ePub-quicklook/releases.atom"
+  name "EPUB QuickLook"
+  homepage "https://github.com/jaketmp/ePub-quicklook"
 
-  pkg 'EpubQuickLook.pkg'
-
-  uninstall :pkgutil => 'net.leuski.epubQuicklookPlugin.epub.pkg'
+  qlplugin "epub.qlgenerator"
 end

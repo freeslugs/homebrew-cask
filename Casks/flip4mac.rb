@@ -1,13 +1,12 @@
-cask :v1 => 'flip4mac' do
-  version '3.3.3'
-  sha256 '2ef87c50b2f767231f1b56e2e3d6486b2b6bd963a9c71711fcd84e3abd92bad6'
+cask "flip4mac" do
+  version "3.3.8"
+  sha256 "dde035ecd07f14224dcaa9ed70c873e18544bbff5ce79bb5b1bbbb05ff9f61c0"
 
-  url "http://www.telestream.net/download-files/flip4mac/#{version.sub(%r{\.\d+$},'').sub('.','-')}/Flip4Mac-#{version}.dmg"
-  name 'Flip4Mac'
-  homepage 'http://www.telestream.net/flip4mac/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.telestream.net/download-files/flip4mac/#{version.sub(/^(\d+)\.(\d+).*$/, '\1-\2')}/Flip4Mac-#{version}.dmg"
+  name "Flip4Mac"
+  homepage "https://www.telestream.net/flip4mac/"
 
-  pkg 'Flip4Mac.pkg'
+  pkg "Flip4Mac.pkg"
 
-  uninstall :pkgutil => 'net.telestream.Flip4Mac'
+  uninstall pkgutil: "net.telestream.Flip4Mac"
 end

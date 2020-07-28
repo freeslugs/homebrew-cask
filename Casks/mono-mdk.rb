@@ -1,12 +1,33 @@
-cask :v1 => 'mono-mdk' do
-  version '3.12.0'
-  sha256 :no_check # required as upstream package is updated in-place
+cask "mono-mdk" do
+  version "6.10.0.104"
+  sha256 "49aa1602896536d32b48fbd7ece00142fe28109febaf35a5c115702b70ea3c18"
 
-  url "http://download.mono-project.com/archive/#{version}/macos-10-x86/MonoFramework-MDK-#{version}.macos10.xamarin.x86.pkg"
-  homepage 'http://mono-project.com'
-  license :oss
+  url "https://download.mono-project.com/archive/#{version.major_minor_patch}/macos-10-universal/MonoFramework-MDK-#{version}.macos10.xamarin.universal.pkg"
+  appcast "https://www.mono-project.com/download/stable/"
+  name "Mono"
+  homepage "https://www.mono-project.com/"
 
-  pkg "MonoFramework-MDK-#{version}.macos10.xamarin.x86.pkg"
+  conflicts_with cask: "mono-mdk-for-visual-studio"
 
-  uninstall :pkgutil => 'com.xamarin.mono-MDK.pkg'
+  pkg "MonoFramework-MDK-#{version}.macos10.xamarin.universal.pkg"
+
+  uninstall delete:  [
+    "/Library/Frameworks/Mono.framework/Versions/#{version.major_minor_patch}",
+    "/private/etc/paths.d/mono-commands",
+  ],
+            pkgutil: "com.xamarin.mono-*",
+            rmdir:   [
+              "/Library/Frameworks/Mono.framework/Versions",
+              "/Library/Frameworks/Mono.framework",
+            ]
+
+  caveats <<~EOS
+    Installing #{token} removes mono and mono dependant formula binaries in
+    /usr/local/bin and adds #{token} to /private/etc/paths.d/
+    You may want to:
+
+      brew unlink {formula} && brew link {formula}
+
+    and/or remove /private/etc/paths.d/mono-commands
+  EOS
 end

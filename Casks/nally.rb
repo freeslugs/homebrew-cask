@@ -1,11 +1,12 @@
-cask :v1 => 'nally' do
-  version '1.4.9'
-  sha256 '5b7835f8842aa33d0f40eebddda2686a39f2106dfacd0bde04c3f0911da625d1'
+cask "nally" do
+  version "1.4.9"
+  sha256 "5b7835f8842aa33d0f40eebddda2686a39f2106dfacd0bde04c3f0911da625d1"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://yllan.github.com/nally/download/Nally-#{version}.app.zip"
-  homepage 'http://yllan.org/app/Nally/'
-  license :gpl
+  # yllan.github.io/nally/ was verified as official when first introduced to the cask
+  url "https://yllan.github.io/nally/download/Nally-#{version}.app.zip"
+  appcast "https://yllan.org/app/Nally/"
+  name "Nally"
+  homepage "https://yllan.org/app/Nally/"
 
-  app 'Nally.app'
+  app "Nally.app"
 end

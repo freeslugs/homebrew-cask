@@ -1,13 +1,23 @@
-cask :v1 => 'lingon-x' do
-  version :latest
-  sha256 :no_check
+cask "lingon-x" do
+  if MacOS.version <= :high_sierra
+    version "6.6.5"
+    sha256 "b0231b1a98dcc8f5c4234b419c9f5331407b8cce29b33f0ea2e32b12595adfa8"
+  else
+    version "7.5.8"
+    sha256 "e4022ad04dafd460fa8ba7acf0b623f5eb03e2a081a85313ec1586fe303ed766"
+  end
 
-  url 'http://www.peterborgapps.com/downloads/LingonX2.zip'
-  appcast 'http://www.peterborgapps.com/updates/lingonx2-appcast.xml'
-  homepage 'http://www.peterborgapps.com/lingon/'
-  license :commercial
+  url "https://www.peterborgapps.com/downloads/LingonX#{version.major}.zip"
+  appcast "https://www.peterborgapps.com/updates/lingonx#{version.major}.plist"
+  name "Lingon X"
+  homepage "https://www.peterborgapps.com/lingon/"
 
-  app 'Lingon X.app'
+  depends_on macos: ">= :high_sierra"
 
-  depends_on :macos => '>= :yosemite'
+  app "Lingon X.app"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.peterborgapps.LingonX#{version.major}",
+    "~/Library/Containers/com.peterborgapps.LingonX#{version.major}",
+  ]
 end

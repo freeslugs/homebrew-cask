@@ -1,12 +1,17 @@
-cask :v1 => 'lyn' do
-  version '1.5.2'
-  sha256 'a4200b35eb4e51c3932a9e7cd40e1be3291a26921da350d396d337fa667798f6'
+cask "lyn" do
+  version "1.13"
+  sha256 "12178ed28ae46985c1c4cffd541a704ad4a3727ed450cf14b80fae755048a7bc"
 
-  url "http://www.lynapp.com/downloads/Lyn-#{version}.dmg"
-  appcast 'http://www.lynapp.com/lyn/update.xml',
-          :sha256 => '76e8a68df36fb35893e5ad0c5fd464ec0feb0b6a6f857d6b57792e3c7eb82fb5'
-  homepage 'http://www.lynapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.lynapp.com/downloads/Lyn-#{version}.dmg"
+  appcast "https://www.lynapp.com/lyn/update.xml"
+  name "Lyn"
+  homepage "https://www.lynapp.com/"
 
-  app 'Lyn.app'
+  app "Lyn.app"
+
+  zap trash: [
+    "~/Library/Application Support/Lyn",
+    "~/Library/Caches/com.lynapp.lyn",
+    "~/Library/Preferences/com.lynapp.lyn.plist",
+  ]
 end

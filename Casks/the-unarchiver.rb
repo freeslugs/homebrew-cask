@@ -1,11 +1,21 @@
-cask :v1 => 'the-unarchiver' do
-  version '3.9.1'
-  sha256 '34fa3410237e17b2cdceb801a84ed8db93c74ac0db551ffe65913c2134ebbf05'
+cask "the-unarchiver" do
+  version "4.2.2,129:1590582775"
+  sha256 "0c586d9f95d23cead58c7b314f74b6158f7917673e1163034267030d4a65d32f"
 
-  # googlecode.com is the official download host per the vendor homepage
-  url "https://theunarchiver.googlecode.com/files/TheUnarchiver#{version}.zip"
-  homepage 'http://unarchiver.c3.cx/'
-  license :oss
+  # devmate.com/com.macpaw.site.theunarchiver/ was verified as official when first introduced to the cask
+  url "https://dl.devmate.com/com.macpaw.site.theunarchiver/#{version.after_comma.before_colon}/#{version.after_colon}/TheUnarchiver-#{version.after_comma.before_colon}.zip"
+  appcast "https://updates.devmate.com/com.macpaw.site.theunarchiver.xml"
+  name "The Unarchiver"
+  homepage "https://theunarchiver.com/"
 
-  app 'The Unarchiver.app'
+  auto_updates true
+
+  app "The Unarchiver.app"
+
+  zap trash: [
+    "~/Library/Caches/cx.c3.theunarchiver",
+    "~/Library/Cookies/cx.c3.theunarchiver.binarycookies",
+    "~/Library/Preferences/cx.c3.theunarchiver.plist",
+    "~/Library/Saved Application State/cx.c3.theunarchiver.savedState",
+  ]
 end

@@ -1,12 +1,11 @@
-cask :v1 => 'quicklook-csv' do
-  version :latest
-  sha256 :no_check
+cask "quicklook-csv" do
+  version "1.3"
+  sha256 "e052e89f8003aed08bb2058e3fb3335ac0a5cdaa0171bfb23b762976e095ef5b"
 
-  # googlecode.com is the official download host per the vendor homepage
-  url 'https://quicklook-csv.googlecode.com/files/QuickLookCSV.dmg'
-  name 'QuickLookCSV'
-  homepage 'https://github.com/p2/quicklook-csv'
-  license :oss
+  url "https://github.com/p2/quicklook-csv/releases/download/#{version}/QuickLookCSV-#{version}.dmg"
+  appcast "https://github.com/p2/quicklook-csv/releases.atom"
+  name "QuickLookCSV"
+  homepage "https://github.com/p2/quicklook-csv"
 
-  qlplugin 'QuickLookCSV.qlgenerator'
+  qlplugin "QuickLookCSV.qlgenerator"
 end

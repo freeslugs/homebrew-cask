@@ -1,12 +1,10 @@
-cask :v1 => 'au-lab' do
+cask "au-lab" do
   version :latest
   sha256 :no_check
 
-  url 'http://images.apple.com/itunes/mastered-for-itunes/docs/au_lab.zip'
-  name 'AU Lab'
-  homepage 'http://www.apple.com/itunes/mastered-for-itunes/'
-  license :gratis
+  url "https://images.apple.com/itunes/mastered-for-itunes/docs/au_lab.zip"
+  name "AU Lab"
+  homepage "https://www.apple.com/itunes/mastered-for-itunes/"
 
-  container :nested => 'AU Lab Image.dmg'
-  app 'AU Lab.app'
+  app "AU Lab.app"
 end

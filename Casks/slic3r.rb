@@ -1,10 +1,17 @@
-cask :v1 => 'slic3r' do
-  version '1.1.7'
-  sha256 '41ae1c3c5ee7ddeb2431698b63f6e4112c68b830de9f024730388a1eb062f80b'
+cask "slic3r" do
+  version "1.3.0"
+  sha256 "a50dbe78c4648dfcd0ffec46335554c9fa3348dd494a1f6c2b60406aea57b5cb"
 
-  url "http://dl.slic3r.org/mac/slic3r-osx-uni-#{version.gsub('.', '-')}-stable.dmg"
-  homepage 'http://slic3r.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dl.slic3r.org/mac/slic3r-#{version}.dmg"
+  appcast "https://dl.slic3r.org/mac/"
+  name "Slic3r"
+  homepage "https://slic3r.org/"
 
-  app 'Slic3r.app'
+  app "Slic3r.app"
+
+  zap trash: [
+    "~/Library/Application Support/Slic3r",
+    "~/Library/Preferences/org.slic3r.Slic3r.plist",
+    "~/Library/Saved Application State/org.slic3r.Slic3r.savedState",
+  ]
 end

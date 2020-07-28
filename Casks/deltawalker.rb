@@ -1,12 +1,19 @@
-cask :v1 => 'deltawalker' do
-  version '2.1.1'
-  sha256 '1ddc599279f428dd9296f78fdb05e0a39faf9f97fa71ad5e02c22010380a01ae'
+cask "deltawalker" do
+  version "2.5.6"
+  sha256 "d823244f7262351b7bc3ffa39c3a01eede50f9d079f81f32435d3642e8b9a9d3"
 
-  # amazonaws.com is the official download host per the vendor homepage
-  url "https://s3.amazonaws.com/deltawalker/DeltaWalker-#{version}_64.dmg"
-  name 'DeltaWalker'
-  homepage 'http://www.deltopia.com/compare-merge-sync/macosx/'
-  license :commercial
+  # deltawalker.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://deltawalker.s3.amazonaws.com/DeltaWalker-#{version}.dmg"
+  appcast "https://www.deltawalker.com/assets/js/main.js"
+  name "DeltaWalker"
+  homepage "https://www.deltawalker.com/"
 
-  app 'DeltaWalker.app'
+  app "DeltaWalker.app"
+
+  zap trash: [
+    "~/Library/Caches/com.deltopia.DeltaWalker",
+    "~/Library/Containers/com.deltopia.DeltaWalker",
+    "~/Library/Preferences/com.deltopia.DeltaWalker.plist",
+    "~/Library/Saved Application State/com.deltopia.DeltaWalker.savedState",
+  ]
 end

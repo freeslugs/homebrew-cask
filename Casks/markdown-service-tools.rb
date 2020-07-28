@@ -1,11 +1,10 @@
-cask :v1 => 'markdown-service-tools' do
-  version '2.11'
-  sha256 '3a1e3f6950121638e15e6b54ea27f98ae12b08c8c54599cc614635729f539039'
+cask "markdown-service-tools" do
+  version "2.16"
+  sha256 "fcc9c9b88b164547315cde305d4b4096243268b84d24c054e2731449c9e47633"
 
-  url "http://cdn3.brettterpstra.com/downloads/MarkdownServiceTools#{version}.zip"
-  name 'Markdown Service Tools'
-  homepage 'http://brettterpstra.com/projects/markdown-service-tools/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://brettterpstra.com/downloads/MarkdownServiceTools#{version}.zip"
+  name "Markdown Service Tools"
+  homepage "https://brettterpstra.com/projects/markdown-service-tools/"
 
   service "MarkdownServiceTools#{version}/md - Code - Make Code Block.workflow"
   service "MarkdownServiceTools#{version}/md - Convert - HTML to Clipboard.workflow"
@@ -37,6 +36,7 @@ cask :v1 => 'markdown-service-tools' do
   service "MarkdownServiceTools#{version}/md - Paragraphs - Preserve Line Breaks.workflow"
   service "MarkdownServiceTools#{version}/md - Paragraphs - Unwrap.workflow"
   service "MarkdownServiceTools#{version}/md - Tables - Cleanup.workflow"
+  service "MarkdownServiceTools#{version}/md - Tables - Create from CSV.workflow"
   service "MarkdownServiceTools#{version}/md - Wrap - Angle Brackets.workflow"
   service "MarkdownServiceTools#{version}/md - Wrap - Parenthesis.workflow"
   service "MarkdownServiceTools#{version}/md - Wrap - Square Brackets.workflow"

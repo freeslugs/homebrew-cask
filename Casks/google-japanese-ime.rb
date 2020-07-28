@@ -1,17 +1,17 @@
-cask :v1 => 'google-japanese-ime' do
+cask "google-japanese-ime" do
   version :latest
   sha256 :no_check
 
-  # google.com is the official download host per the vendor homepage
-  url 'https://dl.google.com/japanese-ime/latest/GoogleJapaneseInput.dmg'
-  homepage 'https://www.google.co.jp/ime/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # dl.google.com/japanese-ime/ was verified as official when first introduced to the cask
+  url "https://dl.google.com/japanese-ime/latest/GoogleJapaneseInput.dmg"
+  name "Google Japanese Input Method Editor"
+  homepage "https://www.google.co.jp/ime/"
 
-  pkg 'GoogleJapaneseInput.pkg'
+  pkg "GoogleJapaneseInput.pkg"
 
-  uninstall :pkgutil => 'com.google.pkg.GoogleJapaneseInput',
-            :launchctl => [
-                           'com.google.inputmethod.Japanese.Converter',
-                           'com.google.inputmethod.Japanese.Renderer'
-                          ]
+  uninstall pkgutil:   "com.google.pkg.GoogleJapaneseInput",
+            launchctl: [
+              "com.google.inputmethod.Japanese.Converter",
+              "com.google.inputmethod.Japanese.Renderer",
+            ]
 end

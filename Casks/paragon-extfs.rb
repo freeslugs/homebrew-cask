@@ -1,18 +1,21 @@
-cask :v1 => 'paragon-extfs' do
+cask "paragon-extfs" do
   version :latest
   sha256 :no_check
 
-  url 'http://dl.paragon-software.com/demo/extmac_trial_u.dmg'
-  name 'Paragon ExtFS'
-  homepage 'http://www.paragon-software.com/home/extfs-mac/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dl.paragon-software.com/demo/trial_extfs.dmg"
+  name "Paragon ExtFS"
+  homepage "https://www.paragon-software.com/ufsdhome/extfs-mac/"
 
-  pkg 'FSInstaller.app/Contents/Resources/Paragon ExtFS for Mac OS X.pkg'
+  installer manual: "FSInstaller.app"
 
-  uninstall :pkgutil => 'com.paragon-software.filesystems.ExtFS.pkg',
-            :script  => 'Uninstall.app/Contents/Resources/uninstall.sh',
-            :launchctl => [
-                           'com.paragon.extfs*',
-                           'com.paragon.updater'
-                          ]
+  uninstall kext:      "com.paragon-software.filesystems.extfs",
+            launchctl: "com.paragon-software.extfs*",
+            pkgutil:   "com.paragon-software.pkg.extfs",
+            quit:      "com.paragon-software.extfs*",
+            signal:    [
+              ["KILL", "com.paragon-software.extfs.FSMenuApp"],
+              ["KILL", "com.paragon-software.extfs.notification-agent"],
+            ]
+
+  zap trash: "~/Library/Preferences/com.paragon-software.extfs.fsapp.plist"
 end

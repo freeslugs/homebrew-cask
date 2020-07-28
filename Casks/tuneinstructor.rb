@@ -1,17 +1,13 @@
-cask :v1 => 'tuneinstructor' do
-  version '3.4'
+cask "tuneinstructor" do
+  version "3.7v5,17467"
+  sha256 "bbd0255f809da259b6c4a9d7f7fc27de2bceb5dc7caca32adc61769d9d98f9de"
 
-  if MacOS.release <= :snow_leopard
-    sha256 '99e9dbc9657921246ce39b4d3b7521f8aa31c205c4e18e552a0f816e7e2e52aa'
-    url "http://www.tune-instructor.de/_data/TuneInstructor#{version}a.dmg"
-  else
-    sha256 '2acf8252e78edbe4594136bad83f035ab48e78db1f4c2b2d8e047d3e70c90c12'
-    url "http://www.tune-instructor.de/_data/TuneInstructor#{version}b.dmg"
-  end
+  url "https://www.tune-instructor.de/resources/downloads/TuneInstructor#{version.before_comma}.zip"
+  appcast "https://www.tune-instructor.de/de/download.html"
+  name "Tune•Instructor"
+  homepage "https://www.tune-instructor.de/com/start.html"
 
-  name 'Tune•Instructor'
-  homepage 'http://www.tune-instructor.de/com/start.html'
-  license :commercial
+  depends_on macos: ">= :catalina"
 
-  app 'Tune•Instructor.app'
+  app "Tune•Instructor.app"
 end

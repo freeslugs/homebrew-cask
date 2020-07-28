@@ -1,11 +1,14 @@
-cask :v1 => 'mediaelch' do
-  version '2.1.2'
-  sha256 '6387b815a81de7526521811b90cc9f7b3f56821f6c01b22f25cae3f3b5d46efe'
+cask "mediaelch" do
+  version "2.6.6"
+  sha256 "624f2d640838c535d618ad0aa2621d354f5248047ff1e2c65e1d4fa3f3294ad4"
 
-  url "http://www.kvibes.de/releases/mediaelch/#{version}/MediaElch-#{version}.dmg"
-  name 'MediaElch'
-  homepage 'http://www.kvibes.de/en/mediaelch/'
-  license :gpl
+  # github.com/Komet/MediaElch/ was verified as official when first introduced to the cask
+  url "https://github.com/Komet/MediaElch/releases/download/v#{version}/MediaElch_#{version}_macOS.dmg"
+  appcast "https://github.com/Komet/MediaElch/releases.atom"
+  name "MediaElch"
+  homepage "https://www.kvibes.de/en/mediaelch/"
 
-  app 'MediaElch.app'
+  depends_on macos: ">= :sierra"
+
+  app "MediaElch.app"
 end

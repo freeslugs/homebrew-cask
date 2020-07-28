@@ -1,20 +1,18 @@
-cask :v1 => 'folding-at-home' do
-  version '7.4.4'
-  sha256 'c0de525eef498c2c4befc0b719ffd50d8fe4494ced64ee3bc4d60e8b919306a0'
+cask "folding-at-home" do
+  version "7.6.13"
+  sha256 "ee96f4f1b724db46f9a37f7d805095a16b24f1ef7e9b9a1615a56e94e4119a36"
 
-  url "https://fah.stanford.edu/file-releases/public/release/fah-installer/osx-10.6.4-64bit/v#{version.sub(/\.\d+$/, '')}/fah-installer_#{version}_x86_64.mpkg.zip"
-  name 'Folding@home'
-  homepage 'http://folding.stanford.edu'
-  license :closed
+  url "https://download.foldingathome.org/releases/public/release/fah-installer/osx-10.11-64bit/v#{version.major_minor}/fah-installer_#{version}_x86_64.mpkg.zip"
+  appcast "https://download.foldingathome.org/js/fah-downloads.js"
+  name "Folding@home"
+  homepage "https://foldingathome.org/"
 
   pkg "fah-installer_#{version}_x86_64.pkg"
 
-  uninstall :pkgutil   => 'edu.stanford.folding.*',
-            :launchctl => 'edu.stanford.folding.fahclient',
-            :quit      => %w{
-                             edu.stanford.folding.fahviewer
-                             edu.stanford.folding.fahcontrol
-                            }
-
-  depends_on :macos => '>= 10.6'
+  uninstall pkgutil:   "org.foldingathome.*",
+            launchctl: "org.foldingathome.fahclient",
+            quit:      [
+              "org.foldingathome.fahviewer",
+              "org.foldingathome.fahcontrol",
+            ]
 end

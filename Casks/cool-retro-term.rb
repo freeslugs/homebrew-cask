@@ -1,11 +1,11 @@
-cask :v1 => 'cool-retro-term' do
-  version '1.0.0'
-  sha256 'ccb1c78b54e1c2dcde1a660730da2b0f6d2e4213e3748e5ad81a5653926c920e'
+cask "cool-retro-term" do
+  version "1.1.1"
+  sha256 "267732bc3b5b9fea0abeabfe5c7f54c055b5035dcaf834a0382a0e46e2000d90"
 
-  url 'https://github.com/Swordfish90/cool-retro-term/releases/download/v1.0.0/cool-retro-term100.dmg'
-  name 'cool-retro-term'
-  homepage 'https://github.com/Swordfish90/cool-retro-term'
-  license :gpl
+  url "https://github.com/Swordfish90/cool-retro-term/releases/download/#{version}/Cool-Retro-Term-#{version}.dmg"
+  appcast "https://github.com/Swordfish90/cool-retro-term/releases.atom"
+  name "cool-retro-term"
+  homepage "https://github.com/Swordfish90/cool-retro-term"
 
-  app 'cool-retro-term.app'
+  app "cool-retro-term.app"
 end

@@ -1,16 +1,19 @@
-cask :v1 => 'transmit' do
-  version '4.4.8'
-  sha256 '3547a5e8baabffd18c4e21c766362cd4295d878d391ce48bb8f8f4d6eabd9ef9'
+cask "transmit" do
+  version "5.6.5"
+  sha256 "39c16e724e8cc38a6638e812a35d4b6b1cc4cd4cbda628da0143a308dbfc4299"
 
   url "https://www.panic.com/transmit/d/Transmit%20#{version}.zip"
-  appcast 'http://www.panic.com/updates/update.php'
-  homepage 'http://panic.com/transmit'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  appcast "https://library.panic.com/releasenotes/transmit#{version.major}/"
+  name "Transmit"
+  homepage "https://panic.com/transmit/"
 
-  app 'Transmit.app'
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
 
-  zap :delete => [
-                  '~/Library/Preferences/com.panic.Transmit.plist',
-                  '~/Library/Application Support/Transmit',
-                 ]
+  app "Transmit.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.panic.Transmit.plist",
+    "~/Library/Application Support/Transmit",
+  ]
 end

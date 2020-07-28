@@ -1,12 +1,14 @@
-cask :v1 => 'makehuman' do
-  version '1.0.2'
-  sha256 'ea74381b1fd9c0f699b2cf1a3476d7cf9447fad3beb3c48de0a4017032c44de9'
+cask "makehuman" do
+  version "1.1.1"
+  sha256 "0f5626b1878f8f4233be431917e740806b141522f9f4b3da7809e8e7798ee2d8"
 
-  # tuxfamily.org is the official download host per the vendor homepage
-  url "http://download.tuxfamily.org/makehuman/releases/#{version}/makehuman-#{version}-osx.dmg"
-  name 'MakeHuman'
-  homepage 'http://www.makehuman.org/'
-  license :affero
+  # tuxfamily.org/makehuman/ was verified as official when first introduced to the cask
+  url "https://download.tuxfamily.org/makehuman/releases/#{version}/makehuman-#{version}-osx.dmg"
+  appcast "https://download.tuxfamily.org/makehuman/releases/"
+  name "MakeHuman"
+  homepage "http://www.makehuman.org/"
 
-  app 'MakeHuman.app'
+  depends_on macos: ">= :sierra"
+
+  app "MakeHuman.app"
 end

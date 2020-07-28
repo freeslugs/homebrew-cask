@@ -1,11 +1,11 @@
-cask :v1 => 'leksah' do
-  version '0.14.4.0-ghc-7.8.3'
-  sha256 '921ac4eb7bbc17e76baf9f870d9b99006418fba21f2161907040ed240d3324fc'
+cask "leksah" do
+  version "0.16.2.2-ghc-8.0.2"
+  sha256 "4ab4e5245d85bfc55b6fc6f347f4abe86728bdef031d3c5e9fb40704e07cd2dc"
 
   url "http://www.leksah.org/packages/leksah-#{version}.dmg"
-  name 'Leksah'
-  homepage 'http://leksah.org/'
-  license :oss
+  appcast "http://www.leksah.org/packages/"
+  name "Leksah"
+  homepage "http://leksah.org/"
 
-  app 'Leksah.app'
+  app "Leksah.app"
 end

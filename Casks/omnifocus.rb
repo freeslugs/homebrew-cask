@@ -1,36 +1,43 @@
-cask :v1 => 'omnifocus' do
-  if MacOS.release <= :mountain_lion
-    version '1.10.6'
-    sha256 'bd3aa44dced86fc3921c01f4467422a7b87a92afbd4be642ea4d4bb8b14b728c'
-    url "http://www.omnigroup.com/ftp1/pub/software/MacOSX/10.6/OmniFocus-#{version}.dmg"
-  elsif MacOS.release <= :mavericks
-    version '2.0.4'
-    sha256 '3282eb7e41ec2638f68a92a6509eddd96a96c39b65b954dcedcc4e62289f22a9'
-    url "http://www.omnigroup.com/ftp1/pub/software/MacOSX/10.9/OmniFocus-#{version}.dmg"
+cask "omnifocus" do
+  if MacOS.version <= :yosemite
+    version "2.7.4"
+    sha256 "a273e55c15f82540fe305344f9e49ad7d0d9c326ba2c37c312076ffd73780f80"
+    url "https://downloads.omnigroup.com/software/MacOSX/10.10/OmniFocus-#{version}.dmg"
+  elsif MacOS.version <= :el_capitan
+    version "2.10"
+    sha256 "e808a72e60cdff9ff5aa1046d856bf62d6418e4915248816c4640e32e52fd8e8"
+    url "https://downloads.omnigroup.com/software/MacOSX/10.11/OmniFocus-#{version}.dmg"
+  elsif MacOS.version <= :sierra
+    version "2.12.4"
+    sha256 "8a2dc53331dba804f6781773fef546a03c181fc4ff0eb7ee4f871c10342621f0"
+    url "https://downloads.omnigroup.com/software/MacOSX/10.12/OmniFocus-#{version}.dmg"
+  elsif MacOS.version <= :high_sierra
+    version "3.4.6"
+    sha256 "b770b046c2c59f6e55f54d0ad822d5aa755a18aa201d333341de14ebbbcc6a85"
+    url "https://downloads.omnigroup.com/software/MacOSX/10.13/OmniFocus-#{version}.dmg"
   else
-    version '2.1'
-    sha256 'af46a2908e527c82521ed70b5e841243ad1d9b45ab66c798109a7040b07530d6'
-    url "http://www.omnigroup.com/ftp1/pub/software/MacOSX/10.10/OmniFocus-#{version}.dmg"
+    version "3.9.1"
+    sha256 "9ba266376a29363c8f7ff2330d0d6571867bf29b00d27287581f68e9c320de0d"
+    url "https://downloads.omnigroup.com/software/MacOSX/10.14/OmniFocus-#{version}.dmg"
   end
 
-  if MacOS.release <= :mountain_lion
-    zap :delete => [
-                    '~/Library/Application Support/OmniFocus/Plug-Ins',
-                    '~/Library/Application Support/OmniFocus/Themes',
-                    '~/Library/Preferences/com.omnigroup.OmniFocus.plist'
-                   ]
-  else
-    zap :delete => [
-                    '~/Library/containers/com.omnigroup.omnifocus2',
-                    '~/Library/Preferences/com.omnigroup.OmniFocus2.LSSharedFileList.plist',
-                    '~/Library/Preferences/com.omnigroup.OmniSoftwareUpdate.plist',
-                    '~/Library/Caches/Metadata/com.omnigroup.OmniFocus2'
-                   ]
-  end
+  appcast "https://update.omnigroup.com/appcast/com.omnigroup.OmniFocus#{version.major}"
+  name "OmniFocus"
+  homepage "https://www.omnigroup.com/omnifocus/"
 
-  name 'OmniFocus'
-  homepage 'https://www.omnigroup.com/omnifocus/'
-  license :commercial
+  auto_updates true
 
-  app 'OmniFocus.app'
+  app "OmniFocus.app"
+
+  uninstall quit: "com.omnigroup.OmniFocus#{version.major}"
+
+  zap trash: [
+    "~/Library/Containers/com.omnigroup.OmniFocus#{version}",
+    "~/Library/Preferences/com.omnigroup.OmniFocus#{version}.LSSharedFileList.plist",
+    "~/Library/Preferences/com.omnigroup.OmniSoftwareUpdate.plist",
+    "~/Library/Caches/Metadata/com.omnigroup.OmniFocus#{version}",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.omnigroup.omnifocus#{version}.sfl*",
+    "~/Library/Group Containers/34YW5XSRB7.com.omnigroup.OmniFocus",
+    "~/Library/Saved Application State/com.omnigroup.OmniFocus#{version}.savedState",
+  ]
 end

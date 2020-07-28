@@ -1,11 +1,10 @@
-cask :v1 => 'sdrdx' do
+cask "sdrdx" do
   version :latest
   sha256 :no_check
 
-  url 'http://fyngyrz.com/SdrDx-AA7AS-Light.zip'
-  name 'SdrDx'
-  homepage 'http://fyngyrz.com/?p=915'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://fyngyrz.com/SdrDx-AA7AS-Light.zip"
+  name "SdrDx"
+  homepage "https://fyngyrz.com/?p=915"
 
-  app 'SdrDx.app'
+  app "SdrDx.app"
 end

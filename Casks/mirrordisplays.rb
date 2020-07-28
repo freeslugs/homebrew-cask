@@ -1,12 +1,14 @@
-cask :v1 => 'mirrordisplays' do
-  version :latest
-  sha256 :no_check
+cask "mirrordisplays" do
+  version "1.2"
+  sha256 "68b6b9a0bd79945d0e1239f308520a6cfd582fdde4dd061195de888b41643dd5"
 
-  url 'http://www.fabiancanas.com/downloads/MirrorDisplays.zip',
-    :referer => 'http://www.fabiancanas.com/Projects/MirrorDisplays'
-  name 'Mirror Displays'
-  homepage 'http://www.fabiancanas.com/Projects/MirrorDisplays'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/fcanas/mirror-displays/ was verified as official when first introduced to the cask
+  url "https://github.com/fcanas/mirror-displays/releases/download/v#{version}/MirrorDisplays.zip"
+  appcast "https://github.com/fcanas/mirror-displays/releases.atom"
+  name "Mirror Displays"
+  homepage "https://fabiancanas.com/open-source/mirror-displays"
 
-  app 'MirrorDisplays.app'
+  depends_on macos: ">= :high_sierra"
+
+  app "MirrorDisplays.app"
 end

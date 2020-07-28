@@ -1,10 +1,12 @@
-cask :v1 => 'go-agent' do
-  version '14.2.0-377'
-  sha256 'b3886afe748bbba3dccd0f3282af4e1860ca93223a5a70bf22a3b132adeb3701'
+cask "go-agent" do
+  version "19.1.0-8469"
+  sha256 "113b21b10590c7a066bdd0597825b672bfed8b33b9cda756b9d6fea42a7c7c3e"
 
-  url "http://download.go.cd/gocd/go-agent-#{version}-osx.zip"
-  homepage 'http://www.go.cd'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # download.gocd.io/binaries/ was verified as official when first introduced to the cask
+  url "https://download.gocd.io/binaries/#{version}/osx/go-agent-#{version}-osx.zip"
+  appcast "https://github.com/gocd/gocd/releases.atom"
+  name "Go Agent"
+  homepage "https://www.gocd.org/"
 
-  app 'Go Agent.app'
+  app "Go Agent.app"
 end

@@ -1,11 +1,14 @@
-cask :v1 => 'bathyscaphe' do
-  version '2.4.2'
-  sha256 'fe7b8deed01a75b09cce9d4bd1f06a60106adfd831dfbe07782bf19fb1a67bd1'
+cask "bathyscaphe" do
+  version "310-v1089"
+  sha256 "32f7758d2898fd8cccd1b506c8d78bbff6733640e392eba67c95a6626377a603"
 
-  url "http://dl.sourceforge.jp/bathyscaphe/61374/BathyScaphe-#{version.gsub('.','')}-v648.dmg"
-  name 'BathyScaphe'
-  homepage 'http://bathyscaphe.sourceforge.jp/'
-  license :oss
+  # bitbucket.org/bathyscaphe/public/downloads/ was verified as official when first introduced to the cask
+  url "https://bitbucket.org/bathyscaphe/public/downloads/BathyScaphe-#{version}.dmg"
+  appcast "https://bathyscaphe.bitbucket.io/appcast.xml"
+  name "BathyScaphe"
+  homepage "https://bathyscaphe.bitbucket.io/"
 
-  app 'BathyScaphe.app'
+  depends_on macos: ">= :sierra"
+
+  app "BathyScaphe.app"
 end

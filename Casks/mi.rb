@@ -1,11 +1,16 @@
-cask :v1 => 'mi' do
-  version '2.1.12r3'
-  sha256 'e70fa0ee864d78848633acc332e96c20310f87ee50ee541a4b07eaa87cb2165b'
+cask "mi" do
+  version "3.0.4"
+  sha256 "f6e5d1a6845277a9bb5b994df713f9523a0ce7e9071ed85a3a88917adee281e7"
 
-  url "http://www.mimikaki.net/download/mi#{version}.dmg"
-  name 'Mi'
-  homepage 'http://www.mimikaki.net/en/index.html'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.mimikaki.net/download/mi#{version}.dmg"
+  appcast "https://www.mimikaki.net/download/appcast.xml"
+  name "mi"
+  homepage "https://www.mimikaki.net/"
 
-  app 'mi.app'
+  app "mi.app"
+
+  zap trash: [
+    "~/Library/Caches/net.mimikaki.mi",
+    "~/Library/Preferences/net.mimikaki.mi.plist",
+  ]
 end

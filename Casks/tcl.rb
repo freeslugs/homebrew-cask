@@ -1,13 +1,16 @@
-cask :v1 => 'tcl' do
-  version '8.6.2.0.298433'
-  sha256 '75caf8a4a449d47deb818ed0293dc1668c01edb0f418ca3a3100045122ee08f5'
+cask "tcl" do
+  version "8.6.9.0,8.6.9.8609.2"
+  sha256 "bd462de2a09198b95c94ac727264f36aebee83f0ac9aab7260150c4f5e0f5c3b"
 
-  # activestate.com is the official download host per the vendor homepage
-  url "http://downloads.activestate.com/ActiveTcl/releases/#{version.sub(%r{\.\d+$},'')}/ActiveTcl#{version}-macosx10.5-i386-x86_64-threaded.dmg"
-  homepage 'http://tcl.tk/'
-  license :oss
+  url "https://downloads.activestate.com/ActiveTcl/releases/#{version.before_comma}/ActiveTcl-#{version.after_comma}-macosx10.9-x86_64.pkg"
+  appcast "https://www.activestate.com/products/tcl/downloads/",
+          must_contain: version.major_minor
+  name "ActiveTcl"
+  homepage "https://www.activestate.com/products/tcl/"
 
-  pkg "ActiveTcl-#{version.sub(%r{^(\d+)\.(\d+).*},'\1.\2')}.pkg"
+  depends_on macos: ">= :sierra"
 
-  uninstall :pkgutil => "com.activestate.pkg.ActiveTcl#{version.sub(%r{^(\d+)\.(\d+).*},'\1\2')}"
+  pkg "ActiveTcl-#{version.after_comma}-macosx10.9-x86_64.pkg"
+
+  uninstall pkgutil: "com.activestate.pkg.ActiveTcl#{version.major_minor}"
 end

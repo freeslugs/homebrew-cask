@@ -1,10 +1,11 @@
-cask :v1 => 'file-juicer' do
-  version :latest
-  sha256 :no_check
+cask "file-juicer" do
+  version "4.86"
+  sha256 :no_check # required as upstream package is updated in-place
 
-  url 'http://echoone.com/filejuicer/FileJuicer.dmg'
-  homepage 'http://echoone.com/filejuicer/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://echoone.com/filejuicer/FileJuicer-#{version}.zip"
+  appcast "https://echoone.com/filejuicer/download"
+  name "File Juicer"
+  homepage "https://echoone.com/filejuicer/"
 
-  app 'File Juicer.app'
+  app "File Juicer.app"
 end

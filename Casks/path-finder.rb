@@ -1,20 +1,18 @@
-cask :v1 => 'path-finder' do
-  version :latest
-  sha256 :no_check
+cask "path-finder" do
+  version "9.3.5"
+  sha256 "bfd62b2bc0f0bd247828125c881030773e1e9d869a07ab19f0344d2b34df4ab0"
 
-  url 'http://get.cocoatech.com/PF7.zip'
-  name 'Path Finder'
-  homepage 'http://www.cocoatech.com/pathfinder/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://get.cocoatech.com/PF#{version.major}.dmg"
+  appcast "https://get.cocoatech.com/releasecast.xml"
+  name "Path Finder"
+  homepage "https://cocoatech.com/"
 
-  app 'Path Finder.app'
+  auto_updates true
 
-  postflight do
-    suppress_move_to_applications :key => 'kNTMoveToApplicationsFolderAlertSuppress'
-  end
+  app "Path Finder.app"
 
-  zap :delete => [
-                  '~/Library/Preferences/com.cocoatech.PathFinder.plist',
-                  '~/Library/Application Support/Path Finder',
-                 ]
+  zap trash: [
+    "~/Library/Preferences/com.cocoatech.PathFinder.plist",
+    "~/Library/Application Support/Path Finder",
+  ]
 end

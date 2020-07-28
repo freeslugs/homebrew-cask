@@ -1,12 +1,13 @@
-cask :v1 => 'haroopad' do
-  version '0.13.0'
-  sha256 '79a003c4db33b393ff5e47e493e54cd27ceb2a94141a116cf58373c1882a798c'
+cask "haroopad" do
+  version "0.13.2"
+  sha256 "97ef0a7df52daeace17ea01a1ca82dc974955c147593f251fb7c04ca0ff09064"
 
-  # bitbucket.org is the official download host per the vendor homepage
+  # bitbucket.org/rhiokim/haroopad-download/ was verified as official when first introduced to the cask
   url "https://bitbucket.org/rhiokim/haroopad-download/downloads/Haroopad-v#{version}-x64.dmg"
-  name 'Haroopad'
-  homepage 'http://pad.haroopress.com/'
-  license :gpl
+  name "Haroopad"
+  homepage "http://pad.haroopress.com/"
 
-  app 'Haroopad.app'
+  app "Haroopad.app"
+
+  zap trash: "~/Library/Application Support/Haroopad"
 end

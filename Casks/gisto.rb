@@ -1,12 +1,12 @@
-cask :v1 => 'gisto' do
-  version '0.2.6b'
-  sha256 '7dffc22e5274e7ee88194f59a950e26d41fd1463d50785ffaf117ad5dd892840'
+cask "gisto" do
+  version "1.13.2"
+  sha256 "1d314ba1f87202d29b25b2d11a2f832baaf8f0b378e24d6d09de8ef89aeaa308"
 
-  url "http://download.gistoapp.com/Gisto-#{version}-OSX_x86.dmg"
-  appcast 'http://www.gistoapp.com/GistoAppCast.xml'
-  name 'Gisto'
-  homepage 'http://www.gistoapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # github.com/Gisto/Gisto/ was verified as official when first introduced to the cask
+  url "https://github.com/Gisto/Gisto/releases/download/v#{version}/Gisto-#{version}.dmg"
+  appcast "https://github.com/Gisto/Gisto/releases.atom"
+  name "Gisto"
+  homepage "https://www.gistoapp.com/"
 
-  app 'Gisto.app'
+  app "Gisto.app"
 end

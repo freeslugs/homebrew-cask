@@ -1,16 +1,23 @@
-cask :v1 => 'intel-power-gadget' do
-  version '3.0.1'
-  sha256 '538a792721604e2155b3a48caa4084db751a91b170e5fa62bf0331d3147f2239'
+cask "intel-power-gadget" do
+  version "3.6.0"
+  sha256 "b99c5c55b541e7b6c5d1a390b11ee662352b8dae955df183d7e1113cebd94ab6"
 
-  url "https://software.intel.com/sites/default/files/managed/59/39/IntelPowerGadgetMac#{version}.zip"
-  name 'Intel Power Gadget'
-  homepage 'https://software.intel.com/en-us/articles/intel-power-gadget-20'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
-  tags :vendor => 'Intel'
+  url "https://software.intel.com/content/dam/develop/external/us/en/documents/Intel%20Power%20Gadget.dmg"
+  appcast "https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html",
+          must_contain: version.major
+  name "Intel Power Gadget"
+  homepage "https://software.intel.com/content/www/us/en/develop/articles/intel-power-gadget.html"
 
-  # this bogus-looking character accurately reflects an upstream error
-  container :nested => 'IntelÆ Power Gadget.dmg'
-  pkg 'Install Intel Power Gadget.pkg'
+  auto_updates true
+  depends_on macos: ">= :high_sierra"
 
-  uninstall :pkgutil => 'com.intel.pkg.PowerGadget.*'
+  pkg "Install Intel Power Gadget.pkg"
+
+  uninstall pkgutil: "com.intel.pkg.PowerGadget.*",
+            kext:    "com.intel.driver.EnergyDriver"
+
+  zap trash: [
+    "~/Library/Caches/com.intel.PowerGadget",
+    "~/Library/Preferences/com.intel.PowerGadget.plist",
+  ]
 end

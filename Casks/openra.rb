@@ -1,11 +1,14 @@
-cask :v1 => 'openra' do
-  version '20141029'
-  sha256 '421f341d324e2e360cf17facc1379b19036f7459516b84685037a041d5020e64'
+cask "openra" do
+  version "20200503"
+  sha256 "0240e82003fc46af6b321efd0a5ef7703f4f0293fe75212ef29cad67a705c4fb"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/OpenRA/OpenRA/releases/download/release-#{version}/OpenRA-release-#{version}.zip"
-  homepage 'http://www.openra.net/'
-  license :gpl
+  # github.com/OpenRA/OpenRA/ was verified as official when first introduced to the cask
+  url "https://github.com/OpenRA/OpenRA/releases/download/release-#{version}/OpenRA-release-#{version}.dmg"
+  appcast "https://github.com/OpenRA/OpenRA/releases.atom"
+  name "OpenRA"
+  homepage "https://www.openra.net/"
 
-  app 'OpenRA.app'
+  app "OpenRA - Dune 2000.app"
+  app "OpenRA - Red Alert.app"
+  app "OpenRA - Tiberian Dawn.app"
 end

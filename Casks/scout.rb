@@ -1,10 +1,12 @@
-cask :v1 => 'scout' do
-  version '0.7.1'
-  sha256 '09b89f28a16a30751f86b173ec33a0b50d0f1c5202e9737463f0bdf8d76668fe'
+cask "scout" do
+  version "2.18.16"
+  sha256 "b9d38e1f80c12f93f806360ee0dea096a5e262b1436a9e2664ca52a2f7955658"
 
-  url "https://github.com/downloads/mhs/scout-app/ScoutAppInstaller-#{version}.dmg"
-  homepage 'http://mhs.github.io/scout-app/'
-  license :oss
+  # github.com/scout-app/scout-app/ was verified as official when first introduced to the cask
+  url "https://github.com/scout-app/scout-app/releases/download/v#{version}/OSX_Scout-App_#{version}.zip"
+  appcast "https://github.com/scout-app/scout-app/releases.atom"
+  name "Scout-App"
+  homepage "https://scout-app.io/"
 
-  installer :manual => 'Install Scout.app'
+  app "Scout-App.app"
 end

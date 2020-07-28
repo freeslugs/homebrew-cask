@@ -1,10 +1,12 @@
-cask :v1 => 'scratch' do
-  version :latest
-  sha256 :no_check
+cask "scratch" do
+  version "3.12.0"
+  sha256 "7d811ca578a38850e518a0ab22318193201916e533b50b5ca065b97c87c959e1"
 
-  url 'http://cdn.scratch.mit.edu/scratchr2/static/sa/Scratch.air'
-  homepage 'http://scratch.mit.edu/scratch2download/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://downloads.scratch.mit.edu/desktop/Scratch%20Desktop-#{version}.dmg"
+  name "Scratch"
+  homepage "https://scratch.mit.edu/download"
 
-  app 'Scratch 2.app'
+  depends_on macos: ">= :high_sierra"
+
+  app "Scratch Desktop.app"
 end

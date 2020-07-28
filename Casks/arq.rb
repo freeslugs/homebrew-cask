@@ -1,11 +1,20 @@
-cask :v1 => 'arq' do
-  version :latest
-  sha256 :no_check
+cask "arq" do
+  version "6.2.46"
+  sha256 "aa3bac1101a1a2eb493351491629a1b72fb95c824908b880d4e2df835a72da9a"
 
-  url 'http://www.haystacksoftware.com/arq/Arq.zip'
-  name 'Arq'
-  homepage 'http://www.haystacksoftware.com/arq/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.arqbackup.com/download/arqbackup/Arq#{version.major}.pkg"
+  appcast "https://www.arqbackup.com/download/arqbackup/arq#{version.major}_release_notes.html"
+  name "Arq"
+  homepage "https://www.arqbackup.com/"
 
-  app 'Arq.app'
+  auto_updates true
+
+  pkg "Arq#{version.major}.pkg"
+
+  uninstall pkgutil:   "com.haystacksoftware.Arq",
+            quit:      "com.haystacksoftware.Arq",
+            launchctl: [
+              "com.haystacksoftware.ArqMonitor",
+              "com.haystacksoftware.arqagent",
+            ]
 end

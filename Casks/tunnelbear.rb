@@ -1,14 +1,29 @@
-cask :v1 => 'tunnelbear' do
-  version '2.4.6'
-  sha256 'd0722e486d79ee5006a87256ebf40209c08d0e04022f230e88c38f1cf639810b'
+cask "tunnelbear" do
+  version "3.9.9"
+  sha256 "4f39a84ae5ec804904b335398fefde9187538315db9c38887b39e0bbc174c6f4"
 
-  # amazonaws.com is the official download host per the vendor homepage
+  # tunnelbear.s3.amazonaws.com/ was verified as official when first introduced to the cask
   url "https://tunnelbear.s3.amazonaws.com/downloads/mac/TunnelBear-#{version}.zip"
-  appcast 'https://s3.amazonaws.com/tunnelbear/downloads/mac/appcast.xml',
-          :sha256 => '69e4bf8982ecc871fd701062b35c7de265ebd76b8676256923cf7c6e1b1249a0'
-  name 'TunnelBear'
-  homepage 'https://www.tunnelbear.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  appcast "https://tunnelbear.s3.amazonaws.com/downloads/mac/appcast.xml"
+  name "TunnelBear"
+  homepage "https://www.tunnelbear.com/"
 
-  app 'TunnelBear.app'
+  app "TunnelBear.app"
+
+  uninstall quit:      "com.tunnelbear.mac.TunnelBear",
+            launchctl: "com.tunnelbear.mac.tbeard"
+
+  zap trash: [
+    "~/Library/Preferences/com.tunnelbear.mac.TunnelBear.plist",
+    "~/Library/Caches/com.tunnelbear.mac.TunnelBear",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.tunnelbear.mac.tunnelbear.sfl*",
+    "~/Library/Application Support/com.tunnelbear.mac.TunnelBear",
+    "~/Library/Application Support/TunnelBear",
+    "~/Library/Caches/com.crashlytics.data/com.tunnelbear.mac.TunnelBear",
+    "~/Library/Caches/com.plausiblelabs.crashreporter.data/com.tunnelbear.mac.TunnelBear",
+    "~/Library/Caches/io.fabric.sdk.mac.data/com.tunnelbear.mac.TunnelBear",
+    "~/Library/Cookies/com.tunnelbear.mac.TunnelBear.binarycookies",
+    "~/Library/LaunchAgents/com.tunnelbear.mac.tbeara.plist",
+    "~/Library/Logs/TunnelBear",
+  ]
 end

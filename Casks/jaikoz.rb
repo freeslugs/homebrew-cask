@@ -1,10 +1,10 @@
-cask :v1 => 'jaikoz' do
+cask "jaikoz" do
   version :latest
   sha256 :no_check
 
-  url 'http://jthink.net/jaikoz/jsp/manualdownload/jaikoz-osx.dmg'
-  homepage 'http://jthink.net/jaikoz'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.jthink.net/jaikoz/jsp/manualdownload/jaikoz-osx.dmg"
+  name "Jaikoz"
+  homepage "https://www.jthink.net/jaikoz/"
 
-  app 'Jaikoz.app'
+  app "Jaikoz.app"
 end

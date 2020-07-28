@@ -1,13 +1,11 @@
-cask :v1 => 'objektiv' do
-  version :latest
-  sha256 :no_check
+cask "objektiv" do
+  version "0.6.3"
+  sha256 "93f4f31712144c3225a45e69dc251a5db727b299dc7511f4f38004936c396d7a"
 
-  # nthloop.com is the official download host per the vendor homepage
-  url 'http://nthloop.com/objektiv/objektiv-latest.zip'
-  appcast 'http://nthloop.com/objektiv/appcast.xml'
-  name 'Objektiv'
-  homepage 'http://nthloop.github.io/Objektiv/'
-  license :mit
+  url "https://github.com/nthloop/Objektiv/releases/download/v#{version}/Objektiv.zip"
+  appcast "https://github.com/nthloop/Objektiv/releases.atom"
+  name "Objektiv"
+  homepage "https://github.com/nthloop/Objektiv"
 
-  app 'Objektiv.app'
+  app "Objektiv.app"
 end

@@ -1,13 +1,16 @@
-cask :v1 => 'razorsql' do
-  version '6.3.17'
-  sha256 '8a95889f9fbb5761d09245a2c9da0fd76f51d369930f1e570ab60d7e84d129a7'
+cask "razorsql" do
+  version "9.1.4"
+  sha256 "720534fc3112f5629435455ac3e79edeefa35e3cbd52ff28ebb5bc092d245db5"
 
-  url "http://downloads.razorsql.com/downloads/#{version.gsub('.', '_')}/razorsql#{version.gsub('.', '_')}_x64.dmg"
-  name 'RazorSQL'
-  homepage 'http://razorsql.com/download_mac.html'
-  license :commercial
+  # s3.dualstack.us-east-1.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://s3.dualstack.us-east-1.amazonaws.com/downloads.razorsql.com/downloads/#{version.dots_to_underscores}/razorsql#{version.dots_to_underscores}.dmg"
+  appcast "https://razorsql.com/updates.html"
+  name "RazorSQL"
+  homepage "https://razorsql.com/"
 
-  app 'RazorSQL.app'
+  depends_on macos: ">= :high_sierra"
 
-  zap :delete => '~/.razorsql'
+  app "RazorSQL.app"
+
+  zap trash: "~/.razorsql"
 end

@@ -1,11 +1,17 @@
-cask :v1 => 'arduino' do
-  version '1.6.0'
-  sha256 '7e07e3359fc3c8c2d087172bba95ca6098481b4ce8410562ccd95f733f3cabcf'
+cask "arduino" do
+  version "1.8.13"
+  sha256 "84be3fc0be0c18563cb2b5e53971da6aa83e20f1de37e6debae3b55f8b0edbb3"
 
-  url "http://arduino.cc/download.php?f=/arduino-#{version}-macosx.zip"
-  name 'Arduino'
-  homepage 'http://arduino.cc/'
-  license :oss
+  url "https://downloads.arduino.cc/arduino-#{version}-macosx.zip"
+  appcast "https://github.com/arduino/Arduino/releases.atom"
+  name "Arduino"
+  homepage "https://www.arduino.cc/"
 
-  app 'Arduino.app'
+  app "Arduino.app"
+  binary "#{appdir}/Arduino.app/Contents/Java/arduino-builder"
+
+  zap trash: [
+    "~/Library/Arduino15",
+    "~/Library/Preferences/cc.arduino.Arduino.plist",
+  ]
 end

@@ -1,17 +1,18 @@
-cask :v1 => 'feed-the-beast' do
-  version :latest
-  sha256 :no_check
+cask "feed-the-beast" do
+  version "1.0.9"
+  sha256 "67e9877f8eead9429af293c2505f48d55904bbc05b9b0962099c942776e42f48"
 
-  # cursecdn.com is the official download host per the vendor homepage
-  url 'http://ftb.cursecdn.com/FTB2/launcher/FTB_Launcher.zip'
-  name 'Feed the Beast'
-  homepage 'http://www.feed-the-beast.com/'
-  license :apache
+  # apps.modpacks.ch/FTBApp/ was verified as official when first introduced to the cask
+  url "https://apps.modpacks.ch/FTBApp/release/#{version}/FTBA_macos_#{version.dots_to_underscores}.dmg"
+  appcast "https://www.feed-the-beast.com/app_release.xml"
+  name "Feed the Beast"
+  homepage "https://www.feed-the-beast.com/"
 
-  app 'Feed The Beast.app'
+  app "FTBApp.app"
 
-  caveats <<-EOS.undent
-    #{token} requires Java. You can install the latest version with
-      brew cask install java
-  EOS
+  zap trash: "~/Library/Application Support/ftblauncher"
+
+  caveats do
+    depends_on_java
+  end
 end

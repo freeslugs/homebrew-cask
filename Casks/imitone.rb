@@ -1,10 +1,11 @@
-cask :v1 => 'imitone' do
-  version '0.7.0'
-  sha256 '86179bdc32364bb85cdeb04d0ec1d8cb8bee4cfc1dd0f15a0656412a1f9c74dc'
+cask "imitone" do
+  version "0.10.0c"
+  sha256 "18aedd3b06737cbb71e04260c5e79a0c541d6f8b2745c7679fe4777fca515cf0"
 
-  url "http://imitone.com/beta/imitone-#{version}.dmg"
-  homepage 'http://imitone.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://imitone.com/beta/imitone-#{version}.dmg"
+  appcast "https://imitone.com/beta/"
+  name "imitone"
+  homepage "https://imitone.com/"
 
-  app 'imitone.app'
+  app "imitone.app"
 end

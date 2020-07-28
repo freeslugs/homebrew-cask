@@ -1,19 +1,11 @@
-cask :v1 => 'imagealpha' do
+cask "imagealpha" do
+  version "1.5.1"
+  sha256 "be8a4544a2a855ba424e33819940b4b0ddb1221d1f46ca360181fd4ee2bef24b"
 
-  if MacOS.release <= :snow_leopard
-    version '1.2.3'
-    sha256 '79388edcaf5cb29234f722a672b069c6d51fb812e89969ba8db8e957b9a32bf3'
-  else
-    version '1.3.5'
-    sha256 'ba1ca1f50fa5b2a3472e6c2dbe410ecc3a66f425975cf9e39380e5c3421cca49'
-    appcast 'http://pngmini.com/appcast.xml',
-            :sha256 => '0144b9560a5a4b8cb4d73af95df04bfbc136cd3c53f6aef14a76212b211a8b2c'
-  end
+  url "https://pngmini.com/ImageAlpha#{version}.tar.bz2"
+  appcast "https://pngmini.com/appcast.xml"
+  name "ImageAlpha"
+  homepage "https://pngmini.com/"
 
-  url "http://pngmini.com/ImageAlpha#{version}.tar.bz2"
-  name 'ImageAlpha'
-  homepage 'http://pngmini.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
-
-  app 'ImageAlpha.app'
+  app "ImageAlpha.app"
 end

@@ -1,48 +1,35 @@
-cask :v1 => 'r' do
-  version '3.1.2'
+cask "r" do
+  version "4.0.2"
+  sha256 "1deaa727c424bd199a9564edd8284ea8cfe97fb54808b665f813e9098b1040e3"
 
-  if MacOS.release < :mavericks
-    sha256 'aec21b31b3a6c4e777690bd4e2f19fa71f2ae443dd645d4fa93a0399345e5aac'
-    # rstudio.com is the official download host per the vendor homepage
-    url "http://cran.rstudio.com/bin/macosx/R-#{version}-snowleopard.pkg"
-    pkg "R-#{version}-snowleopard.pkg"
-  else
-    sha256 'ea1312d3d888861f33f5225a159fe39a5e90f382996eadc388808eb59bf6003f'
-    # rstudio.com is the official download host per the vendor homepage
-    url "http://cran.rstudio.com/bin/macosx/R-#{version}-mavericks.pkg"
-    pkg "R-#{version}-mavericks.pkg"
-  end
+  url "https://cloud.r-project.org/bin/macosx/R-#{version}.pkg"
+  appcast "https://cloud.r-project.org/bin/macosx/"
+  name "R"
+  homepage "https://www.r-project.org/"
 
-  homepage 'http://www.r-project.org/'
-  license :gpl
+  depends_on macos: ">= :el_capitan"
 
-  depends_on :macos => '>= :snow_leopard'
+  pkg "R-#{version}.pkg"
 
-  uninstall :pkgutil => [
-                         # eg org.r-project.R.maverics.fw.pkg
-                         #   org.r-project.R.mavericks.GUI.pkg
-                         'org\.r-project\.R\..*(fw|GUI)\.pkg',
-                         # eg org.r-project.x86_64.tcltk.x11
-                         'org.r-project\..*\.tcltk.x11',
-                        ],
-            :delete => [
-                        # symlinks
-                        '/usr/bin/R',
-                        '/usr/bin/Rscript',
-                        '/Library/Frameworks/R.Framework/Versions/Current',
-                        # :pkgutil won't delete this dir if the fontconfig cache was written to at
-                        # /Library/Frameworks/R.Framework/Versions/3.1/Resources/fontconfig/cache
-                        '/Library/Frameworks/R.Framework/Versions/3.1',
-                       ]
-  zap       :delete => [
-                        '~/.R',
-                        '~/.RData',
-                        '~/.Rapp.history',
-                        '~/.Rhistory',
-                        '~/.Rprofile',
-                        '~/Library/R',
-                        '~/Library/Caches/org.R-project.R',
-                       ]
+  uninstall pkgutil: [
+    "org.r-project*",
+    "org.R-project*",
+  ],
+            delete:  [
+              "/Library/Frameworks/R.Framework",
+              "/usr/bin/R",
+              "/usr/bin/Rscript",
+            ]
+
+  zap trash: [
+    "~/.R",
+    "~/.Rapp.history",
+    "~/.RData",
+    "~/.Rhistory",
+    "~/.Rprofile",
+    "~/Library/R",
+    "~/Library/Caches/org.R-project.R",
+  ]
 
   caveats do
     files_in_usr_local

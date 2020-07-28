@@ -1,15 +1,12 @@
-cask :v1 => 'hopper-debugger-server' do
-  version '2.3'
-  sha256 '291bcabcd84f395d9aba08532c1fff54101ec8d02aeb46e32c82a8a9b621c098'
+cask "hopper-debugger-server" do
+  version "2.6"
+  sha256 "dde3d5949a9550e4a62d135acfcd6cefa930c69d4ea07c6e4056d6e1cca136d3"
 
-  url "http://www.hopperapp.com/HopperGDBServer/HopperDebuggerServer-#{version}.zip"
-  name 'Hopper Debugger Server'
-  name 'Hopper GDB Server'
-  name 'HopperGDBServer'
-  appcast 'http://www.hopperapp.com/HopperGDBServer/appcast.xml',
-          :sha256 => 'b554d3f681960d00d94bdce4db2efe1cc6addc69db9441e359839d6f2379924b'
-  homepage 'http://www.hopperapp.com/HopperGDBServer/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.hopperapp.com/HopperGDBServer/HopperDebuggerServer-#{version}.zip",
+      user_agent: :fake
+  appcast "https://www.hopperapp.com/HopperGDBServer/appcast.xml"
+  name "Hopper Debugger Server"
+  homepage "https://www.hopperapp.com/HopperGDBServer/"
 
-  app 'Hopper Debugger Server.app'
+  app "Hopper Debugger Server.app"
 end

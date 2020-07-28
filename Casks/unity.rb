@@ -1,12 +1,15 @@
-cask :v1 => 'unity' do
-  version '4.6.3'
-  sha256 '7a64891d46520f448cecd7ee0fa3dd3d33568f806af924048bba099047d38a59'
+cask "unity" do
+  version "2019.4.2f1,20b4642a3455"
+  sha256 "1be916e3c36a8f94c9294daed6805b24890c5f5b9627e0ee84abce6fbb0935c6"
 
-  url "http://netstorage.unity3d.com/unity/unity-#{version}.dmg"
-  homepage 'http://unity3d.com/unity/'
-  license :commercial
+  url "https://netstorage.unity3d.com/unity/#{version.after_comma}/MacEditorInstaller/Unity-#{version.before_comma}.pkg"
+  appcast "https://unity3d.com/get-unity/download/archive"
+  name "Unity Editor"
+  homepage "https://unity3d.com/unity/"
 
-  pkg 'Unity.pkg'
+  pkg "Unity-#{version.before_comma}.pkg"
 
-  uninstall :pkgutil => 'com.unity3d.*'
+  uninstall quit:    "com.unity3d.UnityEditor5.x",
+            pkgutil: "com.unity3d.UnityEditor5.x",
+            delete:  "/Applications/Unity"
 end

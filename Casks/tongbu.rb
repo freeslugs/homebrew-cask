@@ -1,11 +1,11 @@
-cask :v1 => 'tongbu' do
-  version '1.1.4'
-  sha256 'b8c30ad109d1005fbcd865ceef67b8bb224595b8b40fc1e0b084d039e1d6ce50'
+cask "tongbu" do
+  version "1.2.7.0,1"
+  sha256 "5f655b0bf7097dd53a56129dceb5205a1ac4af717fd8e7b8d78328d366baca8a"
 
-  # leaderhero.com is the official download host per the vendor homepage
-  url "http://qd.leaderhero.com/qd/zsmac/Tongbu_mac_v#{version}.dmg"
-  homepage 'http://www.tongbu.com'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://qd.tongbu.com/qd/tbzsqd/zsmac_#{version.before_comma}/Tongbu_mac_v#{version.before_comma}_#{version.after_comma}.dmg"
+  appcast "https://zs.tongbu.com/mac/"
+  name "Tongbu"
+  homepage "https://www.tongbu.com/mac"
 
-  app 'Tongbu.app'
+  app "Tongbu.app"
 end

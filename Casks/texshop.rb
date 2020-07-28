@@ -1,13 +1,23 @@
-cask :v1 => 'texshop' do
-  version :latest
-  sha256 :no_check
+cask "texshop" do
+  version "4.44"
+  sha256 "67f8f1ea196209a65dd996db875e19307f947e697a5b70dad0571ed88f4fd0ad"
 
-  url 'http://pages.uoregon.edu/koch/texshop/texshop-64/texshop.zip'
-  appcast 'http://pages.uoregon.edu/koch/texshop/texshop-64/texshopappcast.xml',
-          :sha256 => 'c40ae2cd48a38ab90fb5e3e9ec92e8769be03e13dfc2a6246c63ab8f94f51b10'
-  name 'TeXShop'
-  homepage 'http://pages.uoregon.edu/koch/texshop'
-  license :gpl
+  url "https://pages.uoregon.edu/koch/texshop/texshop-64/texshop#{version.no_dots}.zip"
+  appcast "https://pages.uoregon.edu/koch/texshop/texshop-64/texshopappcast.xml"
+  name "TeXShop"
+  homepage "https://pages.uoregon.edu/koch/texshop/"
 
-  app 'TexShop.app'
+  auto_updates true
+  depends_on macos: ">= :yosemite"
+
+  app "TeXShop.app"
+
+  zap trash: [
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/texshop.sfl*",
+    "~/Library/Application Support/TeXShop",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/TeXShop Help*",
+    "~/Library/Caches/TeXShop",
+    "~/Library/Preferences/TeXShop.plist",
+    "~/Library/TeXShop",
+  ]
 end

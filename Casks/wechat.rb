@@ -1,19 +1,26 @@
-cask :v1 => 'wechat' do
-  version :latest
-  sha256 :no_check
+cask "wechat" do
+  version "2.4.2.17"
+  sha256 "5af7a2d825de0e6be2186b054c70e287583f1d68df95af2be23eb5e27025a6f0"
 
-  url 'http://dldir1.qq.com/foxmail/Mac/WeChat-en_US.dmg'
-  homepage 'http://weixin.qq.com/cgi-bin/readtemplate?t=mac'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://dldir1.qq.com/weixin/mac/WeChatMac.dmg"
+  appcast "https://dldir1.qq.com/weixin/mac/mac-release.xml"
+  name "WeChat for Mac"
+  name "微信 Mac 版"
+  homepage "https://mac.weixin.qq.com/"
 
-  app 'WeChat.app'
+  auto_updates true
+  depends_on macos: ">= :yosemite"
 
-  zap :delete => [
-                  '~/Library/Application Support/Wechat',
-                  '~/Library/Caches/com.plausiblelabs.crashreporter.data/com.tencent.xinWeChat',
-                  '~/Library/Caches/com.tencent.xinWeChat',
-                  '~/Library/LaunchAgents/com.tencent.xin.WeChatHelper.plist',
-                  '~/Library/Saved Application State/com.tencent.xinWeChat.savedState',
-                  '~/Library/WechatPrivate',
-                 ]
+  app "WeChat.app"
+
+  uninstall quit: "com.tencent.xinWeChat"
+
+  zap trash: [
+    "~/Library/Application Scripts/com.tencent.xinWeChat",
+    "~/Library/Caches/com.tencent.xinWeChat",
+    "~/Library/Containers/com.tencent.xinWeChat",
+    "~/Library/Cookies/com.tencent.xinWeChat.binarycookies",
+    "~/Library/Group Containers/$(TeamIdentifierPrefix)com.tencent.xinWeChat",
+    "~/Library/Preferences/com.tencent.xinWeChat.plist",
+  ]
 end

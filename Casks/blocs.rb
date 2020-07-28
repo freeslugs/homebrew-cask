@@ -1,11 +1,14 @@
-cask :v1 => 'blocs' do
-  version :latest
-  sha256 :no_check
+cask "blocs" do
+  version "3.5.1"
+  sha256 "43761a21f323b70f6396d2809d49e41db11b9066fc60e0cabb46db437acb8132"
 
-  url 'http://blocsapp.com/trial-app/BlocsApp.zip'
-  name 'Blocs'
-  homepage 'http://blocsapp.com/'
-  license :commercial
+  url "https://blocsapp.com/download/Blocs#{version.major}.zip"
+  appcast "https://blocsapp.com/release-notes.html"
+  name "Blocs"
+  homepage "https://blocsapp.com/"
 
-  app 'BlocsApp/Blocs.app'
+  auto_updates true
+  container nested: "Blocs#{version.major}/Blocs-#{version.major}.dmg"
+
+  app "Blocs.app"
 end

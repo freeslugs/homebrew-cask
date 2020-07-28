@@ -1,11 +1,12 @@
-cask :v1 => 'pencil' do
-  version '2.0.6'
-  sha256 'dacd76c658b12101457d17a4ade0b3f9c6a012f8eddacd379c41e372545ffac6'
+cask "pencil" do
+  version "3.1.0.ga"
+  sha256 "5369787a801a470179a86ba60407b33e647f826b1a8b001b62e4f81a6bb0629d"
 
-  # googlecode.com is the official download host per the vendor homepage
-  url "https://evoluspencil.googlecode.com/files/Pencil-#{version}-mac.tar.bz2"
-  homepage 'http://pencil.evolus.vn'
-  license :oss
+  url "https://pencil.evolus.vn/dl/V#{version}/Pencil-#{version}.dmg"
+  appcast "https://github.com/evolus/pencil/releases.atom",
+          must_contain: version.major_minor_patch
+  name "Pencil"
+  homepage "https://pencil.evolus.vn/"
 
-  app 'Pencil.app'
+  app "Pencil.app"
 end

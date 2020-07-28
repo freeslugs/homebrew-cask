@@ -1,11 +1,11 @@
-cask :v1 => 'beacon-scanner' do
-  version '1.1.5'
-  sha256 '1c7662420ab616004e0f76320b76bf9ee5c3c75292c553bc891ac4986208bbb4'
+cask "beacon-scanner" do
+  version "1.1.13"
+  sha256 "5b28a510f557e57e5cf48490e982aadaba1676c34192e7d650da110a88d233bd"
 
-  url "https://github.com/mlwelles/BeaconScanner/releases/download/#{version}/BeaconScanner.zip"
-  name 'BeaconScanner'
-  homepage 'https://github.com/mlwelles/BeaconScanner/'
-  license :mit
+  url "https://github.com/mlwelles/BeaconScanner/releases/download/#{version}/Beacon.Scanner.zip"
+  appcast "https://github.com/mlwelles/BeaconScanner/releases.atom"
+  name "BeaconScanner"
+  homepage "https://github.com/mlwelles/BeaconScanner/"
 
-  app 'Beacon Scanner.app'
+  app "Beacon Scanner.app"
 end

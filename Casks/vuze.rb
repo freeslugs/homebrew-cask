@@ -1,16 +1,18 @@
-cask :v1 => 'vuze' do
+cask "vuze" do
   version :latest
   sha256 :no_check
 
-  url 'http://cf1.vuze.com/files/J7/VuzeBittorrentClientInstaller.dmg'
-  homepage 'http://www.vuze.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://cf1.vuze.com/files/J7/VuzeBittorrentClientInstaller.dmg"
+  name "Vuze"
+  homepage "https://www.vuze.com/"
 
-  installer :manual => 'Vuze Installer.app'
+  installer script: {
+    executable: "Vuze Installer.app/Contents/MacOS/JavaApplicationStub",
+    args:       ["-q"],
+    sudo:       true,
+  }
 
-  uninstall :delete => '/Applications/Vuze.app'
+  uninstall delete: "/Applications/Vuze.app"
 
-  zap :delete => '~/Library/Application Support/Vuze'
-
-  caveats 'If you pick an installation directory other than /Applications when installing this cask, you will need to uninstall it manually'
+  zap trash: "~/Library/Application Support/Vuze"
 end

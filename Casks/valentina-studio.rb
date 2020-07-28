@@ -1,10 +1,10 @@
-cask :v1 => 'valentina-studio' do
+cask "valentina-studio" do
   version :latest
   sha256 :no_check
 
-  url 'http://www.valentina-db.com/download/release/mac_32/vstudio_5_mac.dmg'
-  homepage 'http://www.valentina-db.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.valentina-db.net/en/all-downloads/vstudio/current/vstudio_mac_x64-dmg?format=raw"
+  name "Valentina Studio"
+  homepage "https://www.valentina-db.net/en/valentina-studio-overview"
 
-  app 'Valentina Studio.app'
+  app "Valentina Studio.app"
 end

@@ -1,10 +1,12 @@
-cask :v1 => 'lyrics-master' do
-  version '2.4.2'
-  sha256 '1cd0f639ea1e557e0abef320ee8ea61877c24bab444cb573bfd41d0887605d7f'
+cask "lyrics-master" do
+  version "2.5.3.0"
+  sha256 "2e590f3c506ccdd70113a827ff63bd996768bc145b69163cbaf22aa3dce6c396"
 
-  url "http://www.kenichimaehashi.com/lyricsmaster/download/LyricsMaster#{version.gsub('.','')}0.dmg"
-  homepage 'http://www.kenichimaehashi.com/lyricsmaster/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "http://www.kenichimaehashi.com/lyricsmaster/download/LyricsMaster#{version.no_dots}.dmg"
+  appcast "http://www.kenichimaehashi.com/lyricsmaster/",
+          must_contain: version.major_minor_patch
+  name "Lyrics Master"
+  homepage "http://www.kenichimaehashi.com/lyricsmaster/"
 
-  suite 'Lyrics Master'
+  app "Lyrics Master.app"
 end

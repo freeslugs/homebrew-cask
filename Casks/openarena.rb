@@ -1,15 +1,16 @@
-cask :v1 => 'openarena' do
-  version '0.8.8'
-  sha256 '5a8faf7f5b51f351b0a1618c06b6b98a5f1a6758f1d39818de2c87df2a0bac4a'
+cask "openarena" do
+  version "0.8.8,r28"
+  sha256 "5a8faf7f5b51f351b0a1618c06b6b98a5f1a6758f1d39818de2c87df2a0bac4a"
 
-  url 'http://openarena.ws/request.php?4'
-  name 'OpenArena'
-  homepage 'http://openarena.ws'
-  license :gpl
+  # download.tuxfamily.org/openarena/ was verified as official when first introduced to the cask
+  url "https://download.tuxfamily.org/openarena/rel/#{version.before_comma.no_dots}/openarena-#{version.before_comma}.zip"
+  name "OpenArena"
+  homepage "https://openarena.ws/smfnews.php"
 
-  app "openarena-#{version}/OpenArena.app"
+  app "openarena-#{version.before_comma}/OpenArena #{version.before_comma} #{version.after_comma}.app"
 
   postflight do
-    system '/bin/chmod', '--', '755', "#{staged_path}/openarena-#{version}/OpenArena.app/Contents/MacOS/openarena.ub"
+    system_command "/bin/mv", args: ["#{staged_path}/openarena-#{version.before_comma}/baseoa", "#{appdir}/OpenArena #{version.before_comma} #{version.after_comma}.app/Contents/MacOS"]
+    set_permissions "#{appdir}/OpenArena #{version.before_comma} #{version.after_comma}.app/Contents/MacOS/openarena.ub", "755"
   end
 end

@@ -1,17 +1,19 @@
-cask :v1 => 'disk-drill' do
-  version :latest
-  sha256 :no_check
+cask "disk-drill" do
+  version "3.8.975"
+  sha256 "7681d8b279c772849b770dd01647f34d3ccc2b8df849c1e24d5aa4b97b5bc184"
 
-  url 'http://dl.cleverfiles.com/diskdrill.dmg'
-  appcast 'http://www.cleverfiles.com/releases/auto-update/dd2-newestr.xml'
-  homepage 'http://www.cleverfiles.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.cleverfiles.com/releases/DiskDrill_#{version}.zip"
+  appcast "https://www.cleverfiles.com/releases/auto-update/dd2-newestr.xml"
+  name "Disk Drill"
+  homepage "https://www.cleverfiles.com/"
 
-  app 'Disk Drill.app'
+  app "Disk Drill.app"
 
-  zap :delete => [
-                  '~/Library/Application Support/DiskDrill',
-                  '~/Library/Caches/com.cleverfiles.Disk_Drill',
-                  '~/Library/Logs/DiskDrill.log',
-                 ]
+  uninstall delete: "/Library/Application Support/CleverFiles"
+
+  zap trash: [
+    "~/Library/Application Support/DiskDrill",
+    "~/Library/Caches/com.cleverfiles.Disk_Drill",
+    "~/Library/Logs/DiskDrill.log",
+  ]
 end

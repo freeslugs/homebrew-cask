@@ -1,11 +1,10 @@
-cask :v1 => 'charlessoft-timetracker' do
+cask "charlessoft-timetracker" do
   version :latest
   sha256 :no_check
 
-  url 'http://charlessoft.com/TimeTracker.zip'
-  name 'TimeTracker'
-  homepage 'http://charlessoft.com/'
-  license :unknown
+  url "https://charlessoft.com/TimeTracker.zip"
+  name "TimeTracker"
+  homepage "https://charlessoft.com/"
 
-  app 'TimeTracker.app'
+  app "TimeTracker.app"
 end

@@ -1,11 +1,11 @@
-cask :v1 => 'gargoyle' do
-  version '2011.1'
-  sha256 '4e830ad3feec78d623ce5c13ce14f440f9769d302ac46604afc4b9785baa038c'
+cask "gargoyle" do
+  version "2019.1"
+  sha256 "239cd26ba6063a302c6cd12d8241cff0f2837f31ce89f9dc2718e4dcd4cfecc7"
 
-  url "https://garglk.googlecode.com/files/gargoyle-#{version}-mac.dmg"
-  name 'Gargoyle'
-  homepage 'https://code.google.com/p/garglk/'
-  license :oss
+  url "https://github.com/garglk/garglk/releases/download/#{version}/gargoyle-#{version}-mac-nota.dmg"
+  appcast "https://github.com/garglk/garglk/releases.atom"
+  name "Gargoyle"
+  homepage "https://github.com/garglk/garglk"
 
-  app 'Gargoyle.app'
+  app "Gargoyle.app"
 end

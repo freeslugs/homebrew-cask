@@ -1,22 +1,32 @@
-cask :v1 => 'pycharm' do
-  version '4.0.4'
-  sha256 '56eeeb15a1b0f2b0fbbb9fc918f3b6eb5ba5f9bbbfcb2b032864fbfdbc4c5b87'
+cask "pycharm" do
+  version "2020.1.4,201.8743.11"
+  sha256 "42187e76d16bacb79beff546d46e608b9e5d752edd6de7ec543772e7ffade333"
 
-  url "https://download.jetbrains.com/python/pycharm-professional-#{version}.dmg"
-  name 'PyCharm'
-  homepage 'http://www.jetbrains.com/pycharm/'
-  license :commercial
+  url "https://download.jetbrains.com/python/pycharm-professional-#{version.before_comma}.dmg"
+  appcast "https://data.services.jetbrains.com/products/releases?code=PCP&latest=true&type=release"
+  name "PyCharm"
+  homepage "https://www.jetbrains.com/pycharm/"
 
-  app 'PyCharm.app'
+  auto_updates true
 
-  caveats <<-EOS.undent
-    #{token} requires Java 6 like any other IntelliJ-based IDE.
-    You can install it with
+  app "PyCharm.app"
 
-      brew cask install caskroom/homebrew-versions/java6
+  uninstall_postflight do
+    ENV["PATH"].split(File::PATH_SEPARATOR).map { |path| File.join(path, "charm") }.each do |path|
+      if File.exist?(path) &&
+         File.readlines(path).grep(/# see com.intellij.idea.SocketLock for the server side of this interface/).any?
+        File.delete(path)
+      end
+    end
+  end
 
-    The vendor (JetBrains) doesn't support newer versions of Java (yet)
-    due to several critical issues, see details at
-    https://intellij-support.jetbrains.com/entries/27854363
-  EOS
+  zap trash: [
+    "~/Library/Application Support/PyCharm#{version.major_minor}",
+    "~/Library/Application Support/JetBrains/PyCharm#{version.major_minor}",
+    "~/Library/Caches/PyCharm#{version.major_minor}",
+    "~/Library/Logs/PyCharm#{version.major_minor}",
+    "~/Library/Preferences/PyCharm#{version.major_minor}",
+    "~/Library/Preferences/jetbrains.pycharm.*.plist",
+    "~/Library/Saved Application State/com.jetbrains.pycharm.savedState",
+  ]
 end

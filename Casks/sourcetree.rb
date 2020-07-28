@@ -1,32 +1,43 @@
-cask :v1 => 'sourcetree' do
-  if MacOS.release <= :snow_leopard
-    version '1.8.1'
-    sha256 '37a42f2d83940cc7e1fbd573a70c3c74a44134c956ac3305f6b153935dc01b80'
+cask "sourcetree" do
+  if MacOS.version <= :sierra
+    version "2.7.6a"
+    sha256 "d60614e9ab603e0ed158b6473c36e7944b2908d9943e332c505eba03dc1d829e"
+
+    # atlassian.com/software/sourcetree/ was verified as official when first introduced to the cask
+    url "https://downloads.atlassian.com/software/sourcetree/Sourcetree_#{version}.zip"
+  elsif MacOS.version <= :high_sierra
+    version "3.2.1_225"
+    sha256 "4bd82affa3402814c3d07ff613fbc8f45da8b0cda294d498ffbb0667bf729c9f"
+
+    # atlassian.com/software/sourcetree/ was verified as official when first introduced to the cask
+    url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version}.zip"
   else
-    version '2.0.5.2'
-    sha256 '106531ed0087403020a2ba07efaaf1ce297734eb62e2a0eaea8cd5f88e18e7cb'
+    version "4.0.1_234"
+    sha256 "b6b059b6d1c91729bf6c44dac09d79c8ae6e22fefd1bee705c7814a2099c3131"
+
+    # atlassian.com/software/sourcetree/ was verified as official when first introduced to the cask
+    url "https://product-downloads.atlassian.com/software/sourcetree/ga/Sourcetree_#{version}.zip"
   end
 
-  # atlassian.com is the official download host per the vendor homepage
-  url "https://downloads.atlassian.com/software/sourcetree/SourceTree_#{version}.dmg"
-  appcast 'http://www.sourcetreeapp.com/update/SparkleAppcast.xml',
-          :sha256 => 'b43e0ea95de46d2c270cdbf9765e03ec3f13606cbf0bab5bcd3da0424ce2cff3'
-  name 'SourceTree'
-  homepage 'http://www.sourcetreeapp.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
-  tags :vendor => 'Atlassian'
+  appcast "https://product-downloads.atlassian.com/software/sourcetree/Appcast/SparkleAppcastGroup0.xml"
+  name "Atlassian SourceTree"
+  homepage "https://www.sourcetreeapp.com/"
 
-  app 'SourceTree.app'
-  binary 'SourceTree.app/Contents/Resources/stree'
+  auto_updates true
+  depends_on macos: ">= :el_capitan"
 
-  uninstall :launchctl => 'com.atlassian.SourceTreePrivilegedHelper2'
+  app "Sourcetree.app"
+  binary "#{appdir}/Sourcetree.app/Contents/Resources/stree"
 
-  zap :delete => [
-                  '~/Library/Application Support/SourceTree',
-                  '~/Library/Caches/com.torusknot.SourceTreeNotMAS',
-                 ]
+  uninstall launchctl: "com.atlassian.SourceTreePrivilegedHelper2",
+            quit:      "com.torusknot.SourceTreeNotMAS"
 
-  caveats do
-    files_in_usr_local
-  end
+  zap trash: [
+    "~/Library/Application Support/SourceTree",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.torusknot.sourcetreenotmas.sfl2",
+    "~/Library/Caches/com.torusknot.SourceTreeNotMAS",
+    "~/Library/Preferences/com.torusknot.SourceTreeNotMAS.plist",
+    "~/Library/Preferences/com.torusknot.SourceTreeNotMAS.LSSharedFileList.plist",
+    "~/Library/Saved Application State/com.torusknot.SourceTreeNotMAS.savedState",
+  ]
 end

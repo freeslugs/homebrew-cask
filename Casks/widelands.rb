@@ -1,12 +1,13 @@
-cask :v1 => 'widelands' do
-  version 'Build 18'
-  sha256 '1d209dcf653942788120c6f1abbe6f421fdefe6776f4feed48c58eddeb4c3722'
+cask "widelands" do
+  version "20"
+  sha256 "074d86d82a77cf8f4907afcf2be9cbe5b283af01f76aa074d60d3d3e20db110e"
 
-  # launchpad.net is the official download host per the vendor homepage
-  url 'https://launchpad.net/widelands/build18/build-18/+download/widelands-build18-mac.dmg'
-  name 'Widelands'
-  homepage 'https://wl.widelands.org/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # launchpad.net/widelands/ was verified as official when first introduced to the cask
+  url "https://launchpad.net/widelands/build#{version}/build#{version}/+download/widelands-build#{version}-macosx-10.9.dmg"
+  name "Widelands"
+  homepage "https://www.widelands.org/"
 
-  app 'Widelands.app'
+  app "Widelands.app"
+
+  zap trash: "~/.widelands"
 end

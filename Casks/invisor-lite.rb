@@ -1,11 +1,11 @@
-cask :v1 => 'invisor-lite' do
-  version '3.3'
-  sha256 '74bd41fa922a710016d7922e0814558df58ce1790da57b00d867cb58b9191ad3'
+cask "invisor-lite" do
+  version "3.13"
+  sha256 "06615b2b0c43f32fc3cc602a88f0d896de21190393de0b97b291f88507f7aaf1"
 
-  url "http://www.pozdeev.com/invisor/download/InvisorLite-#{version}.dmg"
-  name 'Invisor Lite'
-  homepage 'http://www.pozdeev.com/invisor/'
-  license :gratis
+  url "https://www.invisorapp.com/download/InvisorLite-#{version}.dmg"
+  appcast "https://www.invisorapp.com/appcast_lite.xml"
+  name "Invisor Lite"
+  homepage "https://www.invisorapp.com/"
 
-  app 'Invisor Lite.app'
+  app "Invisor Lite.app"
 end

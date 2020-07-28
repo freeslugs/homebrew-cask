@@ -1,24 +1,20 @@
-cask :v1 => 'soulver' do
-  version :latest
-  sha256 :no_check
+cask "soulver" do
+  version "3.4.5-122"
+  sha256 "6a185ba736330ef8133a774ab7344989b23b6d8ea7a2a2a66038440acf203950"
 
-  url 'http://www.acqualia.com/files/download.php?product=soulver'
-  appcast 'http://www.acqualia.com/soulver/appcast/soulver2.xml'
-  homepage 'http://www.acqualia.com/soulver/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://soulver.app/mac/sparkle/soulver-#{version}.zip"
+  appcast "https://soulver.app/mac/sparkle/appcast.xml"
+  name "Soulver"
+  homepage "https://soulver.app/"
 
-  app 'Soulver.app'
+  auto_updates true
+  depends_on macos: ">= :mojave"
 
-  postflight do
-    suppress_move_to_applications
-  end
+  app "Soulver #{version.major}.app"
 
-  zap :delete => [
-                  # todo verify that this does not contain user-generated content
-                  # '~/Library/Application Support/Soulver',
-                  '~/Library/Preferences/com.acqualia.soulver.plist',
-                  '~/Library/Autosave Information/Unsaved Soulver Document.soulver',
-                  # todo glob/expand support
-                  # '~/Library/Autosave Information/Unsaved Soulver Document 2.soulver',
-                 ]
+  zap trash: [
+    "~/Library/Application Support/Soulver 3",
+    "~/Library/Application Support/app.soulver.mac",
+    "~/Library/Preferences/app.soulver.mac.plist",
+  ]
 end

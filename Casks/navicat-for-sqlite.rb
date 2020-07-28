@@ -1,12 +1,11 @@
-cask :v1 => 'navicat-for-sqlite' do
-  version '11.1.9'   # navicat-premium.rb and navicat-for-* should be upgraded together
-  sha256 'a9c4c8137de01fb223f3820cf21dbe7c77d2e0a923352f0934be9f7fd9511d86'
+cask "navicat-for-sqlite" do
+  version "15.0.18"
+  sha256 "93747ca90410e83fb401c88ad26fc7f99aa5a868fb8196cb09438b6944442156"
 
-  url "http://download.navicat.com/download/navicat#{version.sub(%r{^(\d+)\.(\d+).*},'\1\2')}_sqlite_en.dmg"
-  name 'Navicat for SQLite'
-  homepage 'http://www.navicat.com/products/navicat-for-sqlite'
-  license :commercial
-  tags :vendor => 'Navicat'
+  url "http://download.navicat.com/download/navicat#{version.major_minor.no_dots}_sqlite_en.dmg"
+  appcast "https://updater.navicat.com/mac/navicat_updates.php?appName=Navicat%20for%20SQLite&appLang=en"
+  name "Navicat for SQLite"
+  homepage "https://www.navicat.com/products/navicat-for-sqlite"
 
-  app 'Navicat for SQLite.app'
+  app "Navicat for SQLite.app"
 end

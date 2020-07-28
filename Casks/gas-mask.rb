@@ -1,12 +1,23 @@
-cask :v1 => 'gas-mask' do
-  version '0.8.1'
-  sha256 'f384e973603088ed5afbe841ef7d5698262988c65a0437a9d8011dcb667fcc2e'
+cask "gas-mask" do
+  version "0.8.6"
+  sha256 "9f75d0b11340d70832f87011c3d8ed97b9b18b3a56dec5f860d4040bb7404500"
 
   url "http://gmask.clockwise.ee/files/gas_mask_#{version}.zip"
-  appcast 'http://gmask.clockwise.ee/check_update/',
-          :sha256 => '2e4f5292999bddfc25245a9c10f98d7ac23d0717a1dd45436a00cf09be7f8d9b'
-  homepage 'http://www.clockwise.ee/gasmask/'
-  license :gpl
+  appcast "http://gmask.clockwise.ee/check_update/"
+  name "Gas Mask"
+  homepage "http://clockwise.ee/"
 
-  app 'Gas Mask.app'
+  auto_updates true
+
+  app "Gas Mask.app"
+
+  uninstall quit: "ee.clockwise.gmask"
+
+  zap trash: [
+    "~/Library/Caches/com.apple.helpd/Generated/Gas Mask Help*",
+    "~/Library/Caches/ee.clockwise.gmask",
+    "~/Library/Gas Mask",
+    "~/Library/Logs/Gas Mask.log",
+    "~/Library/Preferences/ee.clockwise.gmask.plist",
+  ]
 end

@@ -1,11 +1,21 @@
-cask :v1 => 'monodraw' do
-  version :latest
-  sha256 :no_check
+cask "monodraw" do
+  version "1.4,b103"
+  sha256 "a3a61a256908741c7da879726940e27f0b246400c7abe8e862e477db790d3a12"
 
-  url 'https://helftone-assets.s3.amazonaws.com/monodraw/downloads/Monodraw-latest.zip'
-  name 'Monodraw'
-  homepage 'http://monodraw.helftone.com/'
-  license :commercial
+  url "https://updates.helftone.com/monodraw/downloads/Monodraw-#{version.after_comma}.zip"
+  appcast "https://updates.helftone.com/monodraw/appcast-beta.xml"
+  name "Monodraw"
+  homepage "https://monodraw.helftone.com/"
 
-  app 'Monodraw.app'
+  depends_on macos: ">= :mojave"
+
+  app "Monodraw.app"
+  binary "#{appdir}/Monodraw.app/Contents/Resources/monodraw"
+
+  zap trash: [
+    "~/Library/Application Support/com.helftone.monodraw",
+    "~/Library/Caches/com.helftone.monodraw",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/com.helftone.monodraw.help*",
+    "~/Library/Preferences/com.helftone.monodraw.plist",
+  ]
 end

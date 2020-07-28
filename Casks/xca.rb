@@ -1,11 +1,12 @@
-cask :v1 => 'xca' do
-  version '1.1.0'
-  sha256 '124aa68b07a1b655e020e4ef0d36a6c8d490824f225088f6dfbf410aecaf1be1'
+cask "xca" do
+  version "2.3.0"
+  sha256 "798dcad616837b33ad7a92f6f62a7afba3d9eb049ad26ecccfc8747c8ac9d551"
 
-  url "http://downloads.sourceforge.net/project/xca/xca/#{version}/xca-#{version}.dmg"
-  name 'XCA'
-  homepage 'http://xca.sourceforge.net/'
-  license :bsd
+  # github.com/chris2511/xca/ was verified as official when first introduced to the cask
+  url "https://github.com/chris2511/xca/releases/download/RELEASE.#{version}/xca-#{version}.dmg"
+  appcast "https://github.com/chris2511/xca/releases.atom"
+  name "XCA"
+  homepage "https://hohnstaedt.de/xca/"
 
-  app 'xca.app'
+  app "xca.app"
 end

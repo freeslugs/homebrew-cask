@@ -1,10 +1,11 @@
-cask :v1 => 'katana' do
-  version '1.1.1'
-  sha256 'cac0091f63a0281f6f95f609e04455db98f915f4e1f40a575e822208b3265eae'
+cask "katana" do
+  version "1.4.4"
+  sha256 "905a578cd5d2fd3ee18e521ef0e1574f19229938181585bee41008b172dc5d1e"
 
-  url 'http://download.witiz.com/Katana.zip'
-  homepage 'http://katana.witiz.com/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://github.com/bluegill/katana/releases/download/v#{version}/katana-#{version}-mac.zip"
+  appcast "https://github.com/bluegill/katana/releases.atom"
+  name "Katana"
+  homepage "https://github.com/bluegill/katana/"
 
-  app 'Katana.app'
+  app "Katana.app"
 end

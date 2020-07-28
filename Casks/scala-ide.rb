@@ -1,22 +1,15 @@
-cask :v1 => 'scala-ide' do
-  version '4.0.0'
+cask "scala-ide" do
+  version "4.7.0,2.12:20170929"
+  sha256 "b86a37066cb375615c2a9a61a0152b66a0b172b90e15a33c339f89d2516315f9"
 
-  if Hardware::CPU.is_32_bit?
-    # typesafe.com is the official download host per the vendor homepage
-    url "http://downloads.typesafe.com/scalaide-pack/#{version}-vfinal-luna-211-20150119/scala-SDK-#{version}-vfinal-2.11-macosx.cocoa.x86.zip"
-    sha256 '2398c727bde5fe694516829735ad22731eee4793ec0d91864c5d507493ce4b4d'
-  else
-    # typesafe.com is the official download host per the vendor homepage
-    url "http://downloads.typesafe.com/scalaide-pack/#{version}-vfinal-luna-211-20150119/scala-SDK-#{version}-vfinal-2.11-macosx.cocoa.x86_64.zip"
-    sha256 '79151623c1b5fd53b10a9361d872939937737dfa9708c60687098beef4f42159'
-  end
-
-  name 'Scala IDE'
-  homepage 'http://scala-ide.org/'
-  license :bsd
+  # downloads.typesafe.com/scalaide-pack/ was verified as official when first introduced to the cask
+  url "https://downloads.typesafe.com/scalaide-pack/#{version.before_comma}-vfinal-oxygen-#{version.before_colon.after_comma.no_dots}-#{version.after_colon}/scala-SDK-#{version.before_comma}-vfinal-#{version.before_colon.after_comma}-macosx.cocoa.x86_64.zip"
+  appcast "http://scala-ide.org/download/sdk.html"
+  name "Scala IDE"
+  homepage "http://scala-ide.org/"
 
   # Renamed for clarity: app name is inconsistent with its branding.
   # Also renamed to avoid conflict with other eclipse Casks.
-  # Original discussion: https://github.com/caskroom/homebrew-cask/pull/2731
-  app 'eclipse/Eclipse.app', :target => 'Scala IDE.app'
+  # Original discussion: https://github.com/Homebrew/homebrew-cask/pull/2731
+  app "eclipse.app", target: "Scala IDE.app"
 end

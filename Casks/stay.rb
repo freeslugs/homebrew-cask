@@ -1,13 +1,19 @@
-cask :v1 => 'stay' do
-  version '1.2.3'
-  sha256 'afe5abc2757bcee547a0d9ad8ebae55744ac197bc28c9fa28fc7987b9b512464'
+cask "stay" do
+  version "1.3"
+  sha256 "fc20518adc53aba6856cc5b3149889f046ab640134a9876952c5a0cb61e9b6a2"
 
-  url "https://cordlessdog.com/stay/versions/Stay%20#{version}.zip"
-  appcast 'http://cordlessdog.com/stay/appcast.xml',
-          :sha256 => '43ace797403b9b44186e2f37c76912e3e18a45334ad4462577aa037e886ebd6c'
-  name 'Stay'
-  homepage 'http://cordlessdog.com/stay/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://cordlessdog.com/stay/versions/Stay%20#{version}.dmg"
+  appcast "https://cordlessdog.com/stay/appcast.xml"
+  name "Stay"
+  homepage "https://cordlessdog.com/stay/"
 
-  app 'Stay.app'
+  depends_on macos: ">= :mojave"
+
+  app "Stay.app"
+
+  zap trash: [
+    "~/Library/Application Support/Stay",
+    "~/Library/Application Support/com.cordlessdog.Stay",
+    "~/Library/Preferences/com.cordlessdog.Stay.plist",
+  ]
 end

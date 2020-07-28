@@ -1,16 +1,19 @@
-cask :v1 => 'ridibooks' do
-  version :latest
-  sha256 :no_check
+cask "ridibooks" do
+  version "0.8.2"
+  sha256 "3625bb604614e4cbab3e95101c9860284a78466d8736672d71baac12508d2ba8"
 
-  url 'http://ridibooks.com/getapp?os=mac'
-  homepage 'http://ridibooks.com/support/introduce_appdown'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # viewer-ota.ridicdn.net/pc_electron/ was verified as official when first introduced to the cask
+  url "https://viewer-ota.ridicdn.net/pc_electron/Ridibooks-#{version}.dmg"
+  appcast "https://s3-ap-northeast-2.amazonaws.com/viewer-ota.ridicdn.net/pc_electron/latest-mac.yml"
+  name "Ridibooks"
+  homepage "https://ridibooks.com/support/app/download"
 
-  container :type => :naked
-  preflight do
-    system '/bin/mv', '--', staged_path.join('getapp'), staged_path.join('ridibooks.pkg')
-  end
-  pkg 'ridibooks.pkg'
+  depends_on macos: ">= :sierra"
 
-  uninstall :pkgutil => 'com.ridibooks.Ridibooks'
+  app "Ridibooks.app"
+
+  zap trash: [
+    "~/Library/Application Support/RIDI",
+    "~/Library/Preferences/com.ridibooks.Ridibooks.plist",
+  ]
 end

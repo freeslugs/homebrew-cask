@@ -1,16 +1,22 @@
-cask :v1 => 'deezer' do
-  version '0.9.15_4141'
-  sha256 '0d1fd724eb5d22f4c35b22e5200e583ef277473ace366542ba62a77faccd0c41'
+cask "deezer" do
+  version "4.20.30"
+  sha256 "7e3de1b2025a67a0c1dca001688d16394d89328e9a1afbae170031325f8c2a1b"
 
-  url "https://cdns-content.deezer.com/builds/mac/Deezer#{version.sub(%r{^[^_]*(_\d+)},'\1')}.dmg"
-  name 'Deezer'
-  homepage 'https://www.deezer.com/beta/formac'
-  license :gratis
+  url "https://www.deezer.com/desktop/download/artifact/darwin/x64/#{version}"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://www.deezer.com/desktop/download%3Fplatform%3Ddarwin%26architecture=x64"
+  name "Deezer"
+  homepage "https://www.deezer.com/download"
 
-  app 'Deezer.app'
+  auto_updates true
 
-  zap :delete => [
-                  '~/Library/Application Support/Deezer',
-                  '~/Library/Preferences/com.deezer.Deezer.plist',
-                 ]
+  app "Deezer.app"
+
+  zap trash: [
+    "~/Library/Application Support/Caches/deezer-desktop-updater",
+    "~/Library/Application Support/deezer-desktop",
+    "~/Library/Logs/Deezer",
+    "~/Library/Preferences/ByHost/com.deezer.*",
+    "~/Library/Preferences/com.deezer.deezer-desktop.plist",
+    "~/Library/Saved Application State/com.deezer.deezer-desktop.savedState",
+  ]
 end

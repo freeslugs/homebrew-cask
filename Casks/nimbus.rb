@@ -1,12 +1,11 @@
-cask :v1 => 'nimbus' do
-  version '0.7.3'
-  sha256 '4915e57131db72e08c45e375e4a52a4441f70ef9cfb5a70e433d66949708e82b'
+cask "nimbus" do
+  version "0.8.0"
+  sha256 "0fec9d878c457a0776deb40a2d3982bdf5aa5de27253ae2a10894520457d9b57"
 
-  url "https://github.com/jnordberg/irccloudapp/releases/download/#{version}/Nimbus-#{version}.zip"
-  appcast 'https://github.com/jnordberg/irccloudapp/raw/master/appcast.xml',
-          :sha256 => 'aa3b9af94d19e8df33fc083ea87ffa8fe227742965d42368822b3e4d6ded9d03'
-  homepage 'https://github.com/jnordberg/irccloudapp'
-  license :mit
+  url "https://github.com/jnordberg/irccloudapp/releases/download/#{version}/Nimbus.zip"
+  appcast "https://github.com/jnordberg/irccloudapp/releases.atom"
+  name "Nimbus"
+  homepage "https://github.com/jnordberg/irccloudapp"
 
-  app 'Nimbus.app'
+  app "Nimbus.app"
 end

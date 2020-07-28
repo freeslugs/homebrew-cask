@@ -1,10 +1,12 @@
-cask :v1 => 'deluge' do
-  version '1.3.11'
-  sha256 '503b3ac13bd437bfa2c055aa1ddf26290db0c5d4fb04e130c94dc42490ce6131'
+cask "deluge" do
+  version "1.3.15.1"
+  sha256 "a78a477f0a492c96cfa3e68a6551c36c6b451fc91b19df433027ef189f757baa"
 
-  url "http://download.deluge-torrent.org/mac_osx/deluge-#{version}-osx-x86.tbz2"
-  homepage 'http://deluge-torrent.org/'
-  license :gpl
+  # ftp.osuosl.org/ was verified as official when first introduced to the cask
+  url "https://ftp.osuosl.org/pub/deluge/mac_osx/deluge-#{version}-macosx-x64.dmg"
+  appcast "https://ftp.osuosl.org/pub/deluge/mac_osx/?C=M;O=D"
+  name "Deluge"
+  homepage "https://deluge-torrent.org/"
 
-  app 'Deluge.app'
+  app "Deluge.app"
 end

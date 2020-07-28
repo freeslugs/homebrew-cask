@@ -1,13 +1,22 @@
-cask :v1 => 'base' do
-  version :latest
-  sha256 :no_check
+cask "base" do
+  version "2.5.1"
+  sha256 "42ac2783562f872f17de667c1c450b6bd0f936effc010bdbcceb49d13efef3ce"
 
-  url 'http://menial.co.uk/base/download/'
-  appcast 'http://update.menial.co.uk/software/base/'
-  name 'Base'
-  homepage 'http://menial.co.uk/base/'
-  license :commercial
-  tags :vendor => 'Menial'
+  url "https://files.menial.co.uk/base/base_#{version}.zip"
+  appcast "https://update.menial.co.uk/software/base/"
+  name "Menial Base"
+  homepage "https://menial.co.uk/base/"
 
-  app 'Base.app'
+  depends_on macos: ">= :mojave"
+
+  app "Base.app"
+
+  zap trash: [
+    "~/Library/Application Support/Base",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/uk.co.menial.base.sfl*",
+    "~/Library/Caches/com.apple.helpd/Generated/uk.co.menial.base.help*",
+    "~/Library/Caches/com.apple.helpd/SDMHelpData/Other/English/HelpSDMIndexFile/uk.co.menial.base.help*",
+    "~/Library/Caches/uk.co.menial.Base",
+    "~/Library/Preferences/uk.co.menial.Base.plist",
+  ]
 end

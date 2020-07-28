@@ -1,12 +1,19 @@
-cask :v1 => 'namechanger' do
-  version '2.3.3'
-  sha256 '3731773e2be9af5c0cda15aa4368393ebe05084e6a29a03a38756b5f4049fc8d'
+cask "namechanger" do
+  version "3.4.3"
+  sha256 "27ca369e1c355b2f7683caf709db7c180a8dfeeed3bbd72db55db54889a70ac4"
 
-  url "http://www.mrrsoftware.com/Downloads/NameChanger/Updates/NameChanger-#{version.gsub('.','_')}.zip"
-  appcast 'http://mrrsoftware.com/Downloads/NameChanger/Updates/NameChangerSoftwareUpdates.xml',
-          :sha256 => 'f8e9f7e32a1402b6a1be71963ee33e79c86244ba2f6ca1fcf52e644b1c235192'
-  homepage 'http://www.mrrsoftware.com/MRRSoftware/NameChanger.html'
-  license :gratis
+  url "https://www.mrrsoftware.com/Downloads/NameChanger/Updates/NameChanger-#{version.dots_to_underscores}.zip"
+  appcast "https://mrrsoftware.com/Downloads/NameChanger/Updates/NameChangerSoftwareUpdates.xml"
+  name "NameChanger"
+  homepage "https://mrrsoftware.com/namechanger/"
 
-  app 'NameChanger.app'
+  auto_updates true
+
+  app "NameChanger.app"
+
+  zap trash: [
+    "~/Library/Application Support/NameChanger",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.mrrsoftware.namechanger.sfl*",
+    "~/Library/Preferences/com.mrrsoftware.NameChanger.plist",
+  ]
 end

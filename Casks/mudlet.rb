@@ -1,10 +1,13 @@
-cask :v1 => 'mudlet' do
-  version '2.1'
-  sha256 'c7c33cb0dba8223c094bed4caade243b0ae2fb70e71f0e18d2aa8434cc583bae'
+cask "mudlet" do
+  version "4.9.1"
+  sha256 "e7105e93cd7dd12b920856ae3cc9a0b1fc4538970768a316921eb6f657cf883d"
 
-  url "http://www.mudlet.org/download/Mudlet-#{version}.zip"
-  homepage 'http://www.mudlet.org'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  url "https://www.mudlet.org/wp-content/files/Mudlet-#{version}.dmg"
+  appcast "https://github.com/Mudlet/Mudlet/releases.atom"
+  name "Mudlet"
+  homepage "https://www.mudlet.org/"
 
-  app "Mudlet-#{version}.app"
+  depends_on macos: ">= :high_sierra"
+
+  app "Mudlet.app"
 end

@@ -1,17 +1,12 @@
-cask :v1 => 'istat-server' do
-  version :latest
-  sha256 :no_check
+cask "istat-server" do
+  version "3.03"
+  sha256 "0d6df9abe88aa7b29f53abb63413ede2853823cf6fd75b75818ef0190a07e8c7"
 
-  url 'http://download.bjango.com/istatserver/'
-  name 'iStat Server'
-  homepage 'http://bjango.com/mac/istatserver/'
-  license :unknown    # todo: change license and remove this comment; ':unknown' is a machine-generated placeholder
+  # bjango.s3.amazonaws.com/ was verified as official when first introduced to the cask
+  url "https://bjango.s3.amazonaws.com/files/istatserver#{version.major}/istatserver#{version}.zip"
+  appcast "https://macupdater.net/cgi-bin/check_urls/check_url_redirect.cgi?url=https://download.bjango.com/istatserver"
+  name "iStat Server"
+  homepage "https://bjango.com/istatserver/"
 
-  pkg 'iStat Server.pkg'
-
-  uninstall :script => '/Applications/iStat Server.app/Contents/Resources/Uninstaller',
-            :pkgutil => 'com.bjango.istatserver.*'
-  caveats do
-    reboot
-  end
+  app "iStat Server.app"
 end

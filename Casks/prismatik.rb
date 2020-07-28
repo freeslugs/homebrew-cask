@@ -1,12 +1,12 @@
-cask :v1 => 'prismatik' do
-  version '5.11.1'
-  sha256 '178ea51c143c2cb005199f5cfaf24695324b951ba98c55cec83c7882e6420903'
+cask "prismatik" do
+  version "6.0.0.104"
+  sha256 "72e94944f9732ab737836a399a6f92693d1dd1717e0bef0cae3d96654b1dd2af"
 
-  # github.com is the official download host per the vendor homepage
-  url "https://github.com/woodenshark/Lightpack/releases/download/#{version}/Prismatik.#{version}.dmg"
-  name 'Prismatik'
-  homepage 'http://lightpack.tv/'
-  license :gpl
+  # woodenshark.com/4lightpack/ was verified as official when first introduced to the cask
+  url "https://woodenshark.com/4lightpack/Prismatik_#{version}_signed.dmg"
+  appcast "https://lightpack.tv/pages/downloads"
+  name "Prismatik"
+  homepage "https://lightpack.tv/pages/downloads"
 
-  app 'Prismatik.app'
+  app "Prismatik.app"
 end

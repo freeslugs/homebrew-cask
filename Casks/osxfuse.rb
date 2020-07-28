@@ -1,14 +1,29 @@
-cask :v1 => 'osxfuse' do
-  version '2.7.5'
-  sha256 '9be5cc9c44c2211aacea6a35aea5d47fea82599e981f051f318201a637b43f72'
+cask "osxfuse" do
+  version "3.11.0"
+  sha256 "6e4adf8e939bb336ce51c28c71249019c1499ebdba4abddc7cc1ea5154a1feaf"
 
-  # sourceforge.net is the official download host per the vendor homepage
-  url "http://downloads.sourceforge.net/project/osxfuse/osxfuse-#{version}/osxfuse-#{version}.dmg"
-  homepage 'https://osxfuse.github.io/'
-  license :bsd
+  # github.com/osxfuse/ was verified as official when first introduced to the cask
+  url "https://github.com/osxfuse/osxfuse/releases/download/osxfuse-#{version}/osxfuse-#{version}.dmg"
+  appcast "https://github.com/osxfuse/osxfuse/releases.atom"
+  name "OSXFUSE"
+  homepage "https://osxfuse.github.io/"
 
-  pkg "Install OSXFUSE #{version[0..-3]}.pkg"
+  pkg "Extras/FUSE for macOS #{version}.pkg"
 
-  uninstall :pkgutil => 'com.github.osxfuse.pkg.Core|com.github.osxfuse.pkg.PrefPane',
-            :kext => 'com.github.osxfuse.filesystems.osxfusefs'
+  postflight do
+    set_ownership ["/usr/local/include", "/usr/local/lib"]
+  end
+
+  uninstall pkgutil: [
+    "com.github.osxfuse.pkg.Core",
+    "com.github.osxfuse.pkg.MacFUSE",
+    "com.github.osxfuse.pkg.PrefPane",
+  ],
+            kext:    "com.github.osxfuse.filesystems.osxfusefs"
+
+  zap trash: "~/Library/Caches/com.github.osxfuse.OSXFUSEPrefPane"
+
+  caveats do
+    reboot
+  end
 end
